@@ -1,20 +1,34 @@
-input#search {
-	margin: 0;
-	padding: 5px;
-	width: 300px;
-	border: 1px solid black;  
-	background-color: #e0e0e0;
-}
+html, body {
+  font-family: "Arial";
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+  background: #f3f3f3; }
 
-ul#tweets {
-	padding: 0;
-	list-style-type: none;
-}
+#page {
+  width: 100%;
+  height: 100%; }
 
-ul#tweets li {
-	width: 300px;
-	margin: 5px 0;
-	padding: 5px;
-	border: 1px dotted black;
-}
+.nav {
+  cursor: pointer; }
 
+.nav > li > a:hover, .nav > li > a:focus {
+  background: #fff; }
+
+.tab-content {
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-top: 0px;
+  background: #fff; }
+
+.login-container {
+  width: 500px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+  .login-container h4 {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic; }

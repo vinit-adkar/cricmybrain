@@ -6,12 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fantasyCricketApp', function(err) {
-    if(err) {
-        console.log('connection error', err);
-    } else {
-        console.log('connection successful');
-    }
+mongoose.connect('mongodb://localhost/cricmybraindb', function(err) {
+	if(err) {
+		console.log('connection error', err);
+	} else {
+		console.log('connection successful');
+	}
 });
 
 var routes = require('./routes/index');
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/user_profile', userProfile);
+app.use('/users', userProfile);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

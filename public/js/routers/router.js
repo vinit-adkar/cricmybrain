@@ -3,7 +3,7 @@ define([
 	"jquery",
 	"underscore",
 	"backbone",
-	"views/splashview"
+	"views/splash/splashView"
 ], function($, _, Backbone, SplashView){
 
 	var AppRouter = Backbone.Router.extend({

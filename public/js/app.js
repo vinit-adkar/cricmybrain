@@ -4,6 +4,7 @@ define([
 	'underscore',
 	'backbone',
 	"routers/router",
+	"utils"
 ], function($, _, Backbone, Router){
 	var initialize = function(){
 		Router.initialize();
