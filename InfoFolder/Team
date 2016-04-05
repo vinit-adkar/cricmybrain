@@ -1,0 +1,22 @@
+{
+	team: "Mumbai Indians",
+	unique_id: "MI",
+	players: ["asd","Asd","Asdasd","asdasd"]
+},
+{
+	team: "Delhi Dardevils",
+	unique_id: "DD",
+	players: ["asd","Asd","Asdasd","asdasd"]
+},
+{
+	team: "Kolkata KNight Riders",
+	unique_id: "KKR",
+	players: ["asd","Asd","Asdasd","asdasd"]
+},
+
+RuleTable
+
+team=[], rule1, rule2, rule2, bonusrule
+team_id -MI, 
+team_id - KKR
+

@@ -1,0 +1,102 @@
+/**************************************************************************************************
+PointsTable
+Team Name, Name, Points
+Points Table Page...
+**************************************************************************************************/
+
+/**************************************************************************************************
+GAME-RULE SCHEMA: ADMIN CREATES RULES 
+Date, Home_Team, Away_Team, Venue, RUle1, Rule2, Rule3, Bonus, MatchDay (UNIQUE ID), WinnerRule1, WinnerRule2, WinnerRule3, BonusWinner.
+
+DUMP DATA FROM Rule.json to gameRUle table
+var rule: {
+	rule1: '',
+	rule2:'',
+	rule3='',
+	bonus:Math.random([])
+}
+
+DUMP DATA FROM GAMEDAYMATCHES.json to gameRUle table
+var gamedayMatches = {
+	date: "",
+	Home_Team: "",
+	Away_Team: "",
+	Venue: ""
+}
+**************************************************************************************************/
+
+
+
+/**************************************************************************************************
+PredictionEntry Schema: Were all users enter theier prediction
+MatchDay, Rule1Winner, Rule2Winner, Rule3Winer, BonusWinner, TeamName
+
+**************************************************************************************************/
+
+
+/**************************************************************************************************
+
+DASHBOARD:
+Welcome............... Sign out
+
+Previous Match Day Results
+MatchDay 11 - a vs b-- venue
+WINNER PREDICTION..(anser1, answer2, answer3, binus answer)
+1.	Team Name, Prediction, POints
+2.	Team Name, Prediction, POints
+3.	Team Name, Prediction, POints
+4.	Team Name, Prediction, POints
+5.	Team Name, Prediction, POints
+
+
+TOdays Matches Based on Date
+1. Match 1															|
+Prediction - (Editable after save).. Non editable after deadline	|	Ponts table
+																	|	
+2. Match 2 															|	Rank, Team Name, Name, POints
+Prediction - (Editable after save).. Non editable after deadline	|
+																	|
+Upcomnig MAtches... collapsed.										|
+match 3																|		
+Prediction															|
+match4 																|
+prediciotn															|
+
+**************************************************************************************************/
+
+/**************************************************************************************************
+ADMIN DASHBOARD:
+Welcome............... Sign out
+
+TOdays Matches
+1. Match 1															|
+INPUT QUESTION														|	Ponts table
+BUTTON CLICK...  GET RESULTS
+2. Match 2 															|	Rank, Team Name, Name, POints
+INPUT QUESTION														|
+	
+BUTTON CLICK _ GET RESULTS..
+																	|	
+Upcomnig MAtches... collapsed.										|
+match 3																|		
+INPUT QUESTION														|
+match4 																|
+INPUT QUESTION
+
+**************************************************************************************************/
+
+/**************************************************************************************************
+//How to caluclate points
+
+getResults() {
+	for (every MatchDay)
+	var current_rule = getMatchdayRules()
+	currentWinners = {current_rule.ruleWinner1,2, 3, bonus }
+	for (every user) {
+		var prediction = getFromPredictionTable(user = team name, matchday = current_rule.matchDay)
+		var totalPoints = COMPARE(prediction, currentWinnerObject)
+		pointsTable.update(totalPOints, teamName)
+	}
+}
+**************************************************************************************************/
+
