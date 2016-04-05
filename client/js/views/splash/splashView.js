@@ -2,8 +2,8 @@ define([
 	"jquery",
 	"underscore",
 	"backbone",
-	"views/splash/loginView",
-	"views/splash/signUpView",
+	"views/splash/LoginView",
+	"views/splash/SignUpView",
 	"text!templates/splash/SplashViewTemplate.html"
 ], function($, _, Backbone, LoginView, SignUpView, SplashViewTemplate){
 
