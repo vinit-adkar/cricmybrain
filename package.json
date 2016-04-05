@@ -1,5 +1,6 @@
 {
 	"name": "cricmybrain",
+	"description": "Ultimate Fantasy League for Cricket lovers !",
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
