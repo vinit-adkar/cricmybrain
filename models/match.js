@@ -46,7 +46,7 @@ var matchSchema = mongoose.Schema({
         rule3Winner: { 
             type: [String],
         },
-        bonus: { 
+        bonusWinner: { 
             type: [String],
         }
     }
