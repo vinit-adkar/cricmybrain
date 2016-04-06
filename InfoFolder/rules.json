@@ -1,0 +1,49 @@
+[
+    {   
+        "ruleNum": "rule1",
+        "ruleType" : "team",
+        "ruleDesc" : "Match Winner",
+        "ruleFunction" : "isSameTeam",
+        "ruleCriteria" : "Check if predicted team is same as winner"
+    },
+
+    {   
+        "ruleNum": "rule2",
+        "ruleType" : "runs",
+        "ruleDesc" : "Max runs scored by a single batsman in the match",
+        "ruleFunction" : "isMaxRunsWithinRange",
+        "ruleCriteria" : "Check if predicted runs is within a tolerance of +-3 of the max runs"
+    },
+
+    {   
+        "ruleNum": "rule3",
+        "ruleType" : "name",
+        "ruleDesc" : "Bowler with best bowling figures in the match",
+        "ruleFunction" : "isSameName",
+        "ruleCriteria" : "Check if predicted name is same as winner name"
+    },
+
+    {
+        "bonusNum": "bonus1",
+        "ruleType": "runs",
+        "ruleDesc" : "Max runs scored by batsman with highest strike rate, only runs greater than 20 will be considered",
+        "ruleFunction" : "isMaxRunsOfHighestSRWithinRange",
+        "ruleCriteria" : "Check if predicted runs is within a tolerance of +-3 of the max runs"
+    },
+
+    {
+        "bonusNum": "bonus2",
+        "ruleType": "name",
+        "ruleDesc" : "Batsman with highest sixes",
+        "ruleFunction" : "isSameName",
+        "ruleCriteria" : "Check if predicted name is same as winner name"
+    },
+
+    {
+        "bonusNum": "bonus3",
+        "ruleType": "wickets",
+        "ruleDesc" : "Total wickets in the game",
+        "ruleFunction" : "isTotalWicketsWithinRange",
+        "ruleCriteria" : "Check if predicted wickets is within a tolerance of +-1 of the max wickets"
+    }
+]
