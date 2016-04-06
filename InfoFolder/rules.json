@@ -24,7 +24,7 @@
     },
 
     {
-        "bonusNum": "bonus1",
+        "ruleNum": "bonus1",
         "ruleType": "runs",
         "ruleDesc" : "Max runs scored by batsman with highest strike rate, only runs greater than 20 will be considered",
         "ruleFunction" : "isMaxRunsOfHighestSRWithinRange",
@@ -32,7 +32,7 @@
     },
 
     {
-        "bonusNum": "bonus2",
+        "ruleNum": "bonus2",
         "ruleType": "name",
         "ruleDesc" : "Batsman with highest sixes",
         "ruleFunction" : "isSameName",
@@ -40,7 +40,7 @@
     },
 
     {
-        "bonusNum": "bonus3",
+        "ruleNum": "bonus3",
         "ruleType": "wickets",
         "ruleDesc" : "Total wickets in the game",
         "ruleFunction" : "isTotalWicketsWithinRange",

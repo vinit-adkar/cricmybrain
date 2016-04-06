@@ -2,7 +2,7 @@
     {   
         "matchNum": "match1",
         "date" : "04-09-16",
-        "startTime" : "14:30",
+        "startTimeGMT" : "14:30",
         "homeTeam" : "MI",
         "awayTeam" : "RPS",
         "venue" : "Wankhede Stadium, Mumbai",
@@ -15,7 +15,7 @@
     {   
         "matchNum": "match2",
         "date" : "04-10-16",
-        "startTime" : "14:30",
+        "startTimeGMT" : "14:30",
         "homeTeam" : "KKR",
         "awayTeam" : "DD",
         "venue" : "Eden Garden, Kolkata",
