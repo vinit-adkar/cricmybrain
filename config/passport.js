@@ -71,7 +71,7 @@ module.exports = function(passport) {
 	                newUser.save(function(err) {
 	                    if (err)
 	                        throw err;
-	                    return done(null, newUser);
+	                    return done(null, newUser, req.flash('loginMessage', 'You have successfully created an account. Login to start playing!!'));
 	                });
 	            }
 

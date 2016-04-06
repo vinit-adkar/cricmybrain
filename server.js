@@ -10,7 +10,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 
 var app = express();
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8888;
 
 var configDB = require('./config/database.js');
 
@@ -50,3 +50,4 @@ if (app.get('env') === 'development') {
 	});
 }
 console.log("Server Initialized Sucessfully!!!!")
+module.exports = app;
