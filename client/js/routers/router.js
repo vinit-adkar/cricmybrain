@@ -3,8 +3,8 @@ define([
 	"jquery",
 	"underscore",
 	"backbone",
-	"views/splash/SplashView"
-], function($, _, Backbone, SplashView){
+	"views/dashboard/UserDashboardView"
+], function($, _, Backbone, UserDashboardView){
 
 	var AppRouter = Backbone.Router.extend({
 		
@@ -16,9 +16,9 @@ define([
 	var initialize = function(){
 		var app_router = new AppRouter;
 
-		app_router.on('route:showSplash', function () {
-			var splashview = new SplashView();
-			splashview.render();
+		app_router.on('route:showDashboard', function () {
+			var userDashboard = new UserDashboardView();
+			userDashboard.render();
 		});
 
 		Backbone.history.start();

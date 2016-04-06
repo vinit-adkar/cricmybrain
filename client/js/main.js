@@ -11,7 +11,9 @@ require.config({
 		"backbone": "libs/backbone",
 		"bootstrap": "libs/bootstrap",
 		"text": "libs/text",
-		"backbone-validation": "libs/backbone-validation"
+		"backbone-validation": "libs/backbone-validation",
+		"utils": "views/utilities/utils",
+		"globals": "views/utilities/globals",
 	},
 	shim: {
 		jquery: {

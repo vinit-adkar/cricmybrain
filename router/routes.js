@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
     });
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/dashboard', // redirect to the secure dashboard section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -38,19 +38,26 @@ module.exports = function(app, passport) {
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/login', // redirect to the secure dashboard section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
     // =====================================
-    // PROFILE SECTION =====================
+    // dashboard SECTION =====================
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
+    app.get('/dashboard', isLoggedIn, function(req, res) {
+        var user = {
+            id:req.user.id,
+            admin: req.user.local.admin,
+            teamname: req.user.local.teamname,
+            email: req.user.local.email,
+            points: req.user.local.points
+        }
+        res.render('dashboard.ejs', {
+            user : JSON.stringify(user) // get the user out of session and pass to template
         });
     });
 
