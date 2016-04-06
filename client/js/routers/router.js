@@ -9,7 +9,7 @@ define([
 	var AppRouter = Backbone.Router.extend({
 		
 		routes : {
-			"*actions": "showSplash",
+			"*actions": "showDashboard",
 		}
 	});
 

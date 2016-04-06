@@ -1,13 +1,23 @@
-<!DOCTYPE html>
+<!-- views/index.ejs -->
+<!doctype html>
 <html>
 <head>
-	<title>CricMyBrain</title>
-	<link rel='shortcut icon' type='image/x-icon' href='/img/favicon.ico' />
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>CricMyBrain</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body { 
+            padding-top:80px; 
+        }
+    </style>
 </head>
 <body>
-	<div id="page"></div>
-	<script data-main="js/main" src="js/libs/require.js"></script>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Welcome to CricMyBrain Fantasy League</h1>
+            <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
+            <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
+        </div>
+    </div>
 </body>
 </html>
