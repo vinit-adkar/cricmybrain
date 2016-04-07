@@ -4,22 +4,21 @@ define([
 	"backbone",
 	"globals",
 	"views/dashboard/HeaderView",
+	"views/content/ContentView",
 	"text!templates/dashboard/UserDashboardTemplate.html"
-], function($, _, Backbone, Globals, HeaderView, UserDashboardTemplate){
+], function($, _, Backbone, Globals, HeaderView, ContentView, UserDashboardTemplate){
 
 	var UserDashboardView = Backbone.View.extend({
 		el : "#dashboard",
 		template:  _.template(UserDashboardTemplate),
 
 		initialize: function() {
-			console.log(Globals);
-			this.render();
 		},
 
 		render: function(){
 			this.$el.html(this.template);
 			var headerView = new HeaderView();
-			headerView.render();
+			var contentView = new ContentView();
 		},
 
 		close : function(){

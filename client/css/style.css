@@ -28,3 +28,6 @@ html, body {
 
 .header .navbar {
   padding: 0 16px; }
+
+.content {
+  padding-top: 80px; }
