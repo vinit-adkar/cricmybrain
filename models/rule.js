@@ -20,7 +20,7 @@ var ruleSchema = mongoose.Schema({
         ruleFunc : {
             type: String,
             unique: true
-        }
+        },
         ruleCriteria : { 
             type: String, 
         }
@@ -29,4 +29,4 @@ var ruleSchema = mongoose.Schema({
 
 
 // create the model for rules for populating datatbase
-module.exports = mongoose.model('User', ruleSchema);
+module.exports = mongoose.model('Rules', ruleSchema);
