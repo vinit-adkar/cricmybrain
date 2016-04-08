@@ -22,7 +22,7 @@ var matchSchema = mongoose.Schema({
     awayTeam: { 
         type: String, 
     },
-    bonusQ: { 
+    bonusRule: { 
         type: String,
     },
     rule1Winner: { 
