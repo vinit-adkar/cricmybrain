@@ -10,7 +10,6 @@ var passport = require('passport');
 var flash = require('connect-flash');
 
 var app = express();
-var port = process.env.PORT || 8888;
 
 var configDB = require('./config/database.js');
 
@@ -37,9 +36,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 require('./router/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./router/matchroutes.js')(app);
-
-// launch ======================================================================
-app.listen(port);
 
 if (app.get('env') === 'development') {
 	app.use(function(err, req, res, next) {

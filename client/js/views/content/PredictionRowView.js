@@ -4,10 +4,11 @@ define([
 	"backbone",
 	"globals",
 	"json/TeamPlayersInfo",
+	"json/RulesInfo",
 	"models/PredictionModel",
 	"text!templates/content/PredictionRowTemplate.html",
 	"bootstrap"
-], function($, _, Backbone, Globals, TeamPlayersInfo, PredictionModel, PredictionRowTemplate){
+], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, PredictionModel, PredictionRowTemplate){
 
 	var MatchesView = Backbone.View.extend({
 		template:  _.template(PredictionRowTemplate),
@@ -35,8 +36,10 @@ define([
 		},
 
 		render: function(prediction){
-			var homeTeam = this.matchModel.get("homeTeam")
-			var awayTeam = this.matchModel.get("awayTeam")
+			var homeTeam = this.matchModel.get("homeTeam");
+			var awayTeam = this.matchModel.get("awayTeam");
+			var bonusRule = this.matchModel.get("bonusRule");
+
 			var predictionDefaultEntries = {
 				teams:[
 					{
@@ -46,9 +49,13 @@ define([
 					{
 						team_id: awayTeam, 
 						team_name: TeamPlayersInfo.getTeamName(awayTeam)
-					}
+					},
 				],
-				players:TeamPlayersInfo.getPlayers(homeTeam).concat(TeamPlayersInfo.getPlayers(awayTeam))
+				players: TeamPlayersInfo.getPlayers(homeTeam).concat(TeamPlayersInfo.getPlayers(awayTeam)),
+				rule1Desc: RulesInfo.getRulesDescription("rule1"),
+				rule2Desc: RulesInfo.getRulesDescription("rule2"),
+				rule3Desc: RulesInfo.getRulesDescription("rule3"),
+				bonusRuleDesc: RulesInfo.getRulesDescription(bonusRule),				
 			};
 
 			this.$el.append(this.template({

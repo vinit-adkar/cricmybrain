@@ -1,8 +1,8 @@
 <h5>Your Prediction</h5>
 <div class="row">
-	<div class="col-sm-3">
+	<div class="col-sm-6">
 		<div class="form-group">
-			<label for="rule1Winner">Select Winner:</label>
+			<label for="rule1Winner"><%= defaultEntries.rule1Desc %></label>
 			<select class="form-control" name="rule1Winner">
 				<% _.each(defaultEntries.teams, function(team, index) { %>
 					<option value="<%= team.team_id %>"><%= team.team_name %></option>
@@ -10,15 +10,17 @@
 			</select>
 		</div>
 	</div>
-	<div class="col-sm-3">
+	<div class="col-sm-6">
 		<div class="form-group">
-			<label for="rule2Winner">Enter Runs:</label>
+			<label for="rule2Winner"><%= defaultEntries.rule2Desc %></label>
 			<input class="form-control" type="number" name="rule2Winner"></input>
 		</div>
 	</div>
-	<div class="col-sm-3">
+</div>
+<div class="row">
+	<div class="col-sm-6">
 		<div class="form-group">
-			<label for="rule3Winner">Select Bowler:</label>
+			<label for="rule3Winner"><%= defaultEntries.rule3Desc %></label>
 			<select class="form-control" name="rule3Winner">
 				<% _.each(defaultEntries.players, function(player, index) { %>
 					<option value="<%= player %>"><%= player %></option>
@@ -26,9 +28,9 @@
 			</select>
 		</div>
 	</div>
-	<div class="col-sm-3">
+	<div class="col-sm-6">
 		<div class="form-group">
-			<label for="bonusWinner">Enter Bonus:</label>
+			<label for="bonusWinner"><%= defaultEntries.bonusRuleDesc %></label>
 			<input class="form-control" type="text" name="bonusWinner"></input>
 		</div>
 	</div>
