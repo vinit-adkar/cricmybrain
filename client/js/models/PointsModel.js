@@ -5,8 +5,8 @@ define([
 	"backbone-validation"
 ], function($, _, Backbone){
 
-	var MatchesModel = Backbone.Model.extend({
+	var PointsModel = Backbone.Model.extend({
 		urlRoot: "/users",
 	});
-	return MatchesModel;
+	return PointsModel;
 });

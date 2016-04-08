@@ -13,7 +13,7 @@ require.config({
 		"text": "libs/text",
 		"backbone-validation": "libs/backbone-validation",
 		"utils": "views/utilities/utils",
-		"globals": "views/utilities/globals",
+		"globals": "views/utilities/globals"
 	},
 	shim: {
 		jquery: {

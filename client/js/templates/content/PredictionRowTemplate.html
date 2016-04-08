@@ -1,0 +1,35 @@
+<h5>Your Prediction</h5>
+<div class="row">
+	<div class="col-sm-3">
+		<div class="form-group">
+			<label for="rule1Winner">Select Winner:</label>
+			<select class="form-control" name="rule1Winner">
+				<% _.each(defaultEntries.teams, function(team, index) { %>
+					<option value="<%= team.team_id %>"><%= team.team_name %></option>
+				<% }); %>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="form-group">
+			<label for="rule2Winner">Enter Runs:</label>
+			<input class="form-control" type="number" name="rule2Winner"></input>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="form-group">
+			<label for="rule3Winner">Select Bowler:</label>
+			<select class="form-control" name="rule3Winner">
+				<% _.each(defaultEntries.players, function(player, index) { %>
+					<option value="<%= player %>"><%= player %></option>
+				<% }); %>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="form-group">
+			<label for="bonusWinner">Enter Bonus:</label>
+			<input class="form-control" type="text" name="bonusWinner"></input>
+		</div>
+	</div>
+</div>

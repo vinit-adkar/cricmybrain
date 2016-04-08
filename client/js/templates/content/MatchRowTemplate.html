@@ -1,29 +1,19 @@
-<div class="row">
-	<div class="col-sm-12">
-		 <span><b><%= model.homeTeam %></b> vs <b><%= model.awayTeam %></b></span>
-	</div>
-	<div class="col-sm-6">
-		<span><b>Date: </b><%=model.date %></span>
-		<span><b>Time: </b><%=model.startTimeGMT %></span>
-	</div>
-	<div class="col-sm-6">
-		<span><b>Venue: </b><%= model.venue %></span>
-	</div>
-</div>
-<h4>Your Prediction</h4>
+<hr>
 <div class="row">
 	<div class="col-sm-3">
-		<input type="text" placeholder="Winner"></input>
+		<span><b>Date: </b><%=match.date %></span>
 	</div>
 	<div class="col-sm-3">
-		<input type="text" placeholder="Max Runs"></input>
+		<span><b>Time: </b><%=match.startTimeGMT %> GMT</span>
 	</div>
-	<div class="col-sm-3">
-		<input type="text" placeholder="Most wickets"></input>
-	</div>
-	<div class="col-sm-3">
-		<input type="text" placeholder="Bonus Question"></input>
+	<div class="col-sm-6">
+		<span><b>Venue: </b><%= match.venue %></span>
 	</div>
 </div>
 
-<br><br>
+<div class="row">
+	<div class="col-sm-12">
+		 <h4><b><%= match.homeTeam %></b> vs <b><%= match.awayTeam %></b></h4>
+	</div>
+</div>
+<div class="<%= match._id %>"></div>

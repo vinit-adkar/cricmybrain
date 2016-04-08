@@ -4,10 +4,10 @@ var mongoose = require('mongoose');
 
 // define the schema for our match model
 var predictionSchema = mongoose.Schema({
-    matchNum : { 
+    matchId : { 
         type: String
     },
-    teamname : { 
+    userId : { 
         type: String
     },
     rule1Winner: { 
