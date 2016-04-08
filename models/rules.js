@@ -22,6 +22,9 @@ var ruleSchema = mongoose.Schema({
     ruleCriteria : { 
         type: String, 
     },
+    rulePoints : {
+        type: Number,
+    }
     range : { 
         type: String
     }

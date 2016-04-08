@@ -5,6 +5,7 @@
         "ruleDesc" : "Match Winner",
         "ruleFunction" : "isSameTeam",
         "ruleCriteria" : "Check if predicted team is same as winner",
+        "rulePoints" : 2,
         "range" : 0
     },
 
@@ -14,6 +15,7 @@
         "ruleDesc" : "Max runs scored by a single batsman in the match",
         "ruleFunction" : "isWithinRange",
         "ruleCriteria" : "Check if predicted runs is within a tolerance of +-3 of the max runs",
+        "rulePoints" : 3,
         "range" : 3
     },
 
@@ -23,6 +25,7 @@
         "ruleDesc" : "Bowler with best bowling figures in the match",
         "ruleFunction" : "isSameName",
         "ruleCriteria" : "Check if predicted name is same as winner name",
+        "rulePoints" : 3,
         "range" : 0
     },
 
@@ -32,6 +35,7 @@
         "ruleDesc" : "Max runs scored by batsman with highest strike rate, only runs greater than 20 will be considered",
         "ruleFunction" : "isWithinRange",
         "ruleCriteria" : "Check if predicted runs is within a tolerance of +-3 of the max runs",
+        "rulePoints" : 2,
         "range" : 3
     },
 
@@ -41,6 +45,7 @@
         "ruleDesc" : "Batsman with highest sixes",
         "ruleFunction" : "isSameName",
         "ruleCriteria" : "Check if predicted name is same as winner name",
+        "rulePoints" : 2,
         "range" : 0
     },
 
@@ -50,6 +55,7 @@
         "ruleDesc" : "Total wickets in the game",
         "ruleFunction" : "isWithinRange",
         "ruleCriteria" : "Check if predicted wickets is within a tolerance of +-1 of the total wickets",
+        "rulePoints" : 2,
         "range" : 1
     },
 
@@ -59,7 +65,8 @@
         "ruleDesc" : "Highest partnership in the game",
         "ruleFunction" : "isWithinRange",
         "ruleCriteria" : "Check if predicted partnership is within a tolerance of +-5 of the max partnership",
-        "range" : 0
+        "rulePoints" : 3,
+        "range" : 5
     },
 
     {
@@ -68,6 +75,7 @@
         "ruleDesc" : "Total extras in the game",
         "ruleFunction" : "isWithinRange",
         "ruleCriteria" : "Check if predicted extras is within a tolerance of +-2 of the total extras",
+        "rulePoints" : 2,
         "range" : 2
     },
 
@@ -77,6 +85,7 @@
         "ruleDesc" : "Bowler with best economy in the game",
         "ruleFunction" : "isSameName",
         "ruleCriteria" : "Check if predicted name is same as winner name",
+        "rulePoints" : 2,
         "range" : 0
     },
 
@@ -86,6 +95,7 @@
         "ruleDesc" : "Total dismisals by wicketkeeper in the game, includes catches, runouts (even if it means taking wickets off) and stumpings",
         "ruleFunction" : "isWithinRange",
         "ruleCriteria" : "Check if predicted wickets is within a tolerance of +-1 of the max wickets",
+        "rulePoints" : 2,
         "range" : 1
     },
 
@@ -95,6 +105,7 @@
         "ruleDesc" : "Total runs in sixes in the game",
         "ruleFunction" : "isWithinRange",
         "ruleCriteria" : "Check if predicted runs is within a tolerance of +-3 of the total runs in sixes",
+        "rulePoints" : 3,
         "range" : 3
     },
 
@@ -104,6 +115,7 @@
         "ruleDesc" : "Bowler with most dot balls in the game",
         "ruleFunction" : "isSameName",
         "ruleCriteria" : "Check if predicted name is same as winner name",
+        "rulePoints" : 3,
         "range" : 0
     },
 
@@ -113,6 +125,7 @@
         "ruleDesc" : "Batsman with slowest strike rate, minimum 7 balls faced",
         "ruleFunction" : "isSameName",
         "ruleCriteria" : "Check if predicted name is same as winner name",
+        "rulePoints" : 3,
         "range" : 0
     }
 
