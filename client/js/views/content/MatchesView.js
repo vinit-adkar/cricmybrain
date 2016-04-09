@@ -5,8 +5,9 @@ define([
 	"globals",
 	"collections/MatchesCollection",
 	"views/content/MatchRowView",
+	"views/content/AdminMatchRowView",
 	"text!templates/content/MatchesTemplate.html"
-], function($, _, Backbone, Globals, MatchesCollection, MatchRowView, MatchesTemplate){
+], function($, _, Backbone, Globals, MatchesCollection, MatchRowView, AdminMatchRowView, MatchesTemplate){
 
 	var MatchesView = Backbone.View.extend({
 		el: "#matches-container",
@@ -25,9 +26,17 @@ define([
 			this.matches.fetch({
 				success: function(collection, response, options){
 					_.each(collection.models, function(model) {
+						if (Globals["user"].admin) {
+						var matchRowView = new AdminMatchRowView({
+											model:model,
+											parent_el : that.$el.find("#matches-row-container")});
+
+						}
+						else {
 						var matchRowView = new MatchRowView({
 											model:model,
 											parent_el : that.$el.find("#matches-row-container")});
+						}
 						matchRowView.render();
 					});
 				},

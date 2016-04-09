@@ -1,0 +1,107 @@
+<hr>
+<div class="row">
+	<div class="col-sm-3">
+		<span><b>Date: </b><%=match.date %></span>
+	</div>
+	<div class="col-sm-3">
+		<span><b>Time: </b><%=match.startTimeGMT %> GMT</span>
+	</div>
+	<div class="col-sm-6">
+		<span><b>Venue: </b><%= match.venue %></span>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		 <h4><b><%= match.homeTeamName %></b> vs <b><%= match.awayTeamName %></b></h4>
+	</div>
+</div>
+<div class="admin-winner-row">
+	<h4 style="color:red;">Admin Winner Entry</h5>
+	<form role="form" class="form row">
+		<input class="hidden" name="_id" value="<%= match._id %>" />
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label for="rule1Winner">
+					<span><%= defaultEntries.rule1.ruleDesc %></span>
+					<% if (defaultEntries.rule1.range != 0) {%> 
+						<span>(Range: +- <b><%= defaultEntries.rule1.range %></b>)</span>
+					<% } %>
+					<span><b>(<%= defaultEntries.rule1.rulePoints %> Points</b>)</span>
+				</label>
+				<select class="form-control" name="rule1Winner">
+					<option value="">Select Team</option>
+					<% _.each(defaultEntries.teams, function(team, index) { %>
+						<option value="<%= team.team_id %>"><%= team.team_name %></option>
+					<% }); %>
+				</select>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label for="rule2Winner">
+					<span><%= defaultEntries.rule2.ruleDesc %></span>
+					<% if (defaultEntries.rule2.range != 0) {%> 
+						<span>(Range: +- <b><%= defaultEntries.rule2.range %></b>)</span>
+					<% } %>
+					<span>(<b><%= defaultEntries.rule2.rulePoints %> Points</b>)</span>
+				</label>
+				<input class="form-control" type="number" name="rule2Winner"/>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label for="rule3Winner">
+					<span><%= defaultEntries.rule3.ruleDesc %></span>
+					<% if (defaultEntries.rule3.range != 0) {%> 
+						<span>(Range: +- <b><%= defaultEntries.rule3.range %></b>)</span>
+					<% } %>
+					<span>(<b><%= defaultEntries.rule3.rulePoints %> Points</b>)</span>
+				</label>
+				<select class="form-control" name="rule3Winner">
+					<option value="">Select Player</option>
+					<% _.each(defaultEntries.players, function(player, index) { %>
+						<option value="<%= player.replace(/ /g,'_') %>"><%= player %></option>
+					<% }); %>
+				</select>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label for="bonusWinner">
+					<span><%= defaultEntries.bonusRule.ruleDesc %></span>
+					<% if (defaultEntries.bonusRule.range != 0) {%> 
+						<span>(Range: +- <b><%= defaultEntries.bonusRule.range %></b>)</span>
+					<% } %>
+					<span>(<b><%= defaultEntries.bonusRule.rulePoints %> Points</b>)</span>
+				</label>
+
+				<% if (defaultEntries.bonusRuleType == "playerName") { %>
+					<select class="form-control" name="bonusWinner">
+						<option value="">Select Player</option>
+						<% _.each(defaultEntries.players, function(player, index) { %>
+							<option value="<%= player.replace(/ /g,'_') %>"><%= player %></option>
+						<% }); %>
+					</select>
+				
+				<% } else if (defaultEntries.bonusRuleType == "teamName") { %>
+					<select class="form-control" name="bonusWinner">
+						<option value="">Select Team</option>
+						<% _.each(defaultEntries.teams, function(team, index) { %>
+							<option value="<%= team.team_id %>"><%= team.team_name %></option>
+						<% }); %>
+					</select>
+				
+				<% } else { %>
+					<input class="form-control" type="text" name="bonusWinner"/>
+				<% } %>
+				
+			</div>
+		</div>
+	</form>
+	<div class="row">
+		<button type="button" class="btn btn-primary submit-winner-selection" style="margin-left: 16px">Submit</button>
+		<span class="hidden success-message alert alert-success">Points have been updated.Refer points table.</span>
+	</div>
+</div>
+

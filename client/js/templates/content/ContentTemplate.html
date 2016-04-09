@@ -1,4 +1,7 @@
 <div class="row">
+	<% if (user.admin) { %> 
+	<h1 style="padding-left: 36px;color:red;">Admin Dashboard</h1>
+	<% } %>
 	<div class="col-md-9 col-sm-12 todays-matches" id="matches-container"></div>
 	<div class="col-md-3 col-sm-12 points-table" id="points-table-container"></div>
 </div>

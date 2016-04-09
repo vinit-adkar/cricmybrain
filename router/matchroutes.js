@@ -2,18 +2,16 @@
 var Matches = require('../models/matches');
 var User = require('../models/users');
 var Prediction = require('../models/predictions');
-var moment = require('moment');
-var ObjectId = require('mongoose').Types.ObjectId; 
+var moment = require('moment-timezone');
 
 module.exports = function(app) {
 
 	// Get Todays Match Details
-	app.get('/matches', isLoggedIn, function(req, res) {
+	app.get('/matches', function(req, res) {
 		var cutoff = new Date();
 		cutoff.setHours(0,0,0,0);
 		cutoff = cutoff  - new Date().getTimezoneOffset()*60*1000;
 		var t = new Date(cutoff);
-		console.log(t.toISOString())
 		var query = Matches.find({"date" : t.toISOString()}).
 					populate('rule1').
 					select({ _id:1, matchNum: 1, date: 1, startTimeGMT:1, venue:1, homeTeam:1, awayTeam:1, bonusRule:1 });
@@ -24,6 +22,25 @@ module.exports = function(app) {
 			res.json(post);
 		});
 	});
+
+	// Get Todays Match Details
+	app.post('/matches', function(req, res) {
+		var rules = req.body.rules;
+		delete req.body.rules;
+		Matches.update({ _id: req.body._id }, { $set: req.body}, function (err, post) {
+			if (err) return next(err);
+			// Prediction.find({ 'matchId' :  post.matchId }, function (err, post) {
+			// 	if (err) return next(err);
+			// 	calculatePoints(post, rules, req.body);
+			// });
+			res.json(post);
+		});
+	});
+
+	function calculatePoints (predictions, rules, match){
+		console.log(predictions, rules, match)
+	}
+
 
 	// Get user for points table
 	app.get('/users', isLoggedIn, function(req, res) {
@@ -39,7 +56,8 @@ module.exports = function(app) {
 
 	// Post predictions
 	app.get('/predictions/match/:matchId/user/:userId', isLoggedIn, function(req, res, next) {
-		var query = Prediction.findOne({ 'matchId' :  req.params.matchId, 'userId': req.params.userId });
+		var query = Prediction.findOne({ 'matchId' :  req.params.matchId, 'userId': req.params.userId })
+					.select({updatedAt:0,createdAt:0});
 
 		query.exec(function (err, post) {
 			if (err) return next(err);

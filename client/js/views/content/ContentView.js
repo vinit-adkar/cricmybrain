@@ -13,7 +13,7 @@ define([
 		template:  _.template(ContentTemplate),
 
 		initialize: function() {
-			this.$el.html(this.template);
+			this.$el.html(this.template(Globals));
 		},
 
 		render: function(){
