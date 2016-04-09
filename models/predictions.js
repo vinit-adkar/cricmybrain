@@ -22,6 +22,10 @@ var predictionSchema = mongoose.Schema(
         },
         bonusWinner: { 
             type: String
+        },
+        points: {
+            type: Number,
+            default: 0
         }
     },
     { 

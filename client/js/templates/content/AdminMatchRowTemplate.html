@@ -76,7 +76,7 @@
 					<span>(<b><%= defaultEntries.bonusRule.rulePoints %> Points</b>)</span>
 				</label>
 
-				<% if (defaultEntries.bonusRuleType == "playerName") { %>
+				<% if (defaultEntries.bonusRule.ruleType == "playerName") { %>
 					<select class="form-control" name="bonusWinner">
 						<option value="">Select Player</option>
 						<% _.each(defaultEntries.players, function(player, index) { %>
@@ -84,7 +84,7 @@
 						<% }); %>
 					</select>
 				
-				<% } else if (defaultEntries.bonusRuleType == "teamName") { %>
+				<% } else if (defaultEntries.bonusRule.ruleType == "teamName") { %>
 					<select class="form-control" name="bonusWinner">
 						<option value="">Select Team</option>
 						<% _.each(defaultEntries.teams, function(team, index) { %>

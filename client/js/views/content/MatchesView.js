@@ -25,20 +25,25 @@ define([
 			
 			this.matches.fetch({
 				success: function(collection, response, options){
-					_.each(collection.models, function(model) {
-						if (Globals["user"].admin) {
-						var matchRowView = new AdminMatchRowView({
-											model:model,
-											parent_el : that.$el.find("#matches-row-container")});
+					if (collection.models.length) {
+						_.each(collection.models, function(model) {
+							if (Globals["user"].admin) {
+							var matchRowView = new AdminMatchRowView({
+												model:model,
+												parent_el : that.$el.find("#matches-row-container")});
 
-						}
-						else {
-						var matchRowView = new MatchRowView({
-											model:model,
-											parent_el : that.$el.find("#matches-row-container")});
-						}
-						matchRowView.render();
-					});
+							}
+							else {
+							var matchRowView = new MatchRowView({
+												model:model,
+												parent_el : that.$el.find("#matches-row-container")});
+							}
+							matchRowView.render();
+						});						
+					}
+					else {
+						that.$el.find("#matches-row-container").html("<p>There are no matches to display.</p>");
+					}
 				},
 				error: function(response) {
 					console.log("Error");

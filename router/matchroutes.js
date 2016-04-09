@@ -29,16 +29,20 @@ module.exports = function(app) {
 		delete req.body.rules;
 		Matches.update({ _id: req.body._id }, { $set: req.body}, function (err, post) {
 			if (err) return next(err);
-			// Prediction.find({ 'matchId' :  post.matchId }, function (err, post) {
-			// 	if (err) return next(err);
-			// 	calculatePoints(post, rules, req.body);
-			// });
+			var match = req.body;
+			console.log(match._id)
+			Prediction.find({ 'matchId' :  match._id }, function (err, post) {
+				if (err) return next(err);
+				calculatePoints(post, rules, match);
+			});
 			res.json(post);
 		});
 	});
 
 	function calculatePoints (predictions, rules, match){
-		console.log(predictions, rules, match)
+		console.log(predictions)
+		console.log(rules)
+		console.log(match)
 	}
 
 
