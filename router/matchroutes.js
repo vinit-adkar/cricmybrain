@@ -3,11 +3,12 @@ var Matches = require('../models/matches');
 var User = require('../models/users');
 var Prediction = require('../models/predictions');
 var moment = require('moment');
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = function(app) {
 
 	// Get Todays Match Details
-	app.get('/matches', function(req, res) {
+	app.get('/matches', isLoggedIn, function(req, res) {
 		var cutoff = new Date();
 		cutoff.setHours(0,0,0,0);
 		cutoff = cutoff  - new Date().getTimezoneOffset()*60*1000;
@@ -37,8 +38,8 @@ module.exports = function(app) {
 	});
 
 	// Post predictions
-	app.get('/predictions', isLoggedIn, function(req, res, next) {
-		var query = Prediction.find({ 'matchId' :  req.body.matchId, 'userId': req.body.userId });
+	app.get('/predictions/match/:matchId/user/:userId', isLoggedIn, function(req, res, next) {
+		var query = Prediction.findOne({ 'matchId' :  req.params.matchId, 'userId': req.params.userId });
 
 		query.exec(function (err, post) {
 			if (err) return next(err);
@@ -47,12 +48,25 @@ module.exports = function(app) {
 	});
 
 	// Post predictions
-	app.post('/predictions', isLoggedIn, function(req, res, next) {
-		Prediction.create(req.body, function (err, post) {
+	app.post('/predictions/match/:matchId/user/:userId', isLoggedIn, function(req, res, next) {
+		var query = Prediction.findOne({ 'matchId' :  req.params.matchId, 'userId': req.params.userId });
+		query.exec(function (err, post) {
 			if (err) return next(err);
-			res.json(post);
+			if (post) {
+				Prediction.update({ _id: post._id }, { $set: req.body}, function (err, post) {
+					if (err) return next(err);
+					res.json(post);
+				});
+			}
+			else {
+				Prediction.create(req.body, function (err, post) {
+					if (err) return next(err);
+					res.json(post);
+				});
+			}
 		});
 	});
+
 };
 
 // route middleware to make sure a user is logged in

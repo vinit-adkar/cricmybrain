@@ -4,7 +4,8 @@ define([
 	'underscore',
 	'backbone',
 	"routers/router",
-	"globals"
+	"globals",
+	"utils"
 ], function($, _, Backbone, Router, Globals){
 	var initialize = function(){
 		var loggedInUser = JSON.parse($('#dashboard').attr("data-attribute"));

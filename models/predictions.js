@@ -17,10 +17,10 @@ var predictionSchema = mongoose.Schema({
         type: Number
     },
     rule3Winner: { 
-        type: [String]
+        type: String
     },
     bonusWinner: { 
-        type: [String]
+        type: String
     }
 });
 

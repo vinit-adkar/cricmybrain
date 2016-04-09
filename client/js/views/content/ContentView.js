@@ -13,13 +13,14 @@ define([
 		template:  _.template(ContentTemplate),
 
 		initialize: function() {
-			this.render();
+			this.$el.html(this.template);
 		},
 
 		render: function(){
-			this.$el.html(this.template);
 			var matchesView = new MatchesView();
+			matchesView.render();
 			var pointsTableView = new PointsTableView();
+			pointsTableView.render();
 		},
 
 		close : function(){

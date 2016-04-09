@@ -8,10 +8,9 @@ define([
 
 	var UserDashboardView = Backbone.View.extend({
 		el : ".header",
-		template:  _.template(HeaderTemplate),
 
 		initialize: function() {
-			this.render();
+			this.template = _.template(HeaderTemplate);
 		},
 
 		render: function(){

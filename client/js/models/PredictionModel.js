@@ -6,7 +6,14 @@ define([
 ], function($, _, Backbone){
 
 	var PredictionModel = Backbone.Model.extend({
-		urlRoot: "/predictions",
+		url : function(){
+			return "/predictions/match/"+this.match_id +"/user/"+this.user_id;
+		},
+		
+		initialize: function(options) {
+			this.match_id= options.match_id;
+			this.user_id= options.user_id;
+		},
 
 		defaults: {
 			matchId: "",
@@ -16,13 +23,6 @@ define([
 			rule3Winner: [],
 			bonusWinner: [],
 		},
-
-		initialize: function(options) {
-			this.data = {
-				user_id: options.user_id,
-				match_id: options.match_id
-			}
-		}
 	});
 	return PredictionModel;
 });

@@ -3,7 +3,7 @@
         "ruleNum": "rule1",
         "ruleType" : "teamName",
         "ruleDesc" : "Match Winner",
-        "ruleFunction" : "isSameTeam",
+        "ruleFunction" : "isEqual",
         "ruleCriteria" : "Check if predicted team is same as winner",
         "rulePoints" : 2,
         "range" : 0

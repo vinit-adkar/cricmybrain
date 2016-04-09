@@ -13,12 +13,14 @@ define([
 		template:  _.template(UserDashboardTemplate),
 
 		initialize: function() {
+			this.$el.html(this.template);
 		},
 
 		render: function(){
-			this.$el.html(this.template);
 			var headerView = new HeaderView();
+			headerView.render();
 			var contentView = new ContentView();
+			contentView.render();
 		},
 
 		close : function(){

@@ -1,9 +1,12 @@
 <h5>Your Prediction</h5>
-<div class="row">
+<form role="form" class="form row">
+	<input class="hidden" name="matchId" value="<%= defaultEntries.matchId %>" />
+	<input class="hidden" name="userId" value="<%= defaultEntries.userId %>" />
 	<div class="col-sm-6">
 		<div class="form-group">
 			<label for="rule1Winner"><%= defaultEntries.rule1Desc %></label>
 			<select class="form-control" name="rule1Winner">
+				<option value="">Select Team</option>
 				<% _.each(defaultEntries.teams, function(team, index) { %>
 					<option value="<%= team.team_id %>"><%= team.team_name %></option>
 				<% }); %>
@@ -13,17 +16,16 @@
 	<div class="col-sm-6">
 		<div class="form-group">
 			<label for="rule2Winner"><%= defaultEntries.rule2Desc %></label>
-			<input class="form-control" type="number" name="rule2Winner"></input>
+			<input class="form-control" type="number" name="rule2Winner"/>
 		</div>
 	</div>
-</div>
-<div class="row">
 	<div class="col-sm-6">
 		<div class="form-group">
 			<label for="rule3Winner"><%= defaultEntries.rule3Desc %></label>
 			<select class="form-control" name="rule3Winner">
+				<option value="">Select Player</option>
 				<% _.each(defaultEntries.players, function(player, index) { %>
-					<option value="<%= player %>"><%= player %></option>
+					<option value="<%= player.replace(/ /g,'_') %>"><%= player %></option>
 				<% }); %>
 			</select>
 		</div>
@@ -31,7 +33,31 @@
 	<div class="col-sm-6">
 		<div class="form-group">
 			<label for="bonusWinner"><%= defaultEntries.bonusRuleDesc %></label>
-			<input class="form-control" type="text" name="bonusWinner"></input>
+
+			<% if (defaultEntries.bonusRuleType == "playerName") { %>
+				<select class="form-control" name="bonusWinner">
+					<option value="">Select Player</option>
+					<% _.each(defaultEntries.players, function(player, index) { %>
+						<option value="<%= player.replace(/ /g,'_') %>"><%= player %></option>
+					<% }); %>
+				</select>
+			
+			<% } else if (defaultEntries.bonusRuleType == "teamName") { %>
+				<select class="form-control" name="bonusWinner">
+					<option value="">Select Team</option>
+					<% _.each(defaultEntries.teams, function(team, index) { %>
+						<option value="<%= team.team_id %>"><%= team.team_name %></option>
+					<% }); %>
+				</select>
+			
+			<% } else { %>
+				<input class="form-control" type="text" name="bonusWinner"/>
+			<% } %>
+			
 		</div>
 	</div>
+</form>
+<div class="row">
+	<button type="button" class="btn btn-primary submit-prediction" style="margin-left: 16px">Submit</button>
+	<span class="hidden success-message alert alert-success">You have successfully added your prediction.</span>
 </div>

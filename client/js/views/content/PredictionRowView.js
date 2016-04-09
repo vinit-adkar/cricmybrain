@@ -5,34 +5,22 @@ define([
 	"globals",
 	"json/TeamPlayersInfo",
 	"json/RulesInfo",
-	"models/PredictionModel",
 	"text!templates/content/PredictionRowTemplate.html",
-	"bootstrap"
-], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, PredictionModel, PredictionRowTemplate){
+	"bootstrap",
+], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, PredictionRowTemplate){
 
 	var MatchesView = Backbone.View.extend({
 		template:  _.template(PredictionRowTemplate),
+		
+		events: {
+			"click .submit-prediction": "submitPrediction"
+		},
 
 		initialize: function(options) {
-			var that = this;
-
+			
 			this.matchModel = options.matchModel;
-			this.$el = $('.'+this.matchModel.get("_id"));
-
-			this.predictionModel = new PredictionModel({
-										user_id: this.matchModel.get("user_id"),
-									 	match_id: this.matchModel.get("match_id")
-									});
-
-			this.predictionModel.fetch({
-				success: function (model, response, options) {
-					that.render(response);
-				},
-				error: function(err) {
-					console.log("error")
-					console.log(err)
-				}
-			});
+			this.model = options.model;
+			
 		},
 
 		render: function(prediction){
@@ -55,12 +43,30 @@ define([
 				rule1Desc: RulesInfo.getRulesDescription("rule1"),
 				rule2Desc: RulesInfo.getRulesDescription("rule2"),
 				rule3Desc: RulesInfo.getRulesDescription("rule3"),
-				bonusRuleDesc: RulesInfo.getRulesDescription(bonusRule),				
+				bonusRuleDesc: RulesInfo.getRulesDescription(bonusRule),
+				bonusRuleType: RulesInfo.getRulesType(bonusRule),
+				matchId: this.model.get("matchId") || this.matchModel.get("_id"),
+				userId: this.model.get("userId") || Globals["user"].id
 			};
 
 			this.$el.append(this.template({
 			    defaultEntries: predictionDefaultEntries
 			}));
+
+			return this.$el;
+		},
+
+		submitPrediction: function() {
+			var that = this;
+
+			var prediction = this.$el.find('.form').serializeObject();
+			prediction.rule3Winner = prediction.rule3Winner.replace(/_/g," ");
+			prediction.bonusWinner = prediction.bonusWinner.replace(/_/g," ");
+			this.model.save(prediction, {
+				success: function() {
+					that.$el.find('.success-message').removeClass("hidden");
+				}
+			})
 		},
 
 		close : function(){

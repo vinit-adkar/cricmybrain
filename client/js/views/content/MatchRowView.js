@@ -4,33 +4,52 @@ define([
 	"backbone",
 	"globals",
 	"json/TeamPlayersInfo",
+	"models/PredictionModel",
 	"views/content/PredictionRowView",
 	"text!templates/content/MatchRowTemplate.html",
-], function($, _, Backbone, Globals, TeamPlayersInfo, PredictionRowView, MatchRowTemplate){
+], function($, _, Backbone, Globals, TeamPlayersInfo, PredictionModel, PredictionRowView, MatchRowTemplate){
 
 	var MatchesView = Backbone.View.extend({
+		className: "match-row",
 		template:  _.template(MatchRowTemplate),
 
 		initialize: function(options) {
 			var that = this;
-			this.$el = options.el;
 			this.model = options.model;
+			this.parent_el = options.parent_el;
 			this.modelJSON = this.model.toJSON();
-
-			this.render();
-			var predictionRowView = new PredictionRowView({
-										matchModel: this.model
-									});
 		},
 
 		render: function(){
+			var that = this;
+
 			var match = this.modelJSON;
 			match.homeTeam = TeamPlayersInfo.getTeamName(match.homeTeam);
 			match.awayTeam = TeamPlayersInfo.getTeamName(match.awayTeam);
 			match.date = match.date.split('T')[0];
-			this.$el.append(this.template({
+			this.$el.html(this.template({
 			    match: match
 			}));
+			that.parent_el.append(this.$el);
+
+			this.predictionModel = new PredictionModel({
+										user_id: Globals["user"].id,
+									 	match_id: match["_id"]
+									});
+			
+			this.predictionModel.fetch({
+				success: function(model, response, options) {
+					var predictionRowView = new PredictionRowView({
+												matchModel: that.model,
+												model: model
+											});
+					that.$el.find('.prediction-row').html(predictionRowView.render());
+					return that.$el;
+				},
+				error: function() {
+					console.log("error in matchrowview render");
+				}
+			});
 		},
 
 		close : function(){
