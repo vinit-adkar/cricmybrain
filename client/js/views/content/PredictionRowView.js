@@ -40,11 +40,10 @@ define([
 					},
 				],
 				players: TeamPlayersInfo.getPlayers(homeTeam).concat(TeamPlayersInfo.getPlayers(awayTeam)),
-				rule1Desc: RulesInfo.getRulesDescription("rule1"),
-				rule2Desc: RulesInfo.getRulesDescription("rule2"),
-				rule3Desc: RulesInfo.getRulesDescription("rule3"),
-				bonusRuleDesc: RulesInfo.getRulesDescription(bonusRule),
-				bonusRuleType: RulesInfo.getRulesType(bonusRule),
+				rule1: RulesInfo.getRules("rule1"),
+				rule2: RulesInfo.getRules("rule2"),
+				rule3: RulesInfo.getRules("rule3"),
+				bonusRule: RulesInfo.getRules(bonusRule),
 				matchId: this.model.get("matchId") || this.matchModel.get("_id"),
 				userId: this.model.get("userId") || Globals["user"].id
 			};

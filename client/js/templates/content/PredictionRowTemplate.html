@@ -4,7 +4,13 @@
 	<input class="hidden" name="userId" value="<%= defaultEntries.userId %>" />
 	<div class="col-sm-6">
 		<div class="form-group">
-			<label for="rule1Winner"><%= defaultEntries.rule1Desc %></label>
+			<label for="rule1Winner">
+				<span><%= defaultEntries.rule1.ruleDesc %></span>
+				<% if (defaultEntries.rule1.range != 0) {%> 
+					<span>(Range: +- <b><%= defaultEntries.rule1.range %></b>)</span>
+				<% } %>
+				<span><b>(<%= defaultEntries.rule1.rulePoints %> Points</b>)</span>
+			</label>
 			<select class="form-control" name="rule1Winner">
 				<option value="">Select Team</option>
 				<% _.each(defaultEntries.teams, function(team, index) { %>
@@ -15,13 +21,25 @@
 	</div>
 	<div class="col-sm-6">
 		<div class="form-group">
-			<label for="rule2Winner"><%= defaultEntries.rule2Desc %></label>
+			<label for="rule2Winner">
+				<span><%= defaultEntries.rule2.ruleDesc %></span>
+				<% if (defaultEntries.rule2.range != 0) {%> 
+					<span>(Range: +- <b><%= defaultEntries.rule2.range %></b>)</span>
+				<% } %>
+				<span>(<b><%= defaultEntries.rule2.rulePoints %> Points</b>)</span>
+			</label>
 			<input class="form-control" type="number" name="rule2Winner"/>
 		</div>
 	</div>
 	<div class="col-sm-6">
 		<div class="form-group">
-			<label for="rule3Winner"><%= defaultEntries.rule3Desc %></label>
+			<label for="rule3Winner">
+				<span><%= defaultEntries.rule3.ruleDesc %></span>
+				<% if (defaultEntries.rule3.range != 0) {%> 
+					<span>(Range: +- <b><%= defaultEntries.rule3.range %></b>)</span>
+				<% } %>
+				<span>(<b><%= defaultEntries.rule3.rulePoints %> Points</b>)</span>
+			</label>
 			<select class="form-control" name="rule3Winner">
 				<option value="">Select Player</option>
 				<% _.each(defaultEntries.players, function(player, index) { %>
@@ -32,7 +50,13 @@
 	</div>
 	<div class="col-sm-6">
 		<div class="form-group">
-			<label for="bonusWinner"><%= defaultEntries.bonusRuleDesc %></label>
+			<label for="bonusWinner">
+				<span><%= defaultEntries.bonusRule.ruleDesc %></span>
+				<% if (defaultEntries.bonusRule.range != 0) {%> 
+					<span>(Range: +- <b><%= defaultEntries.bonusRule.range %></b>)</span>
+				<% } %>
+				<span>(<b><%= defaultEntries.bonusRule.rulePoints %> Points</b>)</span>
+			</label>
 
 			<% if (defaultEntries.bonusRuleType == "playerName") { %>
 				<select class="form-control" name="bonusWinner">
