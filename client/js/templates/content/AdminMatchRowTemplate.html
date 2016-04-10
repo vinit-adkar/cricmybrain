@@ -1,33 +1,30 @@
-<hr>
 <div class="row">
-	<div class="col-sm-3">
-		<span><b>Date: </b><%=match.date %></span>
+	<div class="col-sm-12">
+		 <h4><b><%= match.homeTeamName %></b> vs <b><%= match.awayTeamName %></b></h4>
 	</div>
-	<div class="col-sm-3">
-		<span><b>Time: </b><%=match.startTimeGMT %> GMT</span>
+</div>
+
+<div class="row">
+	<div class="col-sm-6">
+		<span><b>Date: </b><%=match.date %></span>
 	</div>
 	<div class="col-sm-6">
 		<span><b>Venue: </b><%= match.venue %></span>
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-sm-12">
-		 <h4><b><%= match.homeTeamName %></b> vs <b><%= match.awayTeamName %></b></h4>
-	</div>
-</div>
 <div class="admin-winner-row">
 	<h4 style="color:red;">Admin Winner Entry</h5>
 	<form role="form" class="form row">
 		<input class="hidden" name="_id" value="<%= match._id %>" />
-		<div class="col-sm-6">
+		<div class="col-sm-12 prediction-rules">
 			<div class="form-group">
 				<label for="rule1Winner">
-					<span><%= defaultEntries.rule1.ruleDesc %></span>
+					<span><%= defaultEntries.rule1.ruleDesc %></span><br>
 					<% if (defaultEntries.rule1.range != 0) {%> 
-						<span>(Range: +- <b><%= defaultEntries.rule1.range %></b>)</span>
+						<span class="prediction-range">(Range: +- <b><%= defaultEntries.rule1.range %></b>)</span>
 					<% } %>
-					<span><b>(<%= defaultEntries.rule1.rulePoints %> Points</b>)</span>
+					<span class="prediction-points"><b>(<%= defaultEntries.rule1.rulePoints %> Points</b>)</span>
 				</label>
 				<select class="form-control" name="rule1Winner">
 					<option value="">Select Team</option>
@@ -37,26 +34,26 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-sm-6">
+		<div class="col-sm-12 prediction-rules">
 			<div class="form-group">
 				<label for="rule2Winner">
-					<span><%= defaultEntries.rule2.ruleDesc %></span>
+					<span><%= defaultEntries.rule2.ruleDesc %></span><br>
 					<% if (defaultEntries.rule2.range != 0) {%> 
-						<span>(Range: +- <b><%= defaultEntries.rule2.range %></b>)</span>
+						<span class="prediction-range">(Range: +- <b><%= defaultEntries.rule2.range %></b>)</span>
 					<% } %>
-					<span>(<b><%= defaultEntries.rule2.rulePoints %> Points</b>)</span>
+					<span class="prediction-points">(<b><%= defaultEntries.rule2.rulePoints %> Points</b>)</span>
 				</label>
 				<input class="form-control" type="number" name="rule2Winner"/>
 			</div>
 		</div>
-		<div class="col-sm-6">
+		<div class="col-sm-12 prediction-rules">
 			<div class="form-group">
 				<label for="rule3Winner">
-					<span><%= defaultEntries.rule3.ruleDesc %></span>
+					<span><%= defaultEntries.rule3.ruleDesc %></span><br>
 					<% if (defaultEntries.rule3.range != 0) {%> 
-						<span>(Range: +- <b><%= defaultEntries.rule3.range %></b>)</span>
+						<span class="prediction-range">(Range: +- <b><%= defaultEntries.rule3.range %></b>)</span>
 					<% } %>
-					<span>(<b><%= defaultEntries.rule3.rulePoints %> Points</b>)</span>
+					<span class="prediction-points">(<b><%= defaultEntries.rule3.rulePoints %> Points</b>)</span>
 				</label>
 				<select class="form-control" name="rule3Winner">
 					<option value="">Select Player</option>
@@ -66,14 +63,14 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-sm-6">
+		<div class="col-sm-12 prediction-rules">
 			<div class="form-group">
 				<label for="bonusWinner">
-					<span><%= defaultEntries.bonusRule.ruleDesc %></span>
+					<span><%= defaultEntries.bonusRule.ruleDesc %></span><br>
 					<% if (defaultEntries.bonusRule.range != 0) {%> 
-						<span>(Range: +- <b><%= defaultEntries.bonusRule.range %></b>)</span>
+						<span class="prediction-range">(Range: +- <b><%= defaultEntries.bonusRule.range %></b>)</span>
 					<% } %>
-					<span>(<b><%= defaultEntries.bonusRule.rulePoints %> Points</b>)</span>
+					<span class="prediction-points">(<b><%= defaultEntries.bonusRule.rulePoints %> Points</b>)</span>
 				</label>
 
 				<% if (defaultEntries.bonusRule.ruleType == "playerName") { %>

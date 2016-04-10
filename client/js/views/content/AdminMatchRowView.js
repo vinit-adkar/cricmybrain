@@ -6,7 +6,8 @@ define([
 	"json/TeamPlayersInfo",
 	"json/RulesInfo",
 	"text!templates/content/AdminMatchRowTemplate.html",
-], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, AdminMatchRowTemplate){
+	"moment"
+], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, AdminMatchRowTemplate, moment){
 
 	var MatchesView = Backbone.View.extend({
 		className: "winner-match-row",
@@ -29,7 +30,7 @@ define([
 			var match = this.modelJSON;
 			match.homeTeamName = TeamPlayersInfo.getTeamName(match.homeTeam);
 			match.awayTeamName = TeamPlayersInfo.getTeamName(match.awayTeam);
-			match.date = match.date.split('T')[0];
+			match.date = moment(Date.parse(match.date)).format('MMMM Do YYYY, h:mm:ss a')
 
 			var predictionDefaultEntries = {
 				teams:[

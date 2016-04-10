@@ -12,16 +12,20 @@ var predictionSchema = mongoose.Schema(
             type: String
         },
         rule1Winner: { 
-            type: String
+            type: String,
+            default: ""
         },
         rule2Winner: { 
-            type: Number
+            type: Number,
+            default: 0
         },
         rule3Winner: { 
-            type: String
+            type: String,
+            default: ""
         },
         bonusWinner: { 
-            type: String
+            type: String,
+            default: ""
         },
         points: {
             type: Number,

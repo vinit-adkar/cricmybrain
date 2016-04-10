@@ -54,6 +54,6 @@ hr {
   color: blue; }
 .content .prediction-rules .form-control {
   width: 280px; }
-.content .match-row {
+.content .match-row, .content .winner-match-row {
   border-top: 1px solid #2a2c30;
   padding: 16px 0; }

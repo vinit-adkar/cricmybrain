@@ -22,8 +22,7 @@ var userSchema = mongoose.Schema(
             },
             teamname: { 
                 type: String, 
-                required: true,
-                unique: true 
+                required: true
             },
             admin: { 
                 type: Boolean,

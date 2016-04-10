@@ -6,7 +6,7 @@ var Prediction = require('../models/predictions');
 module.exports = function(app) {
 
 	// Get Todays Match Details
-	app.get('/matches', function(req, res) {
+	app.get('/matches', isLoggedIn, function(req, res) {
 		var startDate = new Date();
 		startDate = startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate();
 		var endDate = startDate + " 23:59:59";
@@ -23,13 +23,12 @@ module.exports = function(app) {
 	});
 
 	// Get Todays Match Details
-	app.post('/matches', function(req, res) {
+	app.post('/matches', isAdminLoggedIn, function(req, res) {
 		var rules = req.body.rules;
 		delete req.body.rules;
 		Matches.update({ _id: req.body._id }, { $set: req.body}, function (err, post) {
 			if (err) return next(err);
 			var match = req.body;
-			console.log(match._id)
 			Prediction.find({ 'matchId' :  match._id }, function (err, post) {
 				if (err) return next(err);
 				calculatePoints(post, rules, match, res);
