@@ -11,7 +11,6 @@ require.config({
 		"backbone": "libs/backbone",
 		"bootstrap": "libs/bootstrap",
 		"text": "libs/text",
-		"backbone-validation": "libs/backbone-validation",
 		"moment": "libs/moment",	
 		"utils": "views/utilities/utils",
 		"globals": "views/utilities/globals"
@@ -30,10 +29,6 @@ require.config({
 		bootstrap: {
 			deps: ["jquery"],
 			exports: "bootstrap"
-		},
-		"backbone-validation": {
-			deps: ["backbone"],
-			exports: "backbone-validation"
 		}
 	}
 

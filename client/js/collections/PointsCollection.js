@@ -2,8 +2,7 @@ define([
 	"jquery",
 	"underscore",
 	"backbone",
-	"models/PointsModel",
-	"backbone-validation"
+	"models/PointsModel"
 ], function($, _, Backbone, PointsModel){
 
 	var PointsCollection = Backbone.Collection.extend({

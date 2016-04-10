@@ -2,8 +2,7 @@ define([
 	"jquery",
 	"underscore",
 	"backbone",
-	"models/MatchesModel",
-	"backbone-validation"
+	"models/MatchesModel"
 ], function($, _, Backbone, MatchesModel){
 
 	var MatchesCollection = Backbone.Collection.extend({

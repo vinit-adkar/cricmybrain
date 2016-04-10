@@ -1,8 +1,7 @@
 define([
 	"jquery",
 	"underscore",
-	"backbone",
-	"backbone-validation"
+	"backbone"
 ], function($, _, Backbone){
 
 	var PredictionModel = Backbone.Model.extend({
