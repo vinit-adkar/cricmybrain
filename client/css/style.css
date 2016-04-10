@@ -3,7 +3,7 @@ html, body {
   font-size: 14px;
   width: 100%;
   height: 100%;
-  background: #f3f3f3; }
+  background: #fffcf9; }
 
 #page {
   width: 100%;
@@ -34,10 +34,26 @@ hr {
   width: 100%; }
   .header .navbar {
     padding: 0 16px; }
+  .header .logout-button {
+    margin-top: 10px; }
 
 .content .todays-matches, .content .points-table {
-  padding: 0 36px !important; }
+  padding: 0 36px !important;
+  border-top: 1px solid #2a2c30; }
 .content .refresh-table {
   cursor: pointer; }
   .content .refresh-table:hover {
     color: #939393; }
+.content .prediction-note {
+  font-size: 14px;
+  color: green;
+  font-weight: bold; }
+.content .prediction-range {
+  color: brown; }
+.content .prediction-points {
+  color: blue; }
+.content .prediction-rules .form-control {
+  width: 280px; }
+.content .match-row {
+  border-top: 1px solid #2a2c30;
+  padding: 16px 0; }

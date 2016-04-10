@@ -3,12 +3,17 @@
 	.navbar {
 		padding: 0 16px;
 	}
+
+	.logout-button {
+		margin-top: 10px;
+	}
 }
 
 .content {
 
 	.todays-matches, .points-table {
 		padding: 0 36px!important;
+		border-top: 1px solid #2a2c30;
 	}
 
 	.refresh-table {
@@ -16,5 +21,30 @@
 		&:hover {
 			color: #939393;
 		}
+	}
+
+	.prediction-note {
+		font-size: 14px;
+		color: green;
+		font-weight: bold;
+	}
+
+	.prediction-range {
+		color:brown;
+	}
+
+	.prediction-points {
+		color:blue;
+	}
+
+	.prediction-rules {
+		.form-control {
+			width: 280px;
+		}
+	}
+
+	.match-row {
+		border-top: 1px solid #2a2c30;
+		padding: 16px 0;
 	}
 }

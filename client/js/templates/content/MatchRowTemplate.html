@@ -1,16 +1,22 @@
-<hr>
-<div class="row">
-	<div class="col-sm-6">
-		<span><b>Date: </b><%=match.date %></span>
-	</div>
-	<div class="col-sm-6">
-		<span><b>Venue: </b><%= match.venue %></span>
-	</div>
-</div>
-
 <div class="row">
 	<div class="col-sm-12">
 		 <h4><b><%= match.homeTeam %></b> vs <b><%= match.awayTeam %></b></h4>
 	</div>
 </div>
+<div class="row">
+	<div class="col-sm-6">
+		<span><b>Date: </b><%=match.date %></span>
+		<br>
+		<span class="timeLeftToMatch hidden">
+			<b>Time Left: </b>
+			<span class="hours"></span>
+			<span class="minutes"></span>
+			<span class="seconds"></span>
+		</span>
+	</div>
+	<div class="col-sm-6">
+		<span><b>Venue: </b><%= match.venue %></span>
+	</div>
+</div>
+<hr>
 <div class="prediction-row"></div>

@@ -20,7 +20,30 @@ define([
 			
 			this.matchModel = options.matchModel;
 			this.model = options.model;
+		},
+
+		checkIfPredictionTimeIsOver: function() {
+			var that = this;
 			
+			var currDateTime = Math.ceil(new Date().getTime()/1000);
+			var matchDateTime = Math.ceil(Date.parse(this.matchModel.get("date"))/1000);
+
+			var timeLeft = (matchDateTime - currDateTime);
+			if (timeLeft > 0) {
+				setTimeout(function() {
+					that.$el.find('.form-control').prop('disabled', true);
+					that.$el.find('.submit-prediction').addClass("hidden");
+				}, timeLeft);
+			}
+			else if (timeLeft <= 0) {
+				this.disableInputs();
+			}
+		},
+
+		disableInputs: function() {
+			var that = this;
+			that.$el.find('.form-control').prop('disabled', true);
+			that.$el.find('.submit-prediction').addClass("hidden");
 		},
 
 		render: function(prediction){
@@ -51,6 +74,8 @@ define([
 			this.$el.append(this.template({
 			    defaultEntries: predictionDefaultEntries
 			}));
+
+			this.checkIfPredictionTimeIsOver();
 
 			return this.$el;
 		},

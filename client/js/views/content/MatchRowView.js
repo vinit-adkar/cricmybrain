@@ -45,12 +45,41 @@ define([
 												model: model
 											});
 					that.$el.find('.prediction-row').html(predictionRowView.render());
+
+					that.timer = setInterval(function() {
+						var currDateTime = Math.ceil(new Date().getTime()/1000);
+						var matchDateTime = Math.ceil(Date.parse(that.model.get("date"))/1000);
+						var timeLeft = matchDateTime - currDateTime;
+
+						that.timeBetweenDates(timeLeft);
+					}, 1000);						
+					
 					return that.$el;
 				},
 				error: function() {
 					console.log("error in matchrowview render");
 				}
 			});
+		},
+
+		timeBetweenDates: function(timeLeft) {
+			if (timeLeft <= 0) {
+				this.$el.find('.timeLeftToMatch').addClass("hidden");
+				clearInterval(this.timer);
+			} else {
+				this.$el.find('.timeLeftToMatch').removeClass("hidden");
+				var seconds = timeLeft;
+				var minutes = Math.floor(seconds / 60);
+				var hours = Math.floor(minutes / 60);
+
+				hours %= 24;
+				minutes %= 60;
+				seconds %= 60;
+
+				this.$el.find('.timeLeftToMatch .hours').html("<b>" + hours + "</b> Hours");
+				this.$el.find('.timeLeftToMatch .minutes').html("<b>" + minutes + "</b> Minutes");
+				this.$el.find('.timeLeftToMatch .seconds').html("<b>" + seconds + "</b> Seconds");
+			}
 		},
 
 		close : function(){

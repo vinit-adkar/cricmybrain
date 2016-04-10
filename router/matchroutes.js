@@ -10,7 +10,6 @@ module.exports = function(app) {
 		var startDate = new Date();
 		startDate = startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate();
 		var endDate = startDate + " 23:59:59";
-		console.log(new Date(startDate), new Date(endDate))
 
 		var query = Matches.find({"date" : {'$gte': new Date(startDate),'$lte': new Date(endDate)}}).
 					populate('rule1').
