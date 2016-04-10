@@ -25,10 +25,11 @@ define([
 		checkIfPredictionTimeIsOver: function() {
 			var that = this;
 			
-			var currDateTime = Math.ceil(new Date().getTime()/1000);
-			var matchDateTime = Math.ceil(Date.parse(this.matchModel.get("date"))/1000);
+			var currDateTime = Math.ceil(new Date().getTime());
+			var matchDateTime = Math.ceil(Date.parse(this.matchModel.get("date")));
 
 			var timeLeft = (matchDateTime - currDateTime);
+
 			if (timeLeft > 0) {
 				setTimeout(function() {
 					that.$el.find('.form-control').prop('disabled', true);
