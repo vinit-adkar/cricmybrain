@@ -27,7 +27,7 @@ define([
 			var match = this.modelJSON;
 			match.homeTeam = TeamPlayersInfo.getTeamName(match.homeTeam);
 			match.awayTeam = TeamPlayersInfo.getTeamName(match.awayTeam);
-			match.date = moment(Date.parse(match.date)).format('MMMM Do YYYY, h:mm:ss a')
+			match.date = moment(Date.parse(match.date)).format('MMMM Do YYYY, h:mm a')
 			this.$el.html(this.template({
 			    match: match
 			}));

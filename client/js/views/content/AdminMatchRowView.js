@@ -30,7 +30,7 @@ define([
 			var match = this.modelJSON;
 			match.homeTeamName = TeamPlayersInfo.getTeamName(match.homeTeam);
 			match.awayTeamName = TeamPlayersInfo.getTeamName(match.awayTeam);
-			match.date = moment(Date.parse(match.date)).format('MMMM Do YYYY, h:mm:ss a')
+			match.date = moment(Date.parse(match.date)).format('MMMM Do YYYY, h:mm a')
 
 			var predictionDefaultEntries = {
 				teams:[
