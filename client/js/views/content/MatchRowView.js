@@ -34,8 +34,8 @@ define([
 			that.parent_el.append(this.$el);
 
 			this.predictionModel = new PredictionModel({
-										user_id: Globals["user"].id,
-									 	match_id: match["_id"]
+										userId: Globals["user"].id,
+									 	matchId: match["_id"]
 									});
 			
 			this.predictionModel.fetch({

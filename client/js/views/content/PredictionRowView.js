@@ -73,7 +73,8 @@ define([
 			};
 
 			this.$el.append(this.template({
-			    defaultEntries: predictionDefaultEntries
+			    defaultEntries: predictionDefaultEntries,
+			    prediction: this.model.toJSON()
 			}));
 
 			this.checkIfPredictionTimeIsOver();

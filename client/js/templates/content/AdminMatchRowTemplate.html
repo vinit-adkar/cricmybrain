@@ -29,7 +29,9 @@
 				<select class="form-control" name="rule1Winner">
 					<option value="">Select Team</option>
 					<% _.each(defaultEntries.teams, function(team, index) { %>
-						<option value="<%= team.team_id %>"><%= team.team_name %></option>
+						<option value="<%= team.team_id %>" <% if (match.rule1Winner == team.team_id) { %>
+							selected
+						<% } %> ><%= team.team_name %></option>
 					<% }); %>
 				</select>
 			</div>
@@ -43,7 +45,7 @@
 					<% } %>
 					<span class="prediction-points">(<b><%= defaultEntries.rule2.rulePoints %> Points</b>)</span>
 				</label>
-				<input class="form-control" type="number" name="rule2Winner"/>
+				<input class="form-control" type="number" name="rule2Winner" value="<%= match.rule2Winner %>"/>
 			</div>
 		</div>
 		<div class="col-sm-12 prediction-rules">
@@ -58,7 +60,9 @@
 				<select class="form-control" name="rule3Winner">
 					<option value="">Select Player</option>
 					<% _.each(defaultEntries.players, function(player, index) { %>
-						<option value="<%= player.replace(/ /g,'_') %>"><%= player %></option>
+						<option value="<%= player.replace(/ /g,'_') %>" <% if (match.rule3Winner == player) { %>
+							selected
+						<% } %> ><%= player %></option>
 					<% }); %>
 				</select>
 			</div>
@@ -77,7 +81,9 @@
 					<select class="form-control" name="bonusWinner">
 						<option value="">Select Player</option>
 						<% _.each(defaultEntries.players, function(player, index) { %>
-							<option value="<%= player.replace(/ /g,'_') %>"><%= player %></option>
+							<option value="<%= player.replace(/ /g,'_') %>" <% if (match.bonusWinner == player) { %>
+							selected
+						<% } %> ><%= player %></option>
 						<% }); %>
 					</select>
 				
@@ -85,12 +91,14 @@
 					<select class="form-control" name="bonusWinner">
 						<option value="">Select Team</option>
 						<% _.each(defaultEntries.teams, function(team, index) { %>
-							<option value="<%= team.team_id %>"><%= team.team_name %></option>
+							<option value="<%= team.team_id %>" <% if (match.bonusWinner == team.team_id) { %>
+							selected
+						<% } %>><%= team.team_name %></option>
 						<% }); %>
 					</select>
 				
 				<% } else { %>
-					<input class="form-control" type="text" name="bonusWinner"/>
+					<input class="form-control" type="text" name="bonusWinner" value="<%= match.bonusWinner %>"/>
 				<% } %>
 				
 			</div>
