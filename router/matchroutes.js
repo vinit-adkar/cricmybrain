@@ -104,13 +104,13 @@ module.exports = function(app) {
 	function isWithinRange(predictionWinner, ruleWinner, rule) {
 		if (ruleWinner.constructor === Array) {
 			for (var i in ruleWinner) {
-				if (predictionWinner >= (parseInt(ruleWinner[i]) - rule.range) && predictionWinner < (parseInt(ruleWinner[i]) + rule.range)) {
+				if (predictionWinner >= (parseInt(ruleWinner[i]) - rule.range) && predictionWinner <= (parseInt(ruleWinner[i]) + rule.range)) {
 					return rule.rulePoints;
 				}
 			}
 		}
 		else {
-			if (predictionWinner >= (parseInt(ruleWinner) - rule.range) && predictionWinner < (parseInt(ruleWinner) + rule.range)) {
+			if (predictionWinner >= (parseInt(ruleWinner) - rule.range) && predictionWinner <= (parseInt(ruleWinner) + rule.range)) {
 				return rule.rulePoints;
 			}
 		}

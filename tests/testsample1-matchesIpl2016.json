@@ -1,8 +1,7 @@
 [
     {   
         "matchNum" : "match1",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "MI",
         "awayTeam" : "RPS",
         "venue" : "Wankhede Stadium, Mumbai",
@@ -14,8 +13,7 @@
     },
     {   
         "matchNum" : "match2",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "KKR",
         "awayTeam" : "DD",
         "venue" : "Eden Gardens, Kolkata",
@@ -27,8 +25,7 @@
     },
     {   
         "matchNum" : "match3",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "KXIP",
         "awayTeam" : "GL",
         "venue" : "PCA, Mohali",
@@ -40,8 +37,7 @@
     },
     {   
         "matchNum" : "match4",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "MI",
         "awayTeam" : "GL",
         "venue" : "Wankhede Stadium, Mumbai",
@@ -53,8 +49,7 @@
     },
     {   
         "matchNum" : "match5",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "KXIP",
         "awayTeam" : "KKR",
         "venue" : "PCA, Mohali",
@@ -66,8 +61,7 @@
     },
     {   
         "matchNum" : "match6",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "MI",
         "awayTeam" : "KKR",
         "venue" : "Wankhede Stadium, Mumbai",
@@ -79,8 +73,7 @@
     },
     {   
         "matchNum" : "match7",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "RPS",
         "awayTeam" : "GL",
         "venue" : "MCA, Pune",
@@ -92,8 +85,7 @@
     },
     {   
         "matchNum" : "match8",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "SH",
         "awayTeam" : "RCB",
         "venue" : "RGIS, Hyderabad",
@@ -105,8 +97,7 @@
     },
     {   
         "matchNum" : "match9",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "RCB",
         "awayTeam" : "KKR",
         "venue" : "M Chinnaswamy, Bangalore",
@@ -118,8 +109,7 @@
     },
     {   
         "matchNum" : "match10",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "KXIP",
         "awayTeam" : "DD",
         "venue" : "VCA, Nagpur",
@@ -131,8 +121,7 @@
     },
     {   
         "matchNum" : "match11",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "10:30",
+        "date" : new Date("2016-04-09 03:30"),
         "homeTeam" : "MI",
         "awayTeam" : "SH",
         "venue" : "Wankhede Stadium, Mumbai",
@@ -144,8 +133,7 @@
     },
     {   
         "matchNum" : "match12",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "KKR",
         "awayTeam" : "GK",
         "venue" : "Eden Gardens, Kolkata",
@@ -157,8 +145,7 @@
     },
     {   
         "matchNum" : "match13",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "RCB",
         "awayTeam" : "MI",
         "venue" : "M Chinnaswamy, Bangalore",
@@ -170,8 +157,7 @@
     },
     {   
         "matchNum" : "match14",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "SH",
         "awayTeam" : "DD",
         "venue" : "RGIS, Hyderabad",
@@ -183,8 +169,7 @@
     },
     {   
         "matchNum" : "match15",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "MI",
         "awayTeam" : "KXIP",
         "venue" : "Wankhede Stadium, Mumbai",
@@ -196,8 +181,7 @@
     },
     {   
         "matchNum" : "match16",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "KKR",
         "awayTeam" : "RPS",
         "venue" : "Eden Gardens, Kolkata",
@@ -209,8 +193,7 @@
     },
     {   
         "matchNum" : "match17",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "10:30",
+        "date" : new Date("2016-04-09 03:30"),
         "homeTeam" : "MI",
         "awayTeam" : "DD",
         "venue" : "Wankhede Stadium, Mumbai",
@@ -222,8 +205,7 @@
     },
     {   
         "matchNum" : "match18",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "KXIP",
         "awayTeam" : "SH",
         "venue" : "VCA, Nagpur",
@@ -235,8 +217,7 @@
     },
     {   
         "matchNum" : "match19",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "KKR",
         "awayTeam" : "RCB",
         "venue" : "Eden Gardens, Kolkata",
@@ -248,8 +229,7 @@
     },
     {   
         "matchNum" : "match20",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "RPS",
         "awayTeam" : "DD",
         "venue" : "MCA, Pune",
@@ -261,8 +241,7 @@
     },
     {   
         "matchNum" : "match21",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "RCB",
         "awayTeam" : "KXIP",
         "venue" : "M Chinnaswamy, Bangalore",
@@ -274,8 +253,7 @@
     },
     {   
         "matchNum" : "match22",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "GL",
         "awayTeam" : "KKR",
         "venue" : "TBD",
@@ -287,8 +265,7 @@
     },
     {   
         "matchNum" : "match23",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "DD",
         "awayTeam" : "SH",
         "venue" : "SVNSIS, Raipur",
@@ -300,8 +277,7 @@
     },
     {   
         "matchNum" : "match24",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "10:30",
+        "date" : new Date("2016-04-09 03:30"),
         "homeTeam" : "RPS",
         "awayTeam" : "KXIP",
         "venue" : "MCA, Pune",
@@ -313,8 +289,7 @@
     },
     {   
         "matchNum" : "match25",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "GL",
         "awayTeam" : "MI",
         "venue" : "TBD",
@@ -326,8 +301,7 @@
     },
     {   
         "matchNum" : "match26",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "10:30",
+        "date" : new Date("2016-04-09 03:30"),
         "homeTeam" : "KKR",
         "awayTeam" : "SH",
         "venue" : "Eden Gardens, Kolkata",
@@ -339,8 +313,7 @@
     },
     {   
         "matchNum" : "match27",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "DD",
         "awayTeam" : "RCB",
         "venue" : "SVNSIS, Raipur",
@@ -352,8 +325,7 @@
     },
     {   
         "matchNum" : "match28",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "TBD",
         "awayTeam" : "TBD",
         "venue" : "M Chinnaswamy, Bangalore",
@@ -365,8 +337,7 @@
     },
     {   
         "matchNum" : "match29",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "TBD",
         "awayTeam" : "TBD",
         "venue" : "MCA, Pune",
@@ -378,8 +349,7 @@
     },
     {   
         "matchNum" : "match30",
-        "date" : new Date("2016-04-09"),
-        "startTimeGMT" : "14:30",
+        "date" : new Date("2016-04-09 07:30"),
         "homeTeam" : "TBD",
         "awayTeam" : "TBD",
         "venue" : "Wankhede Stadium, Mumbai",
