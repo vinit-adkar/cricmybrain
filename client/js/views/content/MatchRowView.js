@@ -7,7 +7,8 @@ define([
 	"models/PredictionModel",
 	"views/content/PredictionRowView",
 	"text!templates/content/MatchRowTemplate.html",
-], function($, _, Backbone, Globals, TeamPlayersInfo, PredictionModel, PredictionRowView, MatchRowTemplate){
+	"moment"
+], function($, _, Backbone, Globals, TeamPlayersInfo, PredictionModel, PredictionRowView, MatchRowTemplate, moment){
 
 	var MatchesView = Backbone.View.extend({
 		className: "match-row",
@@ -26,7 +27,7 @@ define([
 			var match = this.modelJSON;
 			match.homeTeam = TeamPlayersInfo.getTeamName(match.homeTeam);
 			match.awayTeam = TeamPlayersInfo.getTeamName(match.awayTeam);
-			match.date = match.date.split('T')[0];
+			match.date = moment(Date.parse(match.date)).format('MMMM Do YYYY, h:mm:ss a')
 			this.$el.html(this.template({
 			    match: match
 			}));

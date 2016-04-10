@@ -12,6 +12,7 @@ require.config({
 		"bootstrap": "libs/bootstrap",
 		"text": "libs/text",
 		"backbone-validation": "libs/backbone-validation",
+		"moment": "libs/moment",	
 		"utils": "views/utilities/utils",
 		"globals": "views/utilities/globals"
 	},

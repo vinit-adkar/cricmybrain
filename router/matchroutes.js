@@ -2,17 +2,17 @@
 var Matches = require('../models/matches');
 var User = require('../models/users');
 var Prediction = require('../models/predictions');
-var moment = require('moment-timezone');
 
 module.exports = function(app) {
 
 	// Get Todays Match Details
 	app.get('/matches', function(req, res) {
-		var cutoff = new Date();
-		cutoff.setHours(0,0,0,0);
-		cutoff = cutoff  - new Date().getTimezoneOffset()*60*1000;
-		var t = new Date(cutoff);
-		var query = Matches.find({"date" : t.toISOString()}).
+		var startDate = new Date();
+		startDate = startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate();
+		var endDate = startDate + " 23:59:59";
+		console.log(new Date(startDate), new Date(endDate))
+
+		var query = Matches.find({"date" : {'$gte': new Date(startDate),'$lte': new Date(endDate)}}).
 					populate('rule1').
 					select({ _id:1, matchNum: 1, date: 1, startTimeGMT:1, venue:1, homeTeam:1, awayTeam:1, bonusRule:1 });
 
@@ -48,26 +48,29 @@ module.exports = function(app) {
 					if (err) return next(err);
 					var totalPointsForPrediction = prediction.points || 0;
 					var totalPoints = post.local.points;
+					
 					totalPoints = totalPoints - totalPointsForPrediction;
 					
+					var currentPredictionPoints = 0;
+
 					var rule1Points = calculateRulePoints(prediction.rule1Winner, match.rule1Winner, rules["rule1"]);
 					var rule2Points = calculateRulePoints(prediction.rule2Winner, match.rule2Winner, rules["rule2"]);
 					var rule3Points = calculateRulePoints(prediction.rule3Winner, match.rule3Winner, rules["rule3"]);
 
 					if (rule1Points && rule2Points && rule3Points) {
-						totalPoints += 15;
+						currentPredictionPoints += 15;
 					}
 					else {
-						totalPoints += (rule1Points + rule2Points + rule3Points);
+						currentPredictionPoints += (rule1Points + rule2Points + rule3Points);
 					}
 
-					totalPoints += calculateRulePoints(prediction.bonusWinner, match.bonusWinner, rules["bonusRule"]);
-					console.log(totalPoints, prediction.userId, prediction._id);
+					currentPredictionPoints += calculateRulePoints(prediction.bonusWinner, match.bonusWinner, rules["bonusRule"]);
+					totalPoints += currentPredictionPoints;
 
 					User.update({ '_id' :  prediction.userId }, {$set:{'local.points':totalPoints}}, function(err,post) {
 						console.log("user updated")
 					})
-					Prediction.update({ '_id' :  prediction._id }, {$set:{points:totalPoints}}, function(err,post) {
+					Prediction.update({ '_id' :  prediction._id }, {$set:{points:currentPredictionPoints}}, function(err,post) {
 						console.log("prediction updated")
 					})
 				});
