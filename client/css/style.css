@@ -36,6 +36,8 @@ hr {
     padding: 0 16px; }
   .header .logout-button {
     margin-top: 10px; }
+  .header .navbar-brand {
+    color: #fff; }
 
 .content .todays-matches, .content .points-table {
   padding: 0 36px !important;
