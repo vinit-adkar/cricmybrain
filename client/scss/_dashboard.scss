@@ -1,13 +1,20 @@
 .header {
+	width: 100%;
 	.navbar {
 		padding: 0 16px;
 	}
 }
 
 .content {
-	padding: 0 60px;
 
 	.todays-matches, .points-table {
 		padding: 0 36px!important;
+	}
+
+	.refresh-table {
+		cursor: pointer;
+		&:hover {
+			color: #939393;
+		}
 	}
 }

@@ -33,16 +33,87 @@ module.exports = function(app) {
 			console.log(match._id)
 			Prediction.find({ 'matchId' :  match._id }, function (err, post) {
 				if (err) return next(err);
-				calculatePoints(post, rules, match);
+				calculatePoints(post, rules, match, res);
+				res.json(post);
 			});
-			res.json(post);
 		});
 	});
 
 	function calculatePoints (predictions, rules, match){
-		console.log(predictions)
-		console.log(rules)
-		console.log(match)
+		for (var i in predictions) {
+			var prediction = predictions[i];
+			
+			(function(prediction){
+				User.findOne({ '_id' :  prediction.userId }, function (err, post) {
+					if (err) return next(err);
+					var totalPointsForPrediction = prediction.points || 0;
+					var totalPoints = post.local.points;
+					totalPoints = totalPoints - totalPointsForPrediction;
+					
+					var rule1Points = calculateRulePoints(prediction.rule1Winner, match.rule1Winner, rules["rule1"]);
+					var rule2Points = calculateRulePoints(prediction.rule2Winner, match.rule2Winner, rules["rule2"]);
+					var rule3Points = calculateRulePoints(prediction.rule3Winner, match.rule3Winner, rules["rule3"]);
+
+					if (rule1Points && rule2Points && rule3Points) {
+						totalPoints += 15;
+					}
+					else {
+						totalPoints += (rule1Points + rule2Points + rule3Points);
+					}
+
+					totalPoints += calculateRulePoints(prediction.bonusWinner, match.bonusWinner, rules["bonusRule"]);
+					console.log(totalPoints, prediction.userId, prediction._id);
+
+					User.update({ '_id' :  prediction.userId }, {$set:{'local.points':totalPoints}}, function(err,post) {
+						console.log("user updated")
+					})
+					Prediction.update({ '_id' :  prediction._id }, {$set:{points:totalPoints}}, function(err,post) {
+						console.log("prediction updated")
+					})
+				});
+			})(prediction);
+		}
+	}
+
+	function calculateRulePoints (predictionWinner, ruleWinner, rule) {
+		if (rule.ruleFunction == 'isEqual') {
+			return isEqual(predictionWinner, ruleWinner, rule);
+		}
+		else if (rule.ruleFunction == 'isWithinRange') {
+			return isWithinRange(predictionWinner, ruleWinner, rule);
+		}
+	}
+
+	function isEqual(predictionWinner, ruleWinner, rule) {
+		if (ruleWinner.constructor === Array) {
+			for (var i in ruleWinner) {
+				if (ruleWinner[i] == predictionWinner) {
+					return rule.rulePoints;
+				}
+			}			
+		}
+		else {
+			if (ruleWinner == predictionWinner) {
+				return rule.rulePoints;
+			}
+		}
+		return 0;
+	}
+
+	function isWithinRange(predictionWinner, ruleWinner, rule) {
+		if (ruleWinner.constructor === Array) {
+			for (var i in ruleWinner) {
+				if (predictionWinner >= (parseInt(ruleWinner[i]) - rule.range) && predictionWinner < (parseInt(ruleWinner[i]) + rule.range)) {
+					return rule.rulePoints;
+				}
+			}
+		}
+		else {
+			if (predictionWinner >= (parseInt(ruleWinner) - rule.range) && predictionWinner < (parseInt(ruleWinner) + rule.range)) {
+				return rule.rulePoints;
+			}
+		}
+		return 0;
 	}
 
 

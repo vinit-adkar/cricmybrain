@@ -73,7 +73,6 @@ define([
 
 			this.model.save(winnerSelection, {
 				success: function() {
-					console.log("success")
 					that.$el.find('.success-message').removeClass("hidden");
 				},
 				error: function(response) {

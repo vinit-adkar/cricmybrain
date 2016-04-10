@@ -11,6 +11,10 @@ define([
 		el: "#points-table-container",
 		template:  _.template(PointsTableTemplate),
 
+		events: {
+			"click .refresh-table": "render"
+		},
+
 		initialize: function(options) {
 			var that = this;
 			this.users = new PointsCollection();
