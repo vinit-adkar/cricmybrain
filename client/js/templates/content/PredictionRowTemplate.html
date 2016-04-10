@@ -1,16 +1,16 @@
 <h5>Your Prediction</h5>
-<h5>( Note : 15 pts for correctly predicting Sections 1,2 and 3 )</h5>
+<h5 style="color:green;"><b>(15 Points for correctly predicting Sections 1, 2 and 3)<b></h4>
 <form role="form" class="form row">
 	<input class="hidden" name="matchId" value="<%= defaultEntries.matchId %>" />
 	<input class="hidden" name="userId" value="<%= defaultEntries.userId %>" />
 	<div class="col-sm-6">
 		<div class="form-group">
 			<label for="rule1Winner">
-				<span>1. <%= defaultEntries.rule1.ruleDesc %></span>
+				<span>1: <%= defaultEntries.rule1.ruleDesc %></span>
 				<% if (defaultEntries.rule1.range != 0) {%> 
-					<span>(Range: +- <b><%= defaultEntries.rule1.range %></b>)</span>
+					<span style="color:brown;">(Range: +- <b><%= defaultEntries.rule1.range %></b>)</span>
 				<% } %>
-				<span><b>(<%= defaultEntries.rule1.rulePoints %> Points</b>)</span>
+				<span style="color:blue;"><b>(<%= defaultEntries.rule1.rulePoints %> Points</b>)</span>
 			</label>
 			<select class="form-control" name="rule1Winner">
 				<option value="">Select Team</option>
@@ -23,11 +23,11 @@
 	<div class="col-sm-6">
 		<div class="form-group">
 			<label for="rule2Winner">
-				<span>2. <%= defaultEntries.rule2.ruleDesc %></span>
+				<span>2: <%= defaultEntries.rule2.ruleDesc %></span>
 				<% if (defaultEntries.rule2.range != 0) {%> 
-					<span>(Range: +- <b><%= defaultEntries.rule2.range %></b>)</span>
+					<span style="color:brown;">(Range: +- <b><%= defaultEntries.rule2.range %></b>)</span>
 				<% } %>
-				<span>(<b><%= defaultEntries.rule2.rulePoints %> Points</b>)</span>
+				<span style="color:blue;">(<b><%= defaultEntries.rule2.rulePoints %> Points</b>)</span>
 			</label>
 			<input class="form-control" type="number" name="rule2Winner"/>
 		</div>
@@ -35,11 +35,11 @@
 	<div class="col-sm-6">
 		<div class="form-group">
 			<label for="rule3Winner">
-				<span>3. <%= defaultEntries.rule3.ruleDesc %></span>
+				<span>3: <%= defaultEntries.rule3.ruleDesc %></span>
 				<% if (defaultEntries.rule3.range != 0) {%> 
-					<span>(Range: +- <b><%= defaultEntries.rule3.range %></b>)</span>
+					<span style="color:brown;">(Range: +- <b><%= defaultEntries.rule3.range %></b>)</span>
 				<% } %>
-				<span>(<b><%= defaultEntries.rule3.rulePoints %> Points</b>)</span>
+				<span style="color:blue;">(<b><%= defaultEntries.rule3.rulePoints %> Points</b>)</span>
 			</label>
 			<select class="form-control" name="rule3Winner">
 				<option value="">Select Player</option>
@@ -52,11 +52,11 @@
 	<div class="col-sm-6">
 		<div class="form-group">
 			<label for="bonusWinner">
-				<span>4. <%= defaultEntries.bonusRule.ruleDesc %></span>
+				<span>BONUS: <%= defaultEntries.bonusRule.ruleDesc %></span>
 				<% if (defaultEntries.bonusRule.range != 0) {%> 
-					<span>(Range: +- <b><%= defaultEntries.bonusRule.range %></b>)</span>
+					<span style="color:brown;">(Range: +- <b><%= defaultEntries.bonusRule.range %></b>)</span>
 				<% } %>
-				<span>(<b><%= defaultEntries.bonusRule.rulePoints %> Points</b>)</span>
+				<span style="color:blue;">(<b><%= defaultEntries.bonusRule.rulePoints %> Points</b>)</span>
 			</label>
 
 			<% if (defaultEntries.bonusRule.ruleType == "playerName") { %>
