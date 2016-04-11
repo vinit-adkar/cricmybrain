@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CricMyBrain</string>
+    <string name="version_name">SachinTendulkar</string>
+    <string name="about_cmb">About</string>
+    <string name="about_cmb_text">
+        CricMyBrain is a fun cricket predictions game where you need to consider various factors.
+        Developed in California, USA and Mumbai, India 2016.
+    </string>
+</resources>
