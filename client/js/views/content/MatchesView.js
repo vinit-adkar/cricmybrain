@@ -17,11 +17,14 @@ define([
 			var that = this;
 			this.$el.html(this.template);
 
-			this.matches = new MatchesCollection();
+			this.matches = new MatchesCollection({
+								isResults: false
+							});
 		},
 
 		render: function(collection){
 			var that = this;
+			this.matchRowViews = [];
 			
 			this.matches.fetch({
 				success: function(collection, response, options){
@@ -39,6 +42,7 @@ define([
 												parent_el : that.$el.find("#matches-row-container")});
 							}
 							matchRowView.render();
+							that.matchRowViews.push(matchRowView);
 						});						
 					}
 					else {
@@ -52,6 +56,11 @@ define([
 		},
 
 		close : function(){
+
+			_.each(this.matchRowViews, function(view) {
+				view.close();
+			})
+
 			this.undelegateEvents();
 			this.remove();
 		}

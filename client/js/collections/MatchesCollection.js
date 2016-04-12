@@ -9,7 +9,15 @@ define([
 		model: MatchesModel,
 		
 		url: function() {
-			return '/matches';
+			return '/matches' + this.urlParams;
+		},
+
+		initialize: function(options) {
+			this.urlParams = ""
+			var isResults = options.isResults;
+			if (isResults) {
+				this.urlParams += "/results";
+			}
 		}
 	});
 	return MatchesCollection;

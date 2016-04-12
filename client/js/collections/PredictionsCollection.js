@@ -1,10 +1,13 @@
 define([
 	"jquery",
 	"underscore",
-	"backbone"
-], function($, _, Backbone){
+	"backbone",
+	"models/PredictionModel"
+], function($, _, Backbone, PredictionModel){
 
-	var PredictionModel = Backbone.Model.extend({
+	var PredictionsCollection = Backbone.Collection.extend({
+		model: PredictionModel,
+		
 		url : function(){
 			return "/predictions" + this.urlParams;
 		},
@@ -22,15 +25,6 @@ define([
 				this.urlParams += "/user/"+userId;
 			}
 		},
-
-		defaults: {
-			matchId: "",
-			userId: "",
-			rule1Winner: "",
-			rule2Winner: "",
-			rule3Winner: [],
-			bonusWinner: [],
-		},
 	});
-	return PredictionModel;
+	return PredictionsCollection;
 });

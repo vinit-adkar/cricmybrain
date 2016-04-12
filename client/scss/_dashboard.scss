@@ -1,22 +1,5 @@
-.header {
-	width: 100%;
-	.navbar {
-		padding: 0 16px;
-	}
-
-	.logout-button {
-		margin-top: 10px;
-	}
-
-	.navbar-brand {
-		color: #fff;
-	}
-}
-
 .content {
-
 	.todays-matches, .points-table {
-		padding: 0 36px!important;
 		border-top: 1px solid #2a2c30;
 	}
 
@@ -25,20 +8,6 @@
 		&:hover {
 			color: #939393;
 		}
-	}
-
-	.prediction-note {
-		font-size: 14px;
-		color: green;
-		font-weight: bold;
-	}
-
-	.prediction-range {
-		color:brown;
-	}
-
-	.prediction-points {
-		color:blue;
 	}
 
 	.prediction-rules {
@@ -51,4 +20,39 @@
 		border-top: 1px solid #2a2c30;
 		padding: 16px 0;
 	}
+}
+
+.results-content {
+	.result-heading {
+		.heading-label {
+			@include display-inline-block;
+			padding-right: 24px;
+		}
+		.form-control {
+			@include display-inline-block;
+			width: auto;
+		}
+	}
+
+	.table {
+		.winning-predictions {
+			th{
+				font-style: italic;
+			}
+		}
+	}
+}
+
+.prediction-note {
+	font-size: 14px;
+	color: green;
+	font-weight: bold;
+}
+
+.prediction-range {
+	color:brown;
+}
+
+.prediction-points {
+	color:blue;
 }

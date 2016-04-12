@@ -53,9 +53,18 @@ define([
 			return team_players[teamId].players;
 		};
 
+		var getAllTeamName = function() {
+			var allTeams = {};
+			_.each(team_players, function(team) {
+				allTeams[team.teamId] = team.team;
+			});
+			return allTeams;
+		}
+
 		return {
 			getTeamName: getTeamName,
-			getPlayers: getPlayers
+			getPlayers: getPlayers,
+			getAllTeamName: getAllTeamName
 		};
 
 	} 

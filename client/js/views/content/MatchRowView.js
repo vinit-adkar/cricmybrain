@@ -40,11 +40,11 @@ define([
 			
 			this.predictionModel.fetch({
 				success: function(model, response, options) {
-					var predictionRowView = new PredictionRowView({
+					that.predictionRowView = new PredictionRowView({
 												matchModel: that.model,
 												model: model
 											});
-					that.$el.find('.prediction-row').html(predictionRowView.render());
+					that.$el.find('.prediction-row').html(that.predictionRowView.render());
 
 					that.timer = setInterval(function() {
 						var currDateTime = Math.ceil(new Date().getTime()/1000);
@@ -83,6 +83,7 @@ define([
 		},
 
 		close : function(){
+			that.predictionRowView.close();
 			this.undelegateEvents();
 			this.remove();
 		}

@@ -1,0 +1,14 @@
+<h3 class="result-heading">
+	<span class="heading-label">View Results:</span>
+	<select class="form-control match-list">
+		<option value="">Select Match to view results</option>
+		<% _.each(collection, function(match, index) { %>
+			<option value="<%= match._id %>">
+				<span><%= match.matchNum %> - </span>
+				<b><%= teams_info[match.homeTeam] %></b> vs <b><%= teams_info[match.awayTeam] %></b>
+				</span>
+			</option>
+		<% }); %>
+	</select>
+</h3>
+<div class="results-row"></div>

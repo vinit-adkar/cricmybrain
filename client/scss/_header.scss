@@ -1,0 +1,59 @@
+.header {
+	width: 100%;
+	background: #101010;
+
+	.sub-headers {
+		@include display-inline-block;
+		width: calc(100% - 100px);
+
+		.logo {
+			@include display-inline-block;
+			padding: 0 32px 0 16px;
+			h2 {
+				margin: 10px 0;
+				font-style: italic;
+				color: #009dd0;
+			}
+		}
+
+		.menu {
+			@include display-inline-block;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			height: 70px;
+			font-size: 20px;
+			color: #f3f3f3;
+
+			.menu-item {
+				display: inline-block;
+				height: 100%;
+				
+				a {
+					text-decoration: none;
+					color: #fff;
+					padding: 20px 16px;
+					height: 100%;
+					display: block;
+
+					&:hover {
+						color: #00bce4;	
+						background: #1e1f22;
+					}
+				}
+
+				&.nav-active {
+					border-bottom: 5px solid #00bce4;
+					a {
+						color: #00bce4;
+					}
+				}
+			}
+		}
+	}
+
+	.logout-button {
+		@include display-inline-block;
+		width: 80px;
+	}
+}

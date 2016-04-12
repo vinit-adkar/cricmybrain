@@ -118,12 +118,39 @@ module.exports = function(app) {
 		return 0;
 	}
 
+	// Get Todays Match Details
+	app.get('/matches/results', isLoggedIn, function(req, res) {
+		var startDate = new Date();
+		startDate = startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate();
+
+		var query = Matches.find({"date" : {'$lt': new Date(startDate)}}).
+					populate('rule1').
+					select({ _id:1, matchNum: 1, date: 1, startTimeGMT:1, venue:1, homeTeam:1, awayTeam:1, bonusRule:1, 
+						rule1Winner:1, rule2Winner:1, rule3Winner:1, bonusWinner:1 });
+
+		query.exec(function (err, post) {
+			if (err) return next(err);
+
+			res.json(post);
+		});
+	});
+
 
 	// Get user for points table
 	app.get('/users', isLoggedIn, function(req, res) {
 		var query = User.find({ 'local.admin' :  false }).
 					select({_id:1, 'local.name':1, 'local.teamname':1, 'local.points':1}).
 					sort('-local.points');
+
+		query.exec(function (err, post) {
+			if (err) return next(err);
+			res.json(post);
+		});
+	});
+
+	// Post predictions
+	app.get('/predictions/match/:matchId', isLoggedIn, function(req, res, next) {
+		var query = Prediction.find({ 'matchId' :  req.params.matchId }).sort('-points');
 
 		query.exec(function (err, post) {
 			if (err) return next(err);
