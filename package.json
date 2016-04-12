@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "env TZ='Africa/Accra' nodemon ./bin/www",
+    "start": "env TZ='Africa/Accra' forever start ./bin/www",
     "stop": "forever stop ./bin/www"
   },
   "dependencies": {
