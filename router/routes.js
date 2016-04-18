@@ -5,7 +5,7 @@ module.exports = function(app, passport) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
+        res.render('index.ejs', { message: req.flash('loginMessage') }); // load the index.ejs file
     });
 
     // =====================================
@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
 
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/dashboard', // redirect to the secure dashboard section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
@@ -39,8 +39,8 @@ module.exports = function(app, passport) {
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/login', // redirect to the secure dashboard section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        successRedirect : '/', // redirect to the secure dashboard section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
