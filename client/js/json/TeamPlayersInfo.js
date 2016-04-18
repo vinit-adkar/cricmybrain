@@ -6,7 +6,7 @@ define([
 			MI: {
 				team : "Mumbai Indians",
 				teamId : "MI",
-				players : ["Rohit Sharma", "Jasprit Bumrah", "Unmukt Chand", "Shreyas Gopal", "Kishore Kamath", "Mitchell McClenaghan", "Hardik Pandya", "Parthiv Patel", "Deepak Punia", "Ambati Rayudu", "Lendl Simmons", "Tim Southee", "Vinay Kumar", "Corey Anderson", "Jos Buttler", "Marchant de Lange", "Harbhajan Singh", "Siddhesh Lad", "Lasith Malinga", "Krunal Pandya", "Kieron Pollard", "Nitish Rana", "Jitesh Sharma", "Nathu Singh", "Suchith", "Akshay Wakhare"]
+				players : ["Rohit Sharma", "Jasprit Bumrah", "Unmukt Chand", "Shreyas Gopal", "Kishore Kamath", "Mitchell McClenaghan", "Hardik Pandya", "Parthiv Patel", "Deepak Punia", "Ambati Rayudu", "Martin Guptill", "Tim Southee", "Vinay Kumar", "Corey Anderson", "Jos Buttler", "Marchant de Lange", "Harbhajan Singh", "Siddhesh Lad", "Lasith Malinga", "Krunal Pandya", "Kieron Pollard", "Nitish Rana", "Jitesh Sharma", "Nathu Singh", "Suchith", "Akshay Wakhare"]
 			},
 			KKR: {
 				team : "Kolkata Knight Riders",
