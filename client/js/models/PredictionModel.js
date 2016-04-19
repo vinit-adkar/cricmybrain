@@ -28,8 +28,8 @@ define([
 			userId: "",
 			rule1Winner: "",
 			rule2Winner: "",
-			rule3Winner: [],
-			bonusWinner: [],
+			rule3Winner: "",
+			bonusWinner: ""
 		},
 	});
 	return PredictionModel;

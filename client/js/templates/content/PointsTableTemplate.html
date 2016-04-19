@@ -12,9 +12,9 @@
 		<% _.each(collection, function(user, index) { %>
 			<tr>
 				<td><%= index+1 %></td>
-				<td><%= user.local.teamname %></td>
-				<td><%= user.local.name %></td>
-				<td><%= user.local.points %></td>
+				<td><%= user.teamname %></td>
+				<td><%= user.name %></td>
+				<td><%= user.points %></td>
 			</tr>
 		<% }); %>
 	</tbody>	

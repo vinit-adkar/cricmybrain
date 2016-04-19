@@ -1,4 +1,6 @@
 // load up the user model
+var mongoose = require("mongoose");
+var ObjectId = mongoose.Types.ObjectId;
 var Matches = require('../models/matches');
 var User = require('../models/users');
 var Prediction = require('../models/predictions');
@@ -30,10 +32,11 @@ module.exports = function(app) {
 		Matches.update({ _id: req.body._id }, { $set: req.body}, function (err, post) {
 			if (err) return next(err);
 			var match = req.body;
-			Prediction.find({ 'matchId' :  match._id }, function (err, post) {
+			Prediction.find({ 'matchId': ObjectId(match._id)}).populate("matchId").populate("userId").exec(function (err, post) {
 				if (err) return next(err);
-				calculatePoints(post, rules, match, res);
+				//calculatePoints(post, rules, match, res);
 				res.json(post);
+				
 			});
 		});
 	});
@@ -46,7 +49,7 @@ module.exports = function(app) {
 				User.findOne({ '_id' :  prediction.userId }, function (err, post) {
 					if (err) return next(err);
 					var totalPointsForPrediction = prediction.points || 0;
-					var totalPoints = post.local.points;
+					var totalPoints = post.points;
 					
 					totalPoints = totalPoints - totalPointsForPrediction;
 					
@@ -66,7 +69,7 @@ module.exports = function(app) {
 					currentPredictionPoints += calculateRulePoints(prediction.bonusWinner, match.bonusWinner, rules["bonusRule"]);
 					totalPoints += currentPredictionPoints;
 
-					User.update({ '_id' :  prediction.userId }, {$set:{'local.points':totalPoints}}, function(err,post) {
+					User.update({ '_id' :  prediction.userId }, {$set:{'points':totalPoints}}, function(err,post) {
 						console.log("user updated")
 					})
 					Prediction.update({ '_id' :  prediction._id }, {$set:{points:currentPredictionPoints}}, function(err,post) {
@@ -138,9 +141,9 @@ module.exports = function(app) {
 
 	// Get user for points table
 	app.get('/users', isLoggedIn, function(req, res) {
-		var query = User.find({ 'local.admin' :  false }).
-					select({_id:1, 'local.name':1, 'local.teamname':1, 'local.points':1}).
-					sort('-local.points');
+		var query = User.find({ 'admin' :  false }).
+					select({_id:1, 'name':1, 'teamname':1, 'points':1}).
+					sort('-points');
 
 		query.exec(function (err, post) {
 			if (err) return next(err);
@@ -150,7 +153,7 @@ module.exports = function(app) {
 
 	// Post predictions
 	app.get('/predictions/match/:matchId', isLoggedIn, function(req, res, next) {
-		var query = Prediction.find({ 'matchId' :  req.params.matchId }).sort('-points');
+		var query = Prediction.find({ 'matchId' :  ObjectId(req.params.matchId) }).sort('-points');
 
 		query.exec(function (err, post) {
 			if (err) return next(err);
@@ -160,7 +163,7 @@ module.exports = function(app) {
 
 	// Post predictions
 	app.get('/predictions/match/:matchId/user/:userId', isLoggedIn, function(req, res, next) {
-		var query = Prediction.findOne({ 'matchId' :  req.params.matchId, 'userId': req.params.userId })
+		var query = Prediction.findOne({ 'matchId' :  ObjectId(req.params.matchId), 'userId': ObjectId(req.params.userId) })
 					.select({updatedAt:0,createdAt:0});
 
 		query.exec(function (err, post) {
@@ -171,21 +174,18 @@ module.exports = function(app) {
 
 	// Post predictions
 	app.post('/predictions/match/:matchId/user/:userId', isLoggedIn, function(req, res, next) {
-		var query = Prediction.findOne({ 'matchId' :  req.params.matchId, 'userId': req.params.userId });
-		query.exec(function (err, post) {
+		var query = {
+			'matchId':  ObjectId(req.params.matchId),
+			'userId': ObjectId(req.params.userId)
+		};
+
+		var body = req.body;
+		body.matchId = ObjectId(req.params.matchId);
+		body.userId = ObjectId(req.params.userId);
+
+		Prediction.findOneAndUpdate(query, body, {upsert:true, setDefaultsOnInsert: true}, function(err, prediction) {
 			if (err) return next(err);
-			if (post) {
-				Prediction.update({ _id: post._id }, { $set: req.body}, function (err, post) {
-					if (err) return next(err);
-					res.json(post);
-				});
-			}
-			else {
-				Prediction.create(req.body, function (err, post) {
-					if (err) return next(err);
-					res.json(post);
-				});
-			}
+			res.json(prediction);
 		});
 	});
 
@@ -204,7 +204,7 @@ function isLoggedIn(req, res, next) {
 // route middleware to make sure a user is logged in
 function isAdminLoggedIn(req, res, next) {
 	// if user is authenticated in the session, carry on 
-	if ((req.isAuthenticated() && req.user.local.admin) == true)
+	if ((req.isAuthenticated() && req.user.admin) == true)
 		return next();
 
 	// if they aren't redirect them to the home page

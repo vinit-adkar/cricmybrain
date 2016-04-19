@@ -1,15 +1,20 @@
 // app/models/match.js
 // load the things we need
 var mongoose = require('mongoose');
+var Matches = require('../models/matches');
+var User = require("../models/users");
+var Schema = mongoose.Schema;
 
 // define the schema for our match model
-var predictionSchema = mongoose.Schema(
+var predictionSchema = Schema(
     {
         matchId : { 
-            type: String
+            type: Schema.Types.ObjectId,
+            ref: "Matches"
         },
         userId : { 
-            type: String
+            type: Schema.Types.ObjectId,
+            ref: "User"
         },
         rule1Winner: { 
             type: String,

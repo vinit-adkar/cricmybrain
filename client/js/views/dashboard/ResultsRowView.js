@@ -49,7 +49,7 @@ define([
 
 					var users = {};
 					_.each(collection.toJSON(), function(user) {
-						users[user._id] = {name:user.local.name, teamname: user.local.teamname};
+						users[user._id] = {name:user.name, teamname: user.teamname};
 					});
 
 					that.$el.html(that.template({

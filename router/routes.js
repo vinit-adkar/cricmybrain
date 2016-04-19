@@ -52,11 +52,11 @@ module.exports = function(app, passport) {
     app.get('/dashboard', isLoggedIn, function(req, res) {
         var user = {
             id:req.user.id,
-            admin: req.user.local.admin,
-            teamname: req.user.local.teamname,
-            email: req.user.local.email,
-            points: req.user.local.points,
-            name: req.user.local.name
+            admin: req.user.admin,
+            teamname: req.user.teamname,
+            email: req.user.email,
+            points: req.user.points,
+            name: req.user.name
         }
         res.render('dashboard.ejs', {
             user : JSON.stringify(user) // get the user out of session and pass to template
