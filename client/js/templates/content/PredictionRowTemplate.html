@@ -47,9 +47,9 @@
 			<select class="form-control" name="rule3Winner">
 				<option value="">Select Player</option>
 				<% _.each(defaultEntries.players, function(player, index) { %>
-					<option value="<%= player.replace(/ /g,'_') %>" <% if (prediction.rule3Winner == player) { %>
+					<option value="<%= player.name.replace(/ /g,'_') %>" <% if (prediction.rule3Winner == player.name) { %>
 							selected
-						<% } %> ><%= player %></option>
+						<% } %> ><%= player.name %> (<%= player.type %>)</option>
 				<% }); %>
 			</select>
 		</div>
@@ -68,9 +68,9 @@
 				<select class="form-control" name="bonusWinner">
 					<option value="">Select Player</option>
 					<% _.each(defaultEntries.players, function(player, index) { %>
-						<option value="<%= player.replace(/ /g,'_') %>" <% if (prediction.bonusWinner == player) { %>
+						<option value="<%= player.name.replace(/ /g,'_') %>" <% if (prediction.bonusWinner == player.name) { %>
 							selected
-						<% } %> ><%= player %></option>
+						<% } %> ><%= player.name %> (<%= player.type %>)</option>
 					<% }); %>
 				</select>
 			
