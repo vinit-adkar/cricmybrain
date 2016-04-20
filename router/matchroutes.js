@@ -32,11 +32,10 @@ module.exports = function(app) {
 		Matches.update({ _id: req.body._id }, { $set: req.body}, function (err, post) {
 			if (err) return next(err);
 			var match = req.body;
-			Prediction.find({ 'matchId': ObjectId(match._id)}).populate("matchId").populate("userId").exec(function (err, post) {
+			Prediction.find({ 'matchId': ObjectId(match._id)}).populate("matchId").populate("userId").exec(function (err, predictions) {
 				if (err) return next(err);
-				//calculatePoints(post, rules, match, res);
+				calculatePoints(predictions, rules, match, res);
 				res.json(post);
-				
 			});
 		});
 	});
@@ -44,39 +43,36 @@ module.exports = function(app) {
 	function calculatePoints (predictions, rules, match){
 		for (var i in predictions) {
 			var prediction = predictions[i];
+			var match = prediction.matchId;
+			var user = prediction.userId;
 			
-			(function(prediction){
-				User.findOne({ '_id' :  prediction.userId }, function (err, post) {
-					if (err) return next(err);
-					var totalPointsForPrediction = prediction.points || 0;
-					var totalPoints = post.points;
-					
-					totalPoints = totalPoints - totalPointsForPrediction;
-					
-					var currentPredictionPoints = 0;
+			var totalPointsForPrediction = prediction.points || 0;
+			var totalPoints = user.points;
+			
+			totalPoints = totalPoints - totalPointsForPrediction;
+			
+			var currentPredictionPoints = 0;
 
-					var rule1Points = calculateRulePoints(prediction.rule1Winner, match.rule1Winner, rules["rule1"]);
-					var rule2Points = calculateRulePoints(prediction.rule2Winner, match.rule2Winner, rules["rule2"]);
-					var rule3Points = calculateRulePoints(prediction.rule3Winner, match.rule3Winner, rules["rule3"]);
+			var rule1Points = calculateRulePoints(prediction.rule1Winner, match.rule1Winner, rules["rule1"]);
+			var rule2Points = calculateRulePoints(prediction.rule2Winner, match.rule2Winner, rules["rule2"]);
+			var rule3Points = calculateRulePoints(prediction.rule3Winner, match.rule3Winner, rules["rule3"]);
 
-					if (rule1Points && rule2Points && rule3Points) {
-						currentPredictionPoints += 15;
-					}
-					else {
-						currentPredictionPoints += (rule1Points + rule2Points + rule3Points);
-					}
+			if (rule1Points && rule2Points && rule3Points) {
+				currentPredictionPoints += 15;
+			}
+			else {
+				currentPredictionPoints += (rule1Points + rule2Points + rule3Points);
+			}
 
-					currentPredictionPoints += calculateRulePoints(prediction.bonusWinner, match.bonusWinner, rules["bonusRule"]);
-					totalPoints += currentPredictionPoints;
+			currentPredictionPoints += calculateRulePoints(prediction.bonusWinner, match.bonusWinner, rules["bonusRule"]);
+			totalPoints += currentPredictionPoints;
 
-					User.update({ '_id' :  prediction.userId }, {$set:{'points':totalPoints}}, function(err,post) {
-						console.log("user updated")
-					})
-					Prediction.update({ '_id' :  prediction._id }, {$set:{points:currentPredictionPoints}}, function(err,post) {
-						console.log("prediction updated")
-					})
-				});
-			})(prediction);
+			User.update({ '_id' :  user._id }, {$set:{'points':totalPoints}}, function(err,post) {
+				console.log("user updated")
+			})
+			Prediction.update({ '_id' :  prediction._id }, {$set:{points:currentPredictionPoints}}, function(err,post) {
+				console.log("prediction updated")
+			});
 		}
 	}
 
