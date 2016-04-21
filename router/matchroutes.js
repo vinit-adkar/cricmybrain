@@ -123,7 +123,7 @@ module.exports = function(app) {
 		var startDate = new Date();
 		startDate = startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate();
 
-		var query = Matches.find({"date" : {'$lt': new Date(startDate)}}).
+		var query = Matches.find({isComplete: true}).
 					populate('rule1').
 					select({ _id:1, matchNum: 1, date: 1, venue:1, homeTeam:1, awayTeam:1, bonusRule:1, 
 						rule1Winner:1, rule2Winner:1, rule3Winner:1, bonusWinner:1 }).sort('date');
