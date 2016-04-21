@@ -26,11 +26,16 @@ hr {
 
 .page-container {
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 70px);
 	padding: 0 24px;
+	overflow-y: scroll;
 }
 
 @mixin display-inline-block {
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.alert-success {
+	padding: 8px 16px;
 }

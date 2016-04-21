@@ -4,38 +4,38 @@ var mongoose = require('mongoose');
 
 // define the schema for our match model
 var matchSchema = mongoose.Schema({
-    matchNum : { 
+    matchNum: { 
         type: String
     },
     date : { 
         type: Date
     },
-    startTimeGMT : {
+    venue: {
         type: String
     },
-    venue : {
-        type: String
-    },
-    homeTeam : { 
-        type: String, 
+    homeTeam: { 
+        type: String 
     },
     awayTeam: { 
-        type: String, 
+        type: String 
     },
     bonusRule: { 
-        type: String,
+        type: String
     },
     rule1Winner: { 
-        type: String,
+        type: String
     },
     rule2Winner: { 
-        type: Number,
+        type: Number
     },
     rule3Winner: { 
-        type: [String],
+        type: [String]
     },
     bonusWinner: { 
-        type: [String],
+        type: [String]
+    },
+    isComplete: {
+        type: Boolean
     }
 });
 

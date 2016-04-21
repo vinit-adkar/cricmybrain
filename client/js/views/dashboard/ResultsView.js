@@ -35,9 +35,10 @@ define([
 					    teams_info: TeamPlayersInfo.getAllTeamName()
 					}));
 					that.render_el.html(that.$el);
+					that.$el.find('.match-list option:last').attr('selected', 'selected').change();
 				},
-				error: function() {
-
+				error: function(response) {
+					console.log(response);
 				}
 			});
 		},
