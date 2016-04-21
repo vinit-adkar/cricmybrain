@@ -44,38 +44,36 @@ module.exports = function(passport) {
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
 
-	        // find a user whose email is the same as the forms email
-	        // we are checking to see if the user trying to login already exists
-	        User.findOne({ 'email' :  email }, function(err, user) {
-	            // if there are any errors, return the error
-	            if (err)
-	                return done(err);
+            // find a user whose email is the same as the forms email
+            // we are checking to see if the user trying to login already exists
+            User.findOne({$or: [{ 'email' :  email }, {'teamname' : req.body.teamname }]}, function(err, user) {
+                // if there are any errors, return the error
+                if (err)
+                    return done(err);
 
-	            // check to see if theres already a user with that email
-	            if (user) {
-	                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-	            } else {
+                // check to see if theres already a user with that email
+                if (user) {
+                    return done(null, false, req.flash('loginMessage', 'That email/teamname is already taken.'));
+                } else {
 
-	                // if there is no user with that email
-	                // create the user
-	                var newUser            = new User();
-
-	                // set the user's local credentials
-	                newUser.email    = email;
-	                newUser.password = newUser.generateHash(password);
-                    newUser.teamname = req.param('teamname');
-                    newUser.name = req.param('name');
+                    // if there is no user with that email
+                    // create the user
+                    var newUser = new User();
+                    // set the user's local credentials
+                    newUser.email    = email;
+                    newUser.password = newUser.generateHash(password);
+                    newUser.teamname = req.body.teamname;
+                    newUser.name = req.body.name;
                     newUser.admin = false;
+                    // save the user
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+                        return done(null, newUser, req.flash('loginMessage', 'You have successfully created an account. Login to start playing!!'));
+                    });
+                }
 
-	                // save the user
-	                newUser.save(function(err) {
-	                    if (err)
-	                        throw err;
-	                    return done(null, newUser, req.flash('loginMessage', 'You have successfully created an account. Login to start playing!!'));
-	                });
-	            }
-
-	        });    
+            });    
         });
     }));
 
