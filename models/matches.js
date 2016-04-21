@@ -3,41 +3,47 @@
 var mongoose = require('mongoose');
 
 // define the schema for our match model
-var matchSchema = mongoose.Schema({
-    matchNum: { 
-        type: String
+var matchSchema = mongoose.Schema(
+    {
+        matchNum: { 
+            type: String
+        },
+        date : { 
+            type: Date
+        },
+        venue: {
+            type: String
+        },
+        homeTeam: { 
+            type: String 
+        },
+        awayTeam: { 
+            type: String 
+        },
+        bonusRule: { 
+            type: String
+        },
+        rule1Winner: { 
+            type: String
+        },
+        rule2Winner: { 
+            type: Number
+        },
+        rule3Winner: { 
+            type: [String]
+        },
+        bonusWinner: { 
+            type: [String]
+        },
+        isComplete: {
+            type: Boolean,
+            default: false
+        }
     },
-    date : { 
-        type: Date
-    },
-    venue: {
-        type: String
-    },
-    homeTeam: { 
-        type: String 
-    },
-    awayTeam: { 
-        type: String 
-    },
-    bonusRule: { 
-        type: String
-    },
-    rule1Winner: { 
-        type: String
-    },
-    rule2Winner: { 
-        type: Number
-    },
-    rule3Winner: { 
-        type: [String]
-    },
-    bonusWinner: { 
-        type: [String]
-    },
-    isComplete: {
-        type: Boolean
+    { 
+        timestamps: {} 
     }
-});
+);
 
 
 // create the model for matches for populating database

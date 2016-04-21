@@ -18,10 +18,10 @@ module.exports = function(app) {
 					select({ _id:1, matchNum: 1, date: 1, venue:1, homeTeam:1, awayTeam:1, bonusRule:1, 
 						rule1Winner:1, rule2Winner:1, rule3Winner:1, bonusWinner:1 });
 
-		query.exec(function (err, post) {
+		query.exec(function (err, match) {
 			if (err) return next(err);
 
-			res.json(post);
+			res.json(match);
 		});
 	});
 
