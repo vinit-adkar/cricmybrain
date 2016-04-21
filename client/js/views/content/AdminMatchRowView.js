@@ -9,7 +9,7 @@ define([
 	"moment"
 ], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, AdminMatchRowTemplate, moment){
 
-	var MatchesView = Backbone.View.extend({
+	var AdminMatchRowView = Backbone.View.extend({
 		className: "winner-match-row",
 		template: _.template(AdminMatchRowTemplate),
 
@@ -88,5 +88,5 @@ define([
 		}
 	});
 
-	return MatchesView;
+	return AdminMatchRowView;
 });

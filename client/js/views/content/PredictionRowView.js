@@ -9,7 +9,7 @@ define([
 	"bootstrap",
 ], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, PredictionRowTemplate){
 
-	var MatchesView = Backbone.View.extend({
+	var PredictionRowView = Backbone.View.extend({
 		template:  _.template(PredictionRowTemplate),
 		
 		events: {
@@ -101,5 +101,5 @@ define([
 		}
 	});
 
-	return MatchesView;
+	return PredictionRowView;
 });

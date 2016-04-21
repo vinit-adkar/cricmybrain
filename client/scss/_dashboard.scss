@@ -20,6 +20,31 @@
 		border-top: 1px solid #2a2c30;
 		padding: 16px 0;
 	}
+
+	ul.upcoming-matches-list {
+		list-style: none;
+		padding: 0;
+		li {
+			font-size: 20px;
+			color: #009dd0;
+		    padding: 16px 0;
+    		border-bottom: 1px solid #2a2c30;
+    		cursor: pointer;
+
+    		.match-time {
+    			font-size: 16px;
+    			color: #2a2c30;
+    			cursor: default;
+    			font-style: italic;
+    			&:hover {
+    				color: #2a2c30;
+    			}
+    		}
+			&:hover {
+				color: #00bce4;
+			}
+		}
+	}
 }
 
 .results-content {

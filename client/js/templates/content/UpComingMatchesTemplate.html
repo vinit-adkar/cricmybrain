@@ -1,0 +1,18 @@
+<ul class="upcoming-matches-list">
+<% _.each(collection, function(match, index) { %>
+	<% if ((match.get('homeTeam') != "TBD") || (match.get('awayTeam') != "TBD")){%>
+		<li class="upcoming-match" data-attribute="<%= match.get('_id') %>">
+			<i class="fa fa-caret-right"></i>
+			<span class="match-teams">
+				<%= TeamPlayersInfo.getTeamName(match.get("homeTeam")) %> vs <%= TeamPlayersInfo.getTeamName(match.get("awayTeam")) %>
+			</span>
+			<span class="match-time">
+				<%= moment(Date.parse(match.get("date"))).format('MMMM Do YYYY, h:mm a') %>
+			</span>
+		</li>
+	<% } %>
+<% }); %>
+<% if(collection.length == 0) {%> 
+	<li>There are no matches to display.</li>
+<% } %> 
+</ul>

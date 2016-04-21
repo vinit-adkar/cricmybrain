@@ -10,7 +10,7 @@ define([
 	"moment"
 ], function($, _, Backbone, Globals, TeamPlayersInfo, PredictionModel, PredictionRowView, MatchRowTemplate, moment){
 
-	var MatchesView = Backbone.View.extend({
+	var MatchRowView = Backbone.View.extend({
 		className: "match-row",
 		template:  _.template(MatchRowTemplate),
 
@@ -47,8 +47,8 @@ define([
 					that.$el.find('.prediction-row').html(that.predictionRowView.render());
 
 					that.timer = setInterval(function() {
-						var currDateTime = Math.ceil(new Date().getTime()/1000);
-						var matchDateTime = Math.ceil(Date.parse(that.model.get("date"))/1000);
+						var currDateTime = new Date().getTime();
+						var matchDateTime = Date.parse(that.model.get("date"));
 						var timeLeft = matchDateTime - currDateTime;
 
 						that.timeBetweenDates(timeLeft);
@@ -68,14 +68,14 @@ define([
 				clearInterval(this.timer);
 			} else {
 				this.$el.find('.timeLeftToMatch').removeClass("hidden");
-				var seconds = timeLeft;
-				var minutes = Math.floor(seconds / 60);
-				var hours = Math.floor(minutes / 60);
+				var seconds = Math.floor((timeLeft/1000) % 60);
+				var minutes = Math.floor((timeLeft/1000/60) % 60);
+				var hours = Math.floor((timeLeft/(1000*60*60)) % 24);
+				var days = Math.floor(timeLeft/(1000*60*60*24));
 
-				hours %= 24;
-				minutes %= 60;
-				seconds %= 60;
-
+				if (days){
+					this.$el.find('.timeLeftToMatch .days').html("<b>" + days + "</b> Days");
+				}
 				this.$el.find('.timeLeftToMatch .hours').html("<b>" + hours + "</b> Hours");
 				this.$el.find('.timeLeftToMatch .minutes').html("<b>" + minutes + "</b> Minutes");
 				this.$el.find('.timeLeftToMatch .seconds').html("<b>" + seconds + "</b> Seconds");
@@ -83,11 +83,11 @@ define([
 		},
 
 		close : function(){
-			that.predictionRowView.close();
+			this.predictionRowView.close();
 			this.undelegateEvents();
 			this.remove();
 		}
 	});
 
-	return MatchesView;
+	return MatchRowView;
 });
