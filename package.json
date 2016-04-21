@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "start bin\\www",
-    "stop": "stop bin\\www"
+    "start": "env TZ='Africa/Accra' nodemon --debug ./bin/www",
+    "stop": "forever stop ./bin/www"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
