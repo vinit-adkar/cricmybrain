@@ -35,6 +35,14 @@ var predictionSchema = Schema(
         points: {
             type: Number,
             default: 0
+        },
+        predictions: {
+            type: Number,
+            default: 0
+        },
+        range: {
+            type: Number,
+            default: 0
         }
     },
     { 

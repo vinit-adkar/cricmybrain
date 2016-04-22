@@ -64,15 +64,32 @@ module.exports = function(app) {
 			var user = prediction.userId;
 			
 			var totalPointsForPrediction = prediction.points || 0;
+			var matchCorrectPredictions = prediction.predictions || 0;
+
 			var totalPoints = user.points;
+			var totalCorrectPredictions = user.predictions;
 			
 			totalPoints = totalPoints - totalPointsForPrediction;
+			totalCorrectPredictions = totalCorrectPredictions - matchCorrectPredictions;
 			
 			var currentPredictionPoints = 0;
+			var currentCorrectPredictions = 0;
 
 			var rule1Points = calculateRulePoints(prediction.rule1Winner, match.rule1Winner, rules["rule1"]);
+			if(rule1Points) {
+				currentCorrectPredictions += 1;
+			}
+
 			var rule2Points = calculateRulePoints(prediction.rule2Winner, match.rule2Winner, rules["rule2"]);
+			if(rule2Points) {
+				currentCorrectPredictions += 1;
+			}
+
 			var rule3Points = calculateRulePoints(prediction.rule3Winner, match.rule3Winner, rules["rule3"]);
+			if(rule3Points) {
+				currentCorrectPredictions += 1;
+			}
+
 
 			if (rule1Points && rule2Points && rule3Points) {
 				currentPredictionPoints += 15;
@@ -81,13 +98,21 @@ module.exports = function(app) {
 				currentPredictionPoints += (rule1Points + rule2Points + rule3Points);
 			}
 
-			currentPredictionPoints += calculateRulePoints(prediction.bonusWinner, match.bonusWinner, rules["bonusRule"]);
-			totalPoints += currentPredictionPoints;
+			var bonusPoints = calculateRulePoints(prediction.bonusWinner, match.bonusWinner, rules["bonusRule"]);
+			if(bonusPoints) {
+				currentCorrectPredictions += 1;
+			}
 
-			User.update({ '_id' :  user._id }, {$set:{'points':totalPoints}}, function(err,post) {
+			currentPredictionPoints += bonusPoints;
+
+
+			totalPoints += currentPredictionPoints;
+			totalCorrectPredictions += currentCorrectPredictions;
+
+			User.update({ '_id' :  user._id }, {$set:{'points':totalPoints, 'predictions':totalCorrectPredictions}}, function(err,post) {
 				console.log("user updated")
 			})
-			Prediction.update({ '_id' :  prediction._id }, {$set:{points:currentPredictionPoints}}, function(err,post) {
+			Prediction.update({ '_id' :  prediction._id }, {$set:{points:currentPredictionPoints, 'predictions':currentCorrectPredictions}}, function(err,post) {
 				console.log("prediction updated")
 			});
 		}
@@ -156,7 +181,7 @@ module.exports = function(app) {
 	app.get('/users', isLoggedIn, function(req, res) {
 		var query = User.find({ 'admin' :  false }).
 					select({_id:1, 'name':1, 'teamname':1, 'points':1}).
-					sort('-points');
+					sort({'points':-1, 'predictions':-1});
 
 		query.exec(function (err, post) {
 			if (err) return next(err);
