@@ -87,7 +87,7 @@ define([
 			prediction.bonusWinner = prediction.bonusWinner.replace(/_/g," ");
 			this.model.save(prediction, {
 				success: function() {
-					that.$el.find('.success-message').removeClass("hidden");
+					that.$el.find('.success-message').removeClass("hidden").delay(3000).fadeOut();
 				}
 			})
 		},

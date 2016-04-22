@@ -18,6 +18,16 @@ define([
 			if (isResults) {
 				this.urlParams += "/results";
 			}
+
+			var isRecent = options.isRecent
+			if (isRecent) {
+				this.urlParams += "/recent";
+			}
+
+			var isUpcoming = options.isUpcoming
+			if (isUpcoming) {
+				this.urlParams += "/upcoming";
+			}
 		}
 	});
 	return MatchesCollection;

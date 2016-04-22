@@ -8,12 +8,28 @@ var Prediction = require('../models/predictions');
 module.exports = function(app) {
 
 	// Get Todays Match Details
-	app.get('/matches', isLoggedIn, function(req, res) {
+	app.get('/matches/upcoming', isLoggedIn, function(req, res) {
+		var startDate = new Date();
+		startDate = startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate();
+
+		var query = Matches.find({"date" : {'$gte': new Date(startDate)}}).sort({'date':1}).
+					populate('rule1').
+					select({ _id:1, matchNum: 1, date: 1, venue:1, homeTeam:1, awayTeam:1, bonusRule:1, 
+						rule1Winner:1, rule2Winner:1, rule3Winner:1, bonusWinner:1 });
+
+		query.exec(function (err, match) {
+			if (err) return next(err);
+
+			res.json(match);
+		});
+	});
+
+	app.get('/matches/recent', isLoggedIn, function(req, res) {
 		var startDate = new Date();
 		startDate = startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate();
 		var endDate = startDate + " 23:59:59";
 
-		var query = Matches.find({"date" : {'$gte': new Date(startDate)}}).sort({'date':1}).
+		var query = Matches.find({"date" : {'$lte': new Date(endDate)}}).sort({'date':-1}).
 					populate('rule1').
 					select({ _id:1, matchNum: 1, date: 1, venue:1, homeTeam:1, awayTeam:1, bonusRule:1, 
 						rule1Winner:1, rule2Winner:1, rule3Winner:1, bonusWinner:1 });

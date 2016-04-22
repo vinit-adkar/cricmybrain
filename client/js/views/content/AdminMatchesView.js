@@ -5,14 +5,14 @@ define([
 	"globals",
 	"moment",
 	"collections/MatchesCollection",
-	"views/content/MatchRowView",
-	"views/content/UpComingMatchesView",
-	"text!templates/content/MatchesTemplate.html"
-], function($, _, Backbone, Globals, moment, MatchesCollection, MatchRowView, UpComingMatchesView, MatchesTemplate){
+	"views/content/AdminMatchRowView",
+	"views/content/RecentMatchesView",
+	"text!templates/content/AdminMatchesTemplate.html"
+], function($, _, Backbone, Globals, moment, MatchesCollection, AdminMatchRowView, RecentMatchesView, AdminMatchesTemplate){
 
-	var MatchesView = Backbone.View.extend({
+	var AdminMatchesView = Backbone.View.extend({
 		el: "#matches-container",
-		template:  _.template(MatchesTemplate),
+		template:  _.template(AdminMatchesTemplate),
 
 		initialize: function(options) {
 			var that = this;
@@ -20,28 +20,28 @@ define([
 
 			this.matches = new MatchesCollection({
 								isResults: false,
-								isUpcoming: true
+								isRecent: true
 							});
 		},
 
 		render: function(collection){
 			var that = this;
-			this.matchRowViews = [];
-			this.upComingMatchesView = [];
+			this.adminMatchRowView = [];
+			this.recentMatchesView = [];
 
 			this.matches.fetch({
 				success: function(collection, response, options){
 					that.matchesCollection = collection;
 					if (that.matchesCollection.models.length) {
 						var todaysMatches = [];
-						var upcomingMatches = [];
+						var recentMatches = [];
 						
 						_.each(that.matchesCollection.models, function(model) {
 							if (moment(Date.parse(model.get("date"))).format('MMMM Do YYYY') == moment.utc().format('MMMM Do YYYY')) {
 								todaysMatches.push(model);
 							}
 							else {
-								upcomingMatches.push(model);
+								recentMatches.push(model);
 							}
 						});
 
@@ -50,26 +50,26 @@ define([
 						}
 						else {
 							_.each(todaysMatches, function(matchModel) {
-								var matchRowView = new MatchRowView({
-													model:matchModel,
-													parent_el : that.$el.find("#matches-row-container")
-												});
-								matchRowView.render();
-								that.matchRowViews.push(matchRowView);
+								var adminMatchRowView = new AdminMatchRowView({
+														model:matchModel,
+														parent_el : that.$el.find("#matches-row-container")
+													});
+								adminMatchRowView.render();
+								that.adminMatchRowView.push(adminMatchRowView);
 							});
 
 						}
 
-						if (upcomingMatches.length == 0) {
-							that.$el.find("#upcoming-matches-container").html("<p>There are no matches to display.</p>");
+						if (recentMatches.length == 0) {
+							that.$el.find("#recent-matches-container").html("<p>There are no matches to display.</p>");
 						}
 						else {
-							var upcomingMatchesView = new UpComingMatchesView({
-														collection: upcomingMatches,
-														parent_el: that.$el.find("#upcoming-matches-container")
+							var recentMatchesView = new RecentMatchesView({
+														collection: recentMatches,
+														parent_el: that.$el.find("#recent-matches-container")
 													});
-							upcomingMatchesView.render();
-							that.upComingMatchesView.push(upcomingMatchesView);
+							recentMatchesView.render();
+							that.recentMatchesView.push(recentMatchesView);
 						}
 					}
 					else {
@@ -84,11 +84,11 @@ define([
 
 		close : function(){
 
-			_.each(this.matchRowViews, function(view) {
+			_.each(this.adminMatchRowView, function(view) {
 				view.close();
 			});
 
-			_.each(this.upComingMatchesView, function(view) {
+			_.each(this.recentMatchesView, function(view) {
 				view.close();
 			});
 
@@ -97,5 +97,5 @@ define([
 		}
 	});
 
-	return MatchesView;
+	return AdminMatchesView;
 });

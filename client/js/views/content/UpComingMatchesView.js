@@ -9,7 +9,7 @@ define([
 	"moment"
 ], function($, _, Backbone, Globals, TeamPlayersInfo, MatchRowView, UpComingMatchesTemplate, moment){
 
-	var UpComingMatchRowView = Backbone.View.extend({
+	var UpComingMatchesView = Backbone.View.extend({
 		template:  _.template(UpComingMatchesTemplate),
 
 		events: {
@@ -63,5 +63,5 @@ define([
 		}
 	});
 
-	return UpComingMatchRowView;
+	return UpComingMatchesView;
 });

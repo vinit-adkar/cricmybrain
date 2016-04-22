@@ -40,23 +40,23 @@ hr {
 .content .match-row, .content .winner-match-row {
   border-top: 1px solid #2a2c30;
   padding: 16px 0; }
-.content ul.upcoming-matches-list {
+.content ul.upcoming-matches-list, .content ul.recent-matches-list {
   list-style: none;
   padding: 0; }
-  .content ul.upcoming-matches-list li {
+  .content ul.upcoming-matches-list li, .content ul.recent-matches-list li {
     font-size: 20px;
     color: #009dd0;
     padding: 16px 0;
     border-bottom: 1px solid #2a2c30;
     cursor: pointer; }
-    .content ul.upcoming-matches-list li .match-time {
+    .content ul.upcoming-matches-list li .match-time, .content ul.recent-matches-list li .match-time {
       font-size: 16px;
       color: #2a2c30;
       cursor: default;
       font-style: italic; }
-      .content ul.upcoming-matches-list li .match-time:hover {
+      .content ul.upcoming-matches-list li .match-time:hover, .content ul.recent-matches-list li .match-time:hover {
         color: #2a2c30; }
-    .content ul.upcoming-matches-list li:hover {
+    .content ul.upcoming-matches-list li:hover, .content ul.recent-matches-list li:hover {
       color: #00bce4; }
 
 .results-content .result-heading .heading-label {

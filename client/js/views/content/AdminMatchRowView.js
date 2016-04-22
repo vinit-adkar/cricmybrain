@@ -74,7 +74,7 @@ define([
 
 			this.model.save(winnerSelection, {
 				success: function() {
-					that.$el.find('.success-message').removeClass("hidden");
+					that.$el.find('.success-message').removeClass("hidden").delay(3000).fadeOut();
 				},
 				error: function(response) {
 					alert("error" + response);
