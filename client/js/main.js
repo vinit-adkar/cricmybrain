@@ -13,7 +13,8 @@ require.config({
 		"text": "libs/text",
 		"moment": "libs/moment",	
 		"utils": "views/utilities/utils",
-		"globals": "views/utilities/globals"
+		"globals": "views/utilities/globals",
+		"events": "views/utilities/events"
 	},
 	shim: {
 		jquery: {

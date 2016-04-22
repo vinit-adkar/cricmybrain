@@ -7,8 +7,9 @@ define([
 	"models/PredictionModel",
 	"views/content/PredictionRowView",
 	"text!templates/content/MatchRowTemplate.html",
-	"moment"
-], function($, _, Backbone, Globals, TeamPlayersInfo, PredictionModel, PredictionRowView, MatchRowTemplate, moment){
+	"moment",
+	"events"
+], function($, _, Backbone, Globals, TeamPlayersInfo, PredictionModel, PredictionRowView, MatchRowTemplate, moment, Vents){
 
 	var MatchRowView = Backbone.View.extend({
 		className: "match-row",
@@ -19,6 +20,7 @@ define([
 			this.model = options.model;
 			this.parent_el = options.parent_el;
 			this.modelJSON = this.model.toJSON();
+			this.eventDispatcher = Vents;
 		},
 
 		render: function(){
@@ -66,6 +68,7 @@ define([
 			if (timeLeft <= 0) {
 				this.$el.find('.timeLeftToMatch').addClass("hidden");
 				clearInterval(this.timer);
+				this.eventDispatcher.trigger("timer:expired");
 			} else {
 				this.$el.find('.timeLeftToMatch').removeClass("hidden");
 				var seconds = Math.floor((timeLeft/1000) % 60);

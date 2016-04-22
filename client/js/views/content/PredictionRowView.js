@@ -6,8 +6,9 @@ define([
 	"json/TeamPlayersInfo",
 	"json/RulesInfo",
 	"text!templates/content/PredictionRowTemplate.html",
-	"bootstrap",
-], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, PredictionRowTemplate){
+	"events",
+	"bootstrap"
+], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, PredictionRowTemplate, Vents){
 
 	var PredictionRowView = Backbone.View.extend({
 		template:  _.template(PredictionRowTemplate),
@@ -20,6 +21,8 @@ define([
 			
 			this.matchModel = options.matchModel;
 			this.model = options.model;
+			this.eventDispatcher = Vents;
+			this.listenTo(this.eventDispatcher, "timer:expired", this.disableInputs);
 		},
 
 		checkIfPredictionTimeIsOver: function() {
@@ -30,13 +33,7 @@ define([
 
 			var timeLeft = (matchDateTime - currDateTime);
 
-			if (timeLeft > 0) {
-				setTimeout(function() {
-					that.$el.find('.form-control').prop('disabled', true);
-					that.$el.find('.submit-prediction').addClass("hidden");
-				}, timeLeft);
-			}
-			else if (timeLeft <= 0) {
+			if (timeLeft <= 0) {
 				this.disableInputs();
 			}
 		},
