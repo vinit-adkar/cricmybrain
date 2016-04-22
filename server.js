@@ -36,6 +36,9 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 require('./router/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./router/matchroutes.js')(app);
+//require('./models/mailer.js');
+
+
 
 if (app.get('env') === 'development') {
 	app.use(function(err, req, res, next) {
@@ -46,5 +49,15 @@ if (app.get('env') === 'development') {
 		});
 	});
 }
+
+// Test Email
+
+// var mailer = require('./models/mailer');
+// var text = "Hello world\n"+
+//           "===========\n"+
+//           "\n"+
+//           "How are you?"
+// mailer.sendEmail('vinit.adkar@gmail.com', 'V', '<h1>Hello world</h1><p><b>How</b> are you?', text, function (message) {console.log(message)})
+
 console.log("Server Initialized Sucessfully!!!!")
 module.exports = app;
