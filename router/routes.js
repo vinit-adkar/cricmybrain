@@ -1,54 +1,41 @@
 // app/routes.js
 module.exports = function(app, passport) {
 
-    // =====================================
-    // HOME PAGE (with login links) ========
-    // =====================================
     app.get('/', function(req, res) {
-        res.render('index.ejs', { message: req.flash('loginMessage') }); // load the index.ejs file
-    });
+        var message = [];
+        var isSuccess = false;
+        var showLogin = true;
 
-    // =====================================
-    // LOGIN ===============================
-    // =====================================
-    // show the login form
-    app.get('/login', function(req, res) {
+        var flashMessage = req.flash();
+        if ('signUpErrorMessage' in flashMessage) {
+            message = flashMessage["signUpErrorMessage"];
+            showLogin = false;
+        }
+        if ('signUpSuccessMessage' in flashMessage) {
+            message = flashMessage["signUpSuccessMessage"];
+            isSuccess = true
+            showLogin = true;
+        }
+        if ('loginErrorMessage' in flashMessage) {
+            message = flashMessage["loginErrorMessage"];
+            showLogin = true;
+        }
 
-        // render the page and pass in any flash data if it exists
-        res.render('login.ejs', { message: req.flash('loginMessage') }); 
+        res.render('index.ejs', { message: message, isSuccess: isSuccess, showLogin: showLogin });
     });
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/dashboard', // redirect to the secure dashboard section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
+        successRedirect : '/dashboard',
+        failureRedirect : '/',
+        failureFlash : true
     }));
-
-    // process the login form
-    // app.post('/login', do all our passport stuff here);
-
-    // =====================================
-    // SIGNUP ==============================
-    // =====================================
-    // show the signup form
-    app.get('/signup', function(req, res) {
-
-        // render the page and pass in any flash data if it exists
-        res.redirect('/');
-        //res.render('signup.ejs', { message: req.flash('signupMessage') });
-    });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/', // redirect to the secure dashboard section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
+        successRedirect : '/',
+        failureRedirect : '/',
+        failureFlash : true
     }));
 
-    // =====================================
-    // dashboard SECTION =====================
-    // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/dashboard', isLoggedIn, function(req, res) {
         var user = {
             id:req.user.id,
@@ -59,26 +46,20 @@ module.exports = function(app, passport) {
             name: req.user.name
         }
         res.render('dashboard.ejs', {
-            user : JSON.stringify(user) // get the user out of session and pass to template
+            user : JSON.stringify(user)
         });
     });
 
-    // =====================================
-    // LOGOUT ==============================
-    // =====================================
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
 };
 
-// route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
     if (req.isAuthenticated())
         return next();
 
-    // if they aren't redirect them to the home page
     res.redirect('/');
 }
