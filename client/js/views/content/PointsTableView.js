@@ -8,8 +8,8 @@ define([
 ], function($, _, Backbone, Globals, PointsCollection, PointsTableTemplate){
 
 	var PointsTableView = Backbone.View.extend({
-		el: "#points-table-container",
 		template:  _.template(PointsTableTemplate),
+		render_el: $('#dashboard'),
 
 		events: {
 			"click .refresh-table": "render"
@@ -27,6 +27,7 @@ define([
 					that.$el.html(that.template({
 					    collection: collection.toJSON()
 					}));
+					that.render_el.html(that.$el);
 				},
 				error: function(response) {
 					console.log("Error");

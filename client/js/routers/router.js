@@ -6,8 +6,9 @@ define([
 	"globals",
 	"views/dashboard/HeaderView",
 	"views/dashboard/UserDashboardView",
-	"views/dashboard/ResultsView"
-], function($, _, Backbone, Globals, HeaderView, UserDashboardView, ResultsView){
+	"views/dashboard/ResultsView",
+	"views/content/PointsTableView"
+], function($, _, Backbone, Globals, HeaderView, UserDashboardView, ResultsView, PointsTableView){
 
 	var AppRouter = Backbone.Router.extend({
 		
@@ -23,6 +24,7 @@ define([
 
 		routes : {
 			"results": "showResults",
+			"points-table": "showPointsTable",
 			"*actions": "showDashboard",
 		},
 
@@ -49,6 +51,16 @@ define([
 			this.previousView = resultView;
 		},
 
+		showPointsTable: function() {
+			var pointsTableView = new PointsTableView();
+			pointsTableView.render();
+			this.setActivePage();
+			this.cleanup_views();
+			this.previousView = pointsTableView;
+		},
+
+
+		
 		setActivePage: function() {
 			var pages = ["dashboard", "results", "points-table"];
 			var page_name = this.getPage() || "dashboard";

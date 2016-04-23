@@ -1,6 +1,6 @@
 <span class="dropdown-toggle" data-toggle="dropdown">
 	<% if (selectedItem) { %>
-		<span class="dropdown-value" value="<%= selectedItem %>">
+		<span class="dropdown-value" value="<%= selectedItem.value %>">
 			<img class="list-item-logo" src="/img/<%= selectedItem.type %>.gif"/>
 			<span class="list-item-name"><%= selectedItem.name %></span>
 		</span>

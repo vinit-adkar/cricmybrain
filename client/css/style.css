@@ -44,20 +44,20 @@ hr {
 .content ul.upcoming-matches-list, .content ul.recent-matches-list {
   list-style: none;
   padding: 0; }
-  .content ul.upcoming-matches-list li.upcoming-match, .content ul.recent-matches-list li.upcoming-match {
+  .content ul.upcoming-matches-list li.upcoming-match, .content ul.upcoming-matches-list li.recent-match, .content ul.recent-matches-list li.upcoming-match, .content ul.recent-matches-list li.recent-match {
     font-size: 20px;
     color: #009dd0;
     padding: 16px 0;
     border-bottom: 1px solid #2a2c30;
     cursor: pointer; }
-    .content ul.upcoming-matches-list li.upcoming-match .match-time, .content ul.recent-matches-list li.upcoming-match .match-time {
+    .content ul.upcoming-matches-list li.upcoming-match .match-time, .content ul.upcoming-matches-list li.recent-match .match-time, .content ul.recent-matches-list li.upcoming-match .match-time, .content ul.recent-matches-list li.recent-match .match-time {
       font-size: 16px;
       color: #2a2c30;
       cursor: default;
       font-style: italic; }
-      .content ul.upcoming-matches-list li.upcoming-match .match-time:hover, .content ul.recent-matches-list li.upcoming-match .match-time:hover {
+      .content ul.upcoming-matches-list li.upcoming-match .match-time:hover, .content ul.upcoming-matches-list li.recent-match .match-time:hover, .content ul.recent-matches-list li.upcoming-match .match-time:hover, .content ul.recent-matches-list li.recent-match .match-time:hover {
         color: #2a2c30; }
-    .content ul.upcoming-matches-list li.upcoming-match:hover, .content ul.recent-matches-list li.upcoming-match:hover {
+    .content ul.upcoming-matches-list li.upcoming-match:hover, .content ul.upcoming-matches-list li.recent-match:hover, .content ul.recent-matches-list li.upcoming-match:hover, .content ul.recent-matches-list li.recent-match:hover {
       color: #00bce4; }
 
 .results-content .result-heading .heading-label {

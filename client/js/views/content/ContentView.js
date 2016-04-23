@@ -5,9 +5,8 @@ define([
 	"globals",
 	"views/content/MatchesView",
 	"views/content/AdminMatchesView",
-	"views/content/PointsTableView",
 	"text!templates/content/ContentTemplate.html"
-], function($, _, Backbone, Globals, MatchesView, AdminMatchesView, PointsTableView, ContentTemplate){
+], function($, _, Backbone, Globals, MatchesView, AdminMatchesView, ContentTemplate){
 
 	var ContentView = Backbone.View.extend({
 		el : "#content",
@@ -26,8 +25,6 @@ define([
 				var matchesView = new MatchesView();
 				matchesView.render();
 			}
-			var pointsTableView = new PointsTableView();
-			pointsTableView.render();
 		},
 
 		close : function(){
