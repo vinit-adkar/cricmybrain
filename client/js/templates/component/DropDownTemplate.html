@@ -1,0 +1,45 @@
+<span class="dropdown-toggle" data-toggle="dropdown">
+	<% if (selectedItem) { %>
+		<span class="dropdown-value" value="<%= selectedItem %>">
+			<img class="list-item-logo" src="/img/<%= selectedItem.type %>.gif"/>
+			<span class="list-item-name"><%= selectedItem.name %></span>
+		</span>
+	<% } else { %> 
+		<span class="dropdown-value" value=""><%= placeholder %></span>		
+	<% } %>
+	<span class="fa fa-caret-down"></span>
+</span>
+<ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+	<% _.each(listArray, function(list, index) { %>
+		<% if ("header" in list) { %>
+			<li class="dropdown-header">
+			<% if ("type" in list.header) { %>
+				<img class="list-item-header-logo" src="img/<%= list.header.type %>.gif"/>
+			<% } %>
+				<span class="list-item-name"><%= list.header.name %></span>
+			</li>
+		<% } %>
+		<% if ("listItems" in list) { %>
+			<% _.each(list.listItems, function(items, index) { %>
+				<% if ("value" in items) {%>
+					<% if (selectedItem && (items.value == selectedItem.value)) {%> 
+						<li value="<%= items.value %>" class="selected">
+					<% } else { %> 
+						<li value="<%= items.value %>">
+					<% } %>				
+				<% } else { %>
+					<% if (selectedItem && (items.name == selectedItem.value)) {%> 
+						<li value="<%= items.name %>" class="selected">
+					<% } else { %> 
+						<li value="<%= items.name %>">
+					<% } %>
+				<% } %> 
+					<% if ("type" in items) {%>
+						<img class="list-item-logo" src="img/<%= items.type %>.gif"/>
+					<% } %>
+					<span class="list-item-name"><%= items.name %></span>
+				</li>
+			<% }); %>
+		<% } %>
+	<% }); %>
+</ul>

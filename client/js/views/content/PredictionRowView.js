@@ -5,10 +5,11 @@ define([
 	"globals",
 	"json/TeamPlayersInfo",
 	"json/RulesInfo",
+	"views/component/DropDownView",
 	"text!templates/content/PredictionRowTemplate.html",
 	"events",
 	"bootstrap"
-], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, PredictionRowTemplate, Vents){
+], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, DropDownView, PredictionRowTemplate, Vents){
 
 	var PredictionRowView = Backbone.View.extend({
 		template:  _.template(PredictionRowTemplate),
@@ -45,22 +46,15 @@ define([
 		},
 
 		render: function(prediction){
-			var homeTeam = this.matchModel.get("homeTeam");
-			var awayTeam = this.matchModel.get("awayTeam");
-			var bonusRule = this.matchModel.get("bonusRule");
+			var that = this;
+
+			var prediction = this.model.toJSON();
+			var match = this.matchModel.toJSON();
+			match.homeTeamName = TeamPlayersInfo.getTeamName(match.homeTeam);
+			match.awayTeamName = TeamPlayersInfo.getTeamName(match.awayTeam);
+			var bonusRule = match.bonusRule;
 
 			var predictionDefaultEntries = {
-				teams:[
-					{
-						team_id: homeTeam, 
-						team_name: TeamPlayersInfo.getTeamName(homeTeam)
-					},
-					{
-						team_id: awayTeam, 
-						team_name: TeamPlayersInfo.getTeamName(awayTeam)
-					},
-				],
-				players: TeamPlayersInfo.getPlayers(homeTeam).concat(TeamPlayersInfo.getPlayers(awayTeam)),
 				rule1: RulesInfo.getRules("rule1"),
 				rule2: RulesInfo.getRules("rule2"),
 				rule3: RulesInfo.getRules("rule3"),
@@ -74,22 +68,116 @@ define([
 			    prediction: this.model.toJSON()
 			}));
 
+			var rule1WinnerDropDownView = new DropDownView(that.getTeamDropDownMenu(match, prediction, "rule1Winner"));
+			this.$el.find('.rule1Winner').append(rule1WinnerDropDownView.render());
+
+			var rule3WinnerDropDownView = new DropDownView(that.getPlayerDropDownMenu(match, prediction, "rule3Winner"));
+			this.$el.find('.rule3Winner').append(rule3WinnerDropDownView.render());
+
+			if (match.bonusRule.ruleType == 'playerName') {
+				var bonusDropDownView = new DropDownView(that.getPlayerDropDownMenu(match, prediction, "bonusWinner"));
+				this.$el.find('.bonusWinner').append(bonusDropDownView.render());
+			}
+			else if (match.bonusRule.ruleType == 'teamName'){
+				var bonusDropDownView = new DropDownView(that.getTeamDropDownMenu(match, prediction, "bonusWinner"));
+				this.$el.find('.bonusWinner').append(bonusDropDownView.render());
+			}
+
 			this.checkIfPredictionTimeIsOver();
 
 			return this.$el;
+		},
+
+		getTeamDropDownMenu: function(match, prediction, winner) {
+			var teamDropDownMenu = [
+				{
+					listItems: [
+						{
+							name: match.homeTeamName,
+							value: match.homeTeam, 
+							type: match.homeTeam
+						},
+						{
+							name: match.awayTeamName,
+							value: match.awayTeam, 
+							type: match.awayTeam
+						}
+					]
+				}
+			];
+
+			var returnObject = {
+				listItemArray: teamDropDownMenu,
+				placeholder: "Select Team..."
+			}
+
+			if (prediction[winner].length) {
+				returnObject.selectedItem = {
+					value: prediction[winner],
+					type: prediction[winner],
+					name: TeamPlayersInfo.getTeamName(prediction[winner])
+				}
+			}
+
+			return returnObject;
+		},
+
+
+		getPlayerDropDownMenu: function(match, prediction, winner) {
+			var rule3Winner = [
+				{
+					header: {name: match.homeTeamName,type: match.homeTeam},
+					listItems: TeamPlayersInfo.getPlayers(match.homeTeam)
+				},
+				{
+					header: {name: match.awayTeamName,type: match.awayTeam},
+					listItems: TeamPlayersInfo.getPlayers(match.awayTeam)
+				},
+			];
+
+			var returnObject = {			
+				listItemArray: rule3Winner,
+				placeholder: "Select Players..."
+			};
+
+			if (prediction[winner].length) {
+				returnObject.selectedItem = {
+					value: prediction[winner],
+					type: TeamPlayersInfo.getPlayerType(prediction[winner]),
+					name: prediction[winner]
+				}
+			}
+
+			return returnObject;
+
 		},
 
 		submitPrediction: function() {
 			var that = this;
 
 			var prediction = this.$el.find('.form').serializeObject();
-			prediction.rule3Winner = prediction.rule3Winner.replace(/_/g," ");
-			prediction.bonusWinner = prediction.bonusWinner.replace(/_/g," ");
+
+			if (!("rule1Winner" in prediction)) {
+				prediction.rule1Winner = this.$el.find('.form').find(".rule1Winner .dropdown-value").attr("value");
+				prediction.rule1Winner = prediction.rule1Winner.replace(/_/g," ");
+			}
+			if (!("rule3Winner" in prediction)) {
+				prediction.rule3Winner = this.$el.find('.form').find(".rule3Winner .dropdown-value").attr("value");
+				prediction.rule3Winner = [prediction.rule3Winner.replace(/_/g," ")];
+			}
+
+			if (!("bonusWinner" in prediction)) {
+				prediction.bonusWinner = this.$el.find('.form').find(".bonusWinner .dropdown-value").attr("value");
+				prediction.bonusWinner = [prediction.bonusWinner.replace(/_/g," ")];
+			}
+			else {
+				prediction.bonusWinner = [prediction.bonusWinner.replace(/_/g," ")];
+			}
 			this.model.save(prediction, {
 				success: function() {
-					that.$el.find('.success-message').removeClass("hidden").delay(3000).fadeOut();
+					that.$el.find('.success-message').show().delay(3000).fadeOut();
 				}
-			})
+			});
 		},
 
 		close : function(){

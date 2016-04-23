@@ -5,9 +5,10 @@ define([
 	"globals",
 	"json/TeamPlayersInfo",
 	"json/RulesInfo",
+	"views/component/DropDownView",
 	"text!templates/content/AdminMatchRowTemplate.html",
 	"moment"
-], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, AdminMatchRowTemplate, moment){
+], function($, _, Backbone, Globals, TeamPlayersInfo, RulesInfo, DropDownView, AdminMatchRowTemplate, moment){
 
 	var AdminMatchRowView = Backbone.View.extend({
 		className: "winner-match-row",
@@ -33,17 +34,6 @@ define([
 			match.date = moment(Date.parse(match.date)).format('MMMM Do YYYY, h:mm a')
 
 			var predictionDefaultEntries = {
-				teams:[
-					{
-						team_id: match.homeTeam, 
-						team_name: match.homeTeamName
-					},
-					{
-						team_id: match.awayTeam, 
-						team_name: match.awayTeamName
-					},
-				],
-				players: TeamPlayersInfo.getPlayers(match.homeTeam).concat(TeamPlayersInfo.getPlayers(match.awayTeam)),
 				rule1: RulesInfo.getRules("rule1"),
 				rule2: RulesInfo.getRules("rule2"),
 				rule3: RulesInfo.getRules("rule3"),
@@ -54,15 +44,110 @@ define([
 			    match: match,
 			    defaultEntries: predictionDefaultEntries
 			}));
+
+			
+			var rule1WinnerDropDownView = new DropDownView(that.getTeamDropDownMenu(match, "rule1Winner"));
+			this.$el.find('.rule1Winner').append(rule1WinnerDropDownView.render());
+
+			var rule3WinnerDropDownView = new DropDownView(that.getPlayerDropDownMenu(match, "rule3Winner"));
+			this.$el.find('.rule3Winner').append(rule3WinnerDropDownView.render());
+
+			if (match.bonusRule.ruleType == 'playerName') {
+				var bonusDropDownView = new DropDownView(that.getPlayerDropDownMenu(match, "bonusWinner"));
+				this.$el.find('.bonusWinner').append(bonusDropDownView.render());
+			}
+			else if (match.bonusRule.ruleType == 'teamName'){
+				var bonusDropDownView = new DropDownView(that.getTeamDropDownMenu(match, "bonusWinner"));
+				this.$el.find('.bonusWinner').append(bonusDropDownView.render());
+			}
+
 			that.parent_el.append(this.$el);
+		},
+
+		getTeamDropDownMenu: function(match, winner) {
+			var teamDropDownMenu = [
+				{
+					listItems: [
+						{
+							name: match.homeTeamName,
+							value: match.homeTeam, 
+							type: match.homeTeam
+						},
+						{
+							name: match.awayTeamName,
+							value: match.awayTeam, 
+							type: match.awayTeam
+						}
+					]
+				}
+			];
+
+			var returnObject = {
+				listItemArray: teamDropDownMenu,
+				placeholder: "Select Team..."
+			}
+
+			if (match[winner].length) {
+				returnObject.selectedItem = {
+					value: match[winner],
+					type: match[winner],
+					name: TeamPlayersInfo.getTeamName(match[winner])
+				}
+			}
+
+			return returnObject;
+		},
+
+
+		getPlayerDropDownMenu: function(match, winner) {
+			var rule3Winner = [
+				{
+					header: {name: match.homeTeamName,type: match.homeTeam},
+					listItems: TeamPlayersInfo.getPlayers(match.homeTeam)
+				},
+				{
+					header: {name: match.awayTeamName,type: match.awayTeam},
+					listItems: TeamPlayersInfo.getPlayers(match.awayTeam)
+				},
+			];
+
+			var returnObject = {			
+				listItemArray: rule3Winner,
+				placeholder: "Select Players..."
+			};
+
+			if (match[winner].length) {
+				returnObject.selectedItem = {
+					value: match[winner],
+					type: TeamPlayersInfo.getPlayerType(match[winner][0]),
+					name: match[winner]
+				}
+			}
+
+			return returnObject;
+
 		},
 
 		submitWinners: function() {
 			var that = this;
 
 			var winnerSelection = this.$el.find('.form').serializeObject();
-			winnerSelection.rule3Winner = [winnerSelection.rule3Winner.replace(/_/g," ")];
-			winnerSelection.bonusWinner = [winnerSelection.bonusWinner.replace(/_/g," ")];
+			if (!("rule1Winner" in winnerSelection)) {
+				winnerSelection.rule1Winner = this.$el.find('.form').find(".rule1Winner .dropdown-value").attr("value");
+				winnerSelection.rule1Winner = winnerSelection.rule1Winner.replace(/_/g," ");
+			}
+			if (!("rule3Winner" in winnerSelection)) {
+				winnerSelection.rule3Winner = this.$el.find('.form').find(".rule3Winner .dropdown-value").attr("value");
+				winnerSelection.rule3Winner = [winnerSelection.rule3Winner.replace(/_/g," ")];
+			}
+
+			if (!("bonusWinner" in winnerSelection)) {
+				winnerSelection.bonusWinner = this.$el.find('.form').find(".bonusWinner .dropdown-value").attr("value");
+				winnerSelection.bonusWinner = [winnerSelection.bonusWinner.replace(/_/g," ")];
+			}
+			else {
+				winnerSelection.bonusWinner = [winnerSelection.bonusWinner.replace(/_/g," ")];
+			}
 
 			var rules = {
 				rule1: RulesInfo.getRules("rule1"),
@@ -79,7 +164,7 @@ define([
 				error: function(response) {
 					alert("error" + response);
 				}
-			})
+			});
 		},
 
 		close : function(){

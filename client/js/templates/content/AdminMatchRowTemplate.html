@@ -26,14 +26,7 @@
 					<% } %>
 					<span class="prediction-points"><b>(<%= defaultEntries.rule1.rulePoints %> Points</b>)</span>
 				</label>
-				<select class="form-control" name="rule1Winner">
-					<option value="">Select Team</option>
-					<% _.each(defaultEntries.teams, function(team, index) { %>
-						<option value="<%= team.team_id %>" <% if (match.rule1Winner == team.team_id) { %>
-							selected
-						<% } %> ><%= team.team_name %></option>
-					<% }); %>
-				</select>
+				<div class="rule1Winner"></div>
 			</div>
 		</div>
 		<div class="col-sm-12 prediction-rules">
@@ -57,14 +50,7 @@
 					<% } %>
 					<span class="prediction-points">(<b><%= defaultEntries.rule3.rulePoints %> Points</b>)</span>
 				</label>
-				<select class="form-control" name="rule3Winner">
-					<option value="">Select Player</option>
-					<% _.each(defaultEntries.players, function(player, index) { %>
-						<option value="<%= player.name.replace(/ /g,'_') %>" <% if (match.rule3Winner == player.name) { %>
-							selected
-						<% } %> ><%= player.name %>&nbsp;(<%= player.type %>)</option>
-					<% }); %>
-				</select>
+				<div class="rule3Winner"></div>
 			</div>
 		</div>
 		<div class="col-sm-12 prediction-rules">
@@ -77,26 +63,8 @@
 					<span class="prediction-points">(<b><%= defaultEntries.bonusRule.rulePoints %> Points</b>)</span>
 				</label>
 
-				<% if (defaultEntries.bonusRule.ruleType == "playerName") { %>
-					<select class="form-control" name="bonusWinner">
-						<option value="">Select Player</option>
-						<% _.each(defaultEntries.players, function(player, index) { %>
-							<option value="<%= player.name.replace(/ /g,'_') %>" <% if (match.bonusWinner == player.name) { %>
-							selected
-						<% } %> ><%= player.name %>&nbsp;(<%= player.type %>)</option>
-						<% }); %>
-					</select>
-				
-				<% } else if (defaultEntries.bonusRule.ruleType == "teamName") { %>
-					<select class="form-control" name="bonusWinner">
-						<option value="">Select Team</option>
-						<% _.each(defaultEntries.teams, function(team, index) { %>
-							<option value="<%= team.team_id %>" <% if (match.bonusWinner == team.team_id) { %>
-							selected
-						<% } %>><%= team.team_name %></option>
-						<% }); %>
-					</select>
-				
+				<% if ((defaultEntries.bonusRule.ruleType == "playerName") || (defaultEntries.bonusRule.ruleType == "teamName")) { %>
+					<div class="bonusWinner"></div>
 				<% } else { %>
 					<input class="form-control" type="text" name="bonusWinner" value="<%= match.bonusWinner %>"/>
 				<% } %>
@@ -106,7 +74,7 @@
 	</form>
 	<div class="row">
 		<button type="button" class="btn btn-primary submit-winner-selection" style="margin-left: 16px">Submit</button>
-		<span class="hidden success-message alert alert-success">
+		<span class="success-message alert alert-success">
 		    <strong>Success! </strong>Click refresh icon to see the updated Points Table.
 	    </span>
 	</div>

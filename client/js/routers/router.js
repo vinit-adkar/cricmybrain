@@ -50,7 +50,7 @@ define([
 		},
 
 		setActivePage: function() {
-			var pages = ["dashboard", "results"];
+			var pages = ["dashboard", "results", "points-table"];
 			var page_name = this.getPage() || "dashboard";
 			$('.header .menu .menu-item').removeClass("nav-active");
 

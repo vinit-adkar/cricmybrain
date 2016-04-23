@@ -255,6 +255,19 @@ define([
 			return team_players[teamId].players;
 		};
 
+		var getPlayerType = function(playerName) {
+			var type = '';
+			_.each (team_players, function(team) {
+				_.each(team.players, function(player) {
+					if (player.name == playerName) {
+						type = player.type;
+						return false;
+					}
+				})
+			});
+			return type;
+		};
+
 		var getAllTeamName = function() {
 			var allTeams = {};
 			_.each(team_players, function(team) {
@@ -266,6 +279,7 @@ define([
 		return {
 			getTeamName: getTeamName,
 			getPlayers: getPlayers,
+			getPlayerType: getPlayerType,
 			getAllTeamName: getAllTeamName
 		};
 
