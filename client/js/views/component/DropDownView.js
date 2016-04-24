@@ -29,16 +29,18 @@ define([
 		},
 
 		selectListItem: function(e) {
-			e.preventDefault();
-			var clickdElement = $(e.target).closest("li");
-			if (clickdElement.hasClass("dropdown-header")) {
-				return;
-			}
-			else {
-				clickdElement.closest("ul").find("li").removeClass("selected");
-				clickdElement.addClass("selected");
-				this.$el.find('.dropdown-value').html(clickdElement.html());
-				this.$el.find('.dropdown-value').attr("value",clickdElement.attr("value"));
+			if (!(this.$el.find('.dropdown-toggle').hasClass("disabled"))) {
+				e.preventDefault();
+				var clickdElement = $(e.target).closest("li");
+				if (clickdElement.hasClass("dropdown-header")) {
+					return;
+				}
+				else {
+					clickdElement.closest("ul").find("li").removeClass("selected");
+					clickdElement.addClass("selected");
+					this.$el.find('.dropdown-value').html(clickdElement.html());
+					this.$el.find('.dropdown-value').attr("value",clickdElement.attr("value"));
+				}				
 			}
 		},
 

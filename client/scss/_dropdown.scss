@@ -27,6 +27,14 @@
 		&:hover {
 			color: #2a2c30;
 		}
+
+		&.disabled {
+			background: #f3f3f3;
+			cursor: not-allowed;
+			&:hover {
+				color: #77797c;
+			}
+		}
 	}
 
 	&.open {

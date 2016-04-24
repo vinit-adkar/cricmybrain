@@ -42,6 +42,7 @@ define([
 		disableInputs: function() {
 			var that = this;
 			that.$el.find('.form-control').prop('disabled', true);
+			that.$el.find('.dropdown-toggle').addClass('disabled');
 			that.$el.find('.submit-prediction').addClass("hidden");
 		},
 

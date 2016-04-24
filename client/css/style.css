@@ -157,6 +157,11 @@ hr {
       font-size: 20px; }
     .dropdown span.dropdown-toggle:hover {
       color: #2a2c30; }
+    .dropdown span.dropdown-toggle.disabled {
+      background: #f3f3f3;
+      cursor: not-allowed; }
+      .dropdown span.dropdown-toggle.disabled:hover {
+        color: #77797c; }
   .dropdown.open span.dropdown-toggle {
     border-radius: 3px 3px 0 0; }
   .dropdown .dropdown-menu {
