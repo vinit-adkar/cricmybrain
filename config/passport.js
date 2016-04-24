@@ -46,7 +46,8 @@ module.exports = function(passport) {
 
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({$or: [{ 'email' :  email.toLowerCase() }, {'teamname' : req.body.teamname.toLowerCase() }]}, function(err, user) {
+            var regexString = '^\\s*' + req.body.teamname + '\\s*$';
+            User.findOne({$or: [{ 'email' :  email.toLowerCase() }, {'teamname' : { $regex : new RegExp(regexString, "i") } }]}, function(err, user) {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
