@@ -17,6 +17,12 @@ hr {
   border-color: #2a2c30;
   border-style: dashed; }
 
+a {
+  color: #009dd0; }
+  a:hover {
+    color: #00bce4;
+    text-decoration: none; }
+
 .tab-content {
   padding: 16px;
   border: 1px solid #ddd;
@@ -32,6 +38,9 @@ hr {
 
 .alert-success {
   padding: 8px 16px; }
+
+.form-control[disabled] {
+  background: #e0e1e3; }
 
 .content .todays-matches, .content .points-table {
   border-top: 1px solid #2a2c30; }
@@ -54,7 +63,7 @@ hr {
   border: 1px solid #77797c;
   padding: 16px;
   border-radius: 5px;
-  background: #f6f6f6;
+  background: #fdfdfd;
   margin-bottom: 24px;
   -webkit-box-shadow: 1px 1px 1px 0px #2a3c30;
   -moz-box-shadow: 1px 1px 1px 0px #2a3c30;
@@ -192,7 +201,7 @@ hr {
     .dropdown span.dropdown-toggle:hover {
       color: #2a2c30; }
     .dropdown span.dropdown-toggle.disabled {
-      background: #f3f3f3;
+      background: #e0e1e3;
       cursor: not-allowed; }
       .dropdown span.dropdown-toggle.disabled:hover {
         color: #77797c; }

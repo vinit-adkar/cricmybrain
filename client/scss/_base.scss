@@ -21,6 +21,15 @@ hr {
 	border-style: dashed;
 }
 
+a {
+	color: #009dd0;
+
+	&:hover {
+		color: #00bce4;
+		text-decoration: none;
+	}
+}
+
 .tab-content {
 	padding: 16px;
 	border: 1px solid #ddd;
@@ -43,4 +52,8 @@ hr {
 
 .alert-success {
 	padding: 8px 16px;
+}
+
+.form-control[disabled] {
+	background: #e0e1e3;
 }

@@ -65,3 +65,10 @@
 		<strong>Success! </strong>You have successfully added your prediction.
 	</span>
 </div>
+<% if (defaultEntries.isComplete) {%>
+<div style="text-align: center;padding: 16px 0;">
+	<span class="alert alert-success">
+		<strong>Results have been updated. Click <a href="#results">Here</a> to view results.</strong>
+	</span>
+</div>
+<% } %>

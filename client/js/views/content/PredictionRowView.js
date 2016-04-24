@@ -61,7 +61,8 @@ define([
 				rule3: RulesInfo.getRules("rule3"),
 				bonusRule: RulesInfo.getRules(bonusRule),
 				matchId: this.model.get("matchId") || this.matchModel.get("_id"),
-				userId: this.model.get("userId") || Globals["user"].id
+				userId: this.model.get("userId") || Globals["user"].id,
+				isComplete: match.isComplete
 			};
 
 			this.$el.append(this.template({
