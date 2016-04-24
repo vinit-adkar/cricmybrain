@@ -5,7 +5,7 @@
 <form role="form" class="form row">
 	<input class="hidden" name="matchId" value="<%= defaultEntries.matchId %>" />
 	<input class="hidden" name="userId" value="<%= defaultEntries.userId %>" />
-	<div class="col-sm-12 prediction-rules">
+	<div class="col-sm-6 prediction-rules">
 		<div class="form-group">
 			<label for="rule1Winner">
 				<span>1: <%= defaultEntries.rule1.ruleDesc %></span><br>
@@ -17,7 +17,7 @@
 			<div class="rule1Winner"></div>
 		</div>
 	</div>
-	<div class="col-sm-12 prediction-rules">
+	<div class="col-sm-6 prediction-rules">
 		<div class="form-group">
 			<label for="rule2Winner">
 				<span>2: <%= defaultEntries.rule2.ruleDesc %></span><br>
@@ -29,7 +29,7 @@
 			<input class="form-control" type="number" name="rule2Winner" value="<%= prediction.rule2Winner %>"/>
 		</div>
 	</div>
-	<div class="col-sm-12 prediction-rules">
+	<div class="col-sm-6 prediction-rules">
 		<div class="form-group">
 			<label for="rule3Winner">
 				<span>3: <%= defaultEntries.rule3.ruleDesc %></span><br>
@@ -41,7 +41,7 @@
 			<div class="rule3Winner"></div>
 		</div>
 	</div>
-	<div class="col-sm-12 prediction-rules">
+	<div class="col-sm-6 prediction-rules">
 		<div class="form-group">
 			<label for="bonusWinner">
 				<span>BONUS: <%= defaultEntries.bonusRule.ruleDesc %></span><br>

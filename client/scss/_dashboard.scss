@@ -17,23 +17,41 @@
 		}
 	}
 
+	.match-container {
+		padding: 0 24px;
+    	border-top: 1px solid #77797c;
+    	margin-bottom: 24px;
+
+    	.section-header {
+    		font-style: italic;
+    		font-weight: bold;
+    		color: #104E8B;
+    	}
+	}
+
 	.match-row, .winner-match-row {
-		border-top: 1px solid #2a2c30;
-		padding: 16px 0;
+		border: 1px solid #77797c;
+		padding: 16px;
+		border-radius: 5px;
+		background: #f6f6f6;
+		margin-bottom: 24px;
+		-webkit-box-shadow: 1px 1px 1px 0px rgba(42,60,48,1);
+		-moz-box-shadow: 1px 1px 1px 0px rgba(42,60,48,1);
+		box-shadow: 1px 1px 1px 0px rgba(42,60,48,1);		
 	}
 
 	ul.upcoming-matches-list, ul.recent-matches-list {
 		list-style: none;
 		padding: 0;
 		li.upcoming-match, li.recent-match {
-			font-size: 20px;
+			font-size: 16px;
 			color: #009dd0;
-		    padding: 16px 0;
-    		border-bottom: 1px solid #2a2c30;
+		    padding: 12px 0;
+    		border-bottom: 1px solid #939393;
     		cursor: pointer;
 
     		.match-time {
-    			font-size: 16px;
+    			font-size: 13px;
     			color: #2a2c30;
     			cursor: default;
     			font-style: italic;
@@ -62,7 +80,8 @@
 
 	.table {
 		.winning-predictions {
-			th{
+			td{
+				font-weight: bold;
 				font-style: italic;
 			}
 		}

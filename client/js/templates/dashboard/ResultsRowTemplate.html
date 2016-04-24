@@ -59,18 +59,18 @@
 			</th>
 			<th>Total Points</th>
 		</tr>
-		<tr class="winning-predictions">
-			<th></th>
-			<th></th>
-			<th>Winning Answers:</th>
-			<th><%= teams_info[match.rule1Winner] %></th>
-			<th><%= match.rule2Winner %></th>
-			<th><%= match.rule3Winner %></th>
-			<th><%= match.bonusWinner %></th>
-			<th></th>
-		</tr>
 	</thead>
 	<tbody>
+		<tr class="winning-predictions">
+			<td></td>
+			<td></td>
+			<td>Winning Answers:</td>
+			<td><%= teams_info[match.rule1Winner] %></td>
+			<td><%= match.rule2Winner %></td>
+			<td><%= match.rule3Winner %></td>
+			<td><%= match.bonusWinner %></td>
+			<td></td>
+		</tr>
 		<% if (predictions.length) { %>
 			<% _.each(predictions, function(prediction, index) { %>
 				<tr>
@@ -86,14 +86,8 @@
 			<% }); %>
 		<% } else { %>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>No Predictions Found</td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td colspan="8" style="text-align: center; font-weight: bold; font-style: italic;">No Predictions Found</td>
+		</tr>
 		<% } %>
 	</tbody>	
 </table>

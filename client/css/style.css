@@ -3,7 +3,8 @@ html, body {
   font-size: 14px;
   width: 100%;
   height: 100%;
-  background: #e0e1e3; }
+  background: #e0e1e3;
+  min-width: 730px; }
 
 * {
   box-sizing: border-box; }
@@ -27,7 +28,7 @@ hr {
   width: 100%;
   height: calc(100% - 70px);
   padding: 0 24px;
-  overflow-y: scroll; }
+  overflow-y: auto; }
 
 .alert-success {
   padding: 8px 16px; }
@@ -41,20 +42,34 @@ hr {
 .content .prediction-rules .form-control {
   width: 280px;
   border: 1px solid #77797c; }
+.content .match-container {
+  padding: 0 24px;
+  border-top: 1px solid #77797c;
+  margin-bottom: 24px; }
+  .content .match-container .section-header {
+    font-style: italic;
+    font-weight: bold;
+    color: #104E8B; }
 .content .match-row, .content .winner-match-row {
-  border-top: 1px solid #2a2c30;
-  padding: 16px 0; }
+  border: 1px solid #77797c;
+  padding: 16px;
+  border-radius: 5px;
+  background: #f6f6f6;
+  margin-bottom: 24px;
+  -webkit-box-shadow: 1px 1px 1px 0px #2a3c30;
+  -moz-box-shadow: 1px 1px 1px 0px #2a3c30;
+  box-shadow: 1px 1px 1px 0px #2a3c30; }
 .content ul.upcoming-matches-list, .content ul.recent-matches-list {
   list-style: none;
   padding: 0; }
   .content ul.upcoming-matches-list li.upcoming-match, .content ul.upcoming-matches-list li.recent-match, .content ul.recent-matches-list li.upcoming-match, .content ul.recent-matches-list li.recent-match {
-    font-size: 20px;
+    font-size: 16px;
     color: #009dd0;
-    padding: 16px 0;
-    border-bottom: 1px solid #2a2c30;
+    padding: 12px 0;
+    border-bottom: 1px solid #939393;
     cursor: pointer; }
     .content ul.upcoming-matches-list li.upcoming-match .match-time, .content ul.upcoming-matches-list li.recent-match .match-time, .content ul.recent-matches-list li.upcoming-match .match-time, .content ul.recent-matches-list li.recent-match .match-time {
-      font-size: 16px;
+      font-size: 13px;
       color: #2a2c30;
       cursor: default;
       font-style: italic; }
@@ -71,7 +86,8 @@ hr {
   display: inline-block;
   vertical-align: middle;
   width: auto; }
-.results-content .table .winning-predictions th {
+.results-content .table .winning-predictions td {
+  font-weight: bold;
   font-style: italic; }
 
 .prediction-note {
@@ -221,3 +237,25 @@ hr {
   .dropdown span.list-item-name {
     display: inline-block;
     vertical-align: middle; }
+
+table {
+  border: 1px solid #2a2c30 !important;
+  -webkit-box-shadow: 1px 1px 1px 0px #2a3c30;
+  -moz-box-shadow: 1px 1px 1px 0px #2a3c30;
+  box-shadow: 1px 1px 1px 0px #2a3c30; }
+  table > thead {
+    background: #77797c;
+    color: #fff; }
+    table > thead > tr > th {
+      padding: 12px 8px !important;
+      border-bottom-width: 0 !important;
+      border: 0px !important;
+      border-right: 1px solid #f9f9f9 !important; }
+      table > thead > tr > th:last-child {
+        border-right: 0px !important; }
+  table > tbody > tr > td {
+    padding: 12px 8px !important;
+    border: 0 !important;
+    border-right: 1px solid #f9f9f9 !important; }
+    table > tbody > tr > td:last-child {
+      border-right: 0px !important; }

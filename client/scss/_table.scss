@@ -1,0 +1,29 @@
+table {
+	border: 1px solid #2a2c30!important;
+	-webkit-box-shadow: 1px 1px 1px 0px rgba(42,60,48,1);
+	-moz-box-shadow: 1px 1px 1px 0px rgba(42,60,48,1);
+	box-shadow: 1px 1px 1px 0px rgba(42,60,48,1);		
+	> thead {
+		background: #77797c;
+	    color: #fff;
+	    > tr > th {
+			padding: 12px 8px!important;
+			border-bottom-width: 0!important;
+			border: 0px!important;
+			border-right: 1px solid #f9f9f9!important;
+
+			&:last-child {
+				border-right: 0px!important;
+			}
+		}
+	}
+
+	> tbody > tr > td {
+		padding: 12px 8px!important;
+	    border: 0!important;
+    	border-right: 1px solid #f9f9f9!important;
+    	&:last-child {
+			border-right: 0px!important;
+		}
+	}
+}
