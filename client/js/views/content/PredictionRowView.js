@@ -75,11 +75,11 @@ define([
 			var rule3WinnerDropDownView = new DropDownView(that.getPlayerDropDownMenu(match, prediction, "rule3Winner"));
 			this.$el.find('.rule3Winner').append(rule3WinnerDropDownView.render());
 
-			if (match.bonusRule.ruleType == 'playerName') {
+			if (RulesInfo.getRules(bonusRule).ruleType == 'playerName') {
 				var bonusDropDownView = new DropDownView(that.getPlayerDropDownMenu(match, prediction, "bonusWinner"));
 				this.$el.find('.bonusWinner').append(bonusDropDownView.render());
 			}
-			else if (match.bonusRule.ruleType == 'teamName'){
+			else if (RulesInfo.getRules(bonusRule).ruleType == 'teamName'){
 				var bonusDropDownView = new DropDownView(that.getTeamDropDownMenu(match, prediction, "bonusWinner"));
 				this.$el.find('.bonusWinner').append(bonusDropDownView.render());
 			}

@@ -32,12 +32,13 @@ define([
 			match.homeTeamName = TeamPlayersInfo.getTeamName(match.homeTeam);
 			match.awayTeamName = TeamPlayersInfo.getTeamName(match.awayTeam);
 			match.date = moment(Date.parse(match.date)).format('MMMM Do YYYY, h:mm a')
+			var bonusRule = match.bonusRule;
 
 			var predictionDefaultEntries = {
 				rule1: RulesInfo.getRules("rule1"),
 				rule2: RulesInfo.getRules("rule2"),
 				rule3: RulesInfo.getRules("rule3"),
-				bonusRule: RulesInfo.getRules(match.bonusRule)
+				bonusRule: RulesInfo.getRules(bonusRule)
 			};
 
 			this.$el.html(this.template({
@@ -52,11 +53,11 @@ define([
 			var rule3WinnerDropDownView = new DropDownView(that.getPlayerDropDownMenu(match, "rule3Winner"));
 			this.$el.find('.rule3Winner').append(rule3WinnerDropDownView.render());
 
-			if (match.bonusRule.ruleType == 'playerName') {
+			if (RulesInfo.getRules(bonusRule).ruleType == 'playerName') {
 				var bonusDropDownView = new DropDownView(that.getPlayerDropDownMenu(match, "bonusWinner"));
 				this.$el.find('.bonusWinner').append(bonusDropDownView.render());
 			}
-			else if (match.bonusRule.ruleType == 'teamName'){
+			else if (RulesInfo.getRules(bonusRule).ruleType == 'teamName'){
 				var bonusDropDownView = new DropDownView(that.getTeamDropDownMenu(match, "bonusWinner"));
 				this.$el.find('.bonusWinner').append(bonusDropDownView.render());
 			}

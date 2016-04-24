@@ -3,7 +3,7 @@ html, body {
   font-size: 14px;
   width: 100%;
   height: 100%;
-  background: #fffcf9; }
+  background: #e0e1e3; }
 
 * {
   box-sizing: border-box; }
@@ -95,7 +95,7 @@ hr {
   .header .sub-headers {
     display: inline-block;
     vertical-align: middle;
-    width: calc(100% - 100px); }
+    width: calc(100% - 85px); }
     .header .sub-headers .logo {
       display: inline-block;
       vertical-align: middle;
@@ -135,7 +135,22 @@ hr {
   .header .logout-button {
     display: inline-block;
     vertical-align: middle;
-    width: 80px; }
+    width: 80px;
+    height: 100%;
+    text-align: center; }
+    .header .logout-button a {
+      display: block;
+      height: 100%;
+      text-decoration: none;
+      color: #fff;
+      padding: 16px 0; }
+      .header .logout-button a i {
+        font-size: 24px; }
+      .header .logout-button a span {
+        display: block; }
+      .header .logout-button a:hover {
+        background: #1e1f22;
+        color: #00bce4; }
 
 .dropdown {
   width: 280px;
