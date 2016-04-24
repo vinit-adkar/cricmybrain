@@ -6,6 +6,10 @@ html, body {
 	background: #fffcf9;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 #page {
 	width: 100%;
 	height: 100%;

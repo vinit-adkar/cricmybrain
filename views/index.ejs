@@ -23,118 +23,7 @@
 
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<style>
-		html, body { 
-			width: 100%;
-			height: 100%;
-			font-family: arial;
-		}
-
-		* {
-			box-sizing: border-box;
-		}
-		.containers {
-			width: 100%;
-			height: 100%;
-			background: #191919;
-		}
-		.text-center {
-			width: 500px;
-			padding: 24px;
-			background: #f3f3f3;
-			border-radius: 5px;
-			top: 10%;
-			position: absolute;
-			left: calc(50% - 250px);
-		}
-
-		.text-center h1 {
-			text-align: center;
-			margin: 0;
-			margin-bottom: 24px;
-		}
-
-		.text-center h1 img {
-			display: inline-block;
-			vertical-align: middle;
-			width: 30px;
-			position: relative;
-			top: -4px;
-		}
-
-		ul.nav.nav-pills {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			position: relative;
-			width: 100%;
-			top: 1px;
-			z-index: 1;
-			white-space: nowrap;
-		}
-
-		ul.nav.nav-pills li{
-			width: 50%;
-			display: inline-block;
-			text-align: center;
-			padding: 16px 8px;
-			float: none;
-			cursor: pointer;
-			margin: 0;
-			border: 0;
-			border-bottom: 1px solid #2a2c30;
-			border-radius: 5px 5px 0 0;
-			text-transform: uppercase;
-			font-size: 16px;
-			color: #009dd0;
-		}
-
-		ul.nav.nav-pills li:last-child {
-			left: -3px;
-		}
-		
-		ul.nav.nav-pills li:hover {
-			background: #fff;
-		}
-
-		ul.nav.nav-pills li.active {
-			background: #fff;
-			border: 1px solid #2a2c30;
-			border-bottom: 0px;
-			color: #2a2c30;
-		}
-
-		.text-center .tab-pane {
-			display: none;
-		}
-
-		.text-center .tab-pane.active {
-			display: block;
-		}
-
-		.text-center .tab-pane label{
-			color: #2a2c30;
-		}
-		
-		.tab-container .tab-content {
-			color : white;
-			background-color: #fff;
-			padding : 16px;
-			text-align: left;
-			border: 1px solid #2a2c30;
-			border-top: 0px;
-		}
-
-		.text-center .alert {
-			position: absolute;
-		    top: -50px;
-		    padding: 8px;
-		    width: 100%;
-		    text-align: left;
-		    left: 0;
-		}
-		
-	</style>
+	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 	<div class="containers">
@@ -171,42 +60,63 @@
 
 				<div class="tab-content">
 					<div class="tab-pane" id="login">
-						<form action="/login" method="post">
+						<form action="/login" method="post" id="login-form" class="form-horizontal">
 							<div class="form-group">
-								<label>Email:</label>
-								<input type="text" class="form-control" name="email">
+								<label class="control-label col-sm-3">Email:</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="email">
+								</div>
 							</div>
 							<div class="form-group">
-								<label>Password:</label>
-								<input type="password" class="form-control" name="password">
+								<label class="control-label col-sm-3">Password:</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" name="password">
+								</div>
 							</div>
-
-							<button type="submit" class="btn btn-warning btn-md">Login</button>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<button type="submit" class="btn btn-primary btn-md login-button">Login</button>
+								</div>
+							</div>
 						</form>
 					</div>
 					<div class="tab-pane" id="signup">
-						<form action="/signup" method="post">
+						<form action="/signup" method="post" id="sign-up-form" class="form-horizontal">
 							<div class="form-group">
-								<label for="name" class="control-label">Name:</label>
-								<input type="name" class="form-control" name="name" placeholder="Name">
-								<span class="help-block hidden"></span>
+								<label for="name" class="control-label col-sm-4">Name:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="name" placeholder="Name">
+								</div>
 							</div>
 							<div class="form-group">
-								<label for="email" class="control-label">Email:</label>
-								<input type="email" class="form-control" name="email" placeholder="Email">
-								<span class="help-block hidden"></span>
+								<label for="email" class="control-label col-sm-4">Email:</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" name="email" placeholder="Email">
+								</div>
 							</div>
 							<div class="form-group">
-								<label for="teamname" class="control-label">Team Name:</label>
-								<input type="text" class="form-control" name="teamname" placeholder="Team Name">
-								<span class="help-block hidden"></span>
+								<label for="teamname" class="control-label col-sm-4">Team Name:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="teamname" placeholder="Team Name">
+								</div>
 							</div>
 							<div class="form-group">
-								<label for="password" class="control-label">Password:</label>
-								<input type="password" class="form-control" name="password" placeholder="Password">
-								<span class="help-block hidden"></span>
+								<label for="password" class="control-label col-sm-4">Password:</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" name="password" placeholder="Password" id="password">
+								</div>
 							</div>
-							<button type="submit" class="btn btn-warning btn-md">Signup</button>
+							<div class="form-group">
+								<label for="confirm-password" class="control-label col-sm-4">Confirm Password:</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" name="confirmpassword" placeholder="Confirm Password">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-4 col-sm-8">
+									<button type="submit" class="btn btn-primary btn-md sign-up-button">Signup</button>
+								</div>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -215,21 +125,7 @@
 	</div>
 	
 	<script type="text/javascript" src="js/libs/jquery.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		var activePage = $('.nav-tab.active').attr("data-attribute");
-		$('.tab-pane').removeClass('active');
-		$('#'+ activePage).addClass('active');
-
-
-		$('.nav-tab').on("click", function() {
-			var clickdElement = $(this).attr("data-attribute");
-			$('.nav-tab').removeClass('active');
-			$(this).addClass('active');
-			$('.tab-pane').removeClass('active');
-			$('#'+ clickdElement).addClass('active');
-		})
-	});
-	</script>
+	<script type="text/javascript" src="js/libs/jquery.validate.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
