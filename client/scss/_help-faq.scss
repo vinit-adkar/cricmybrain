@@ -1,0 +1,35 @@
+.help-faq {
+	h3 {
+		font-style: italic;
+	    font-weight: bold;
+	    color: #104E8B;
+	}
+	ol {
+		background: #fff;
+		margin-bottom: 36px;
+		li {
+			padding: 8px 12px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		ul {
+			li {
+				padding: 0;
+				font-weight: normal;
+			}
+		}		
+	}
+
+	dl {
+		background: #fff;
+		padding: 16px;
+		dt {
+			padding: 8px 12px 4px;
+			font-size: 16px;
+		}
+		dd {
+			padding: 0 12px 8px;
+			border-bottom: 1px dotted #2a2c30;
+		}
+	}
+}

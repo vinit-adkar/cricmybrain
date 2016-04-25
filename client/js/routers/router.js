@@ -7,8 +7,9 @@ define([
 	"views/dashboard/HeaderView",
 	"views/dashboard/UserDashboardView",
 	"views/dashboard/ResultsView",
-	"views/content/PointsTableView"
-], function($, _, Backbone, Globals, HeaderView, UserDashboardView, ResultsView, PointsTableView){
+	"views/content/PointsTableView",
+	"views/dashboard/HelpFAQView"
+], function($, _, Backbone, Globals, HeaderView, UserDashboardView, ResultsView, PointsTableView, HelpFAQView){
 
 	var AppRouter = Backbone.Router.extend({
 		
@@ -25,6 +26,7 @@ define([
 		routes : {
 			"results": "showResults",
 			"points-table": "showPointsTable",
+			"help": "showHelpFAQ",
 			"*actions": "showDashboard",
 		},
 
@@ -59,10 +61,16 @@ define([
 			this.previousView = pointsTableView;
 		},
 
+		showHelpFAQ: function() {
+			var helpFaqView = new HelpFAQView();
+			helpFaqView.render();
+			this.setActivePage();
+			this.cleanup_views();
+			this.previousView = helpFaqView;
+		},
 
-		
 		setActivePage: function() {
-			var pages = ["dashboard", "results", "points-table"];
+			var pages = ["dashboard", "results", "points-table", "help"];
 			var page_name = this.getPage() || "dashboard";
 			$('.header .menu .menu-item').removeClass("nav-active");
 

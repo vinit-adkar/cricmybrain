@@ -5,7 +5,7 @@
 
 	.sub-headers {
 		@include display-inline-block;
-		width: calc(100% - 85px);
+		width: calc(100% - 170px);
 
 		.logo {
 			@include display-inline-block;
@@ -23,7 +23,7 @@
 			}
 		}
 
-		.menu {
+		.menu, {
 			@include display-inline-block;
 			list-style-type: none;
 			margin: 0;
@@ -59,30 +59,40 @@
 		}
 	}
 
-	.logout-button {
-		@include display-inline-block;
-		width: 80px;
-		height: 100%;
-		text-align: center;
-		a {
-			display: block;
+	.right-menu {
+	    display: inline-block;
+	    vertical-align: middle;
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    height: 70px;
+	    color: #f3f3f3;
+	    width: 165px;
+	    .menu-item {
+			display: inline-block;
 			height: 100%;
-			text-decoration: none;
-			color: #fff;
-			padding: 16px 0;
+			text-align: center;
 
-			i {
-				font-size: 24px;
-			}
-			span {
-				display: block
-			}
+			a {
+				display: block;
+				height: 100%;
+				text-decoration: none;
+				color: #fff;
+				padding: 16px 8px;
 
-			&:hover {
-				background: #1e1f22;
-				color: #00bce4;
-			}
+				i {
+					font-size: 24px;
+				}
+				span {
+					display: block
+				}
 
+				&:hover {
+					background: #1e1f22;
+					color: #00bce4;
+				}
+			}
 		}
 	}
+
 }
