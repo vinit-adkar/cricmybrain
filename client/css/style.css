@@ -98,8 +98,12 @@ a {
 .results-content .results-table .winning-predictions td {
   font-weight: bold;
   font-style: italic; }
-.results-content .results-table td.correct-prediction {
-  background: #cbfdcb; }
+.results-content .results-table tr {
+  border-bottom: 1px solid #f3f3f3; }
+  .results-content .results-table tr:last-child {
+    border-bottom: 0px; }
+  .results-content .results-table tr td.correct-prediction {
+    background: #cbfdcb; }
 
 .prediction-note {
   font-size: 14px;

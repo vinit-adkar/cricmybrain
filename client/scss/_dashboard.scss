@@ -85,8 +85,15 @@
 				font-style: italic;
 			}
 		}
-		td.correct-prediction {
-			background: #cbfdcb;
+		tr {
+			border-bottom: 1px solid #f3f3f3;
+
+			&:last-child {
+				border-bottom: 0px;
+			}
+			td.correct-prediction {
+				background: #cbfdcb;
+			}			
 		}
 	}
 }
