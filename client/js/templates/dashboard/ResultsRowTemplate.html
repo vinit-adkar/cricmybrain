@@ -35,7 +35,7 @@
 	</li>
 </ul>
 <h4>POINTS TABLE</h4>
-<table class="table table-striped">
+<table class="table table-striped results-table">
 	<thead>
 		<tr>
 			<th>Rank</th>
@@ -77,10 +77,30 @@
 					<td><%= index+1 %></td>
 					<td><%= users[prediction.userId].teamname %></td>
 					<td><%= users[prediction.userId].name %></td>
-					<td><%= teams_info[prediction.rule1Winner] %></td>
-					<td><%= prediction.rule2Winner %></td>
-					<td><%= prediction.rule3Winner %></td>
-					<td><%= prediction.bonusWinner %></td>
+					<% if (teams_info[match.rule1Winner] == teams_info[prediction.rule1Winner]) { %> 
+						<td class="correct-prediction"><%= teams_info[prediction.rule1Winner] %></td>
+					<% } else { %>
+						<td><%= teams_info[prediction.rule1Winner] %></td>
+					<% } %>
+					
+					<% if (match.rule2Winner == prediction.rule2Winner) { %> 
+						<td class="correct-prediction"><%= prediction.rule2Winner %></td>
+					<% } else { %>
+						<td><%= prediction.rule2Winner %></td>
+					<% } %>
+
+					<% if (match.rule3Winner == prediction.rule3Winner) { %> 
+						<td class="correct-prediction"><%= prediction.rule3Winner %></td>
+					<% } else { %>
+						<td><%= prediction.rule3Winner %></td>
+					<% } %>
+
+					<% if (match.bonusWinner == prediction.bonusWinner) { %> 
+						<td class="correct-prediction"><%= prediction.bonusWinner %></td>
+					<% } else { %>
+						<td><%= prediction.bonusWinner %></td>
+					<% } %>
+
 					<td><%= prediction.points %></td>
 				</tr>
 			<% }); %>

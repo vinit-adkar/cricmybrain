@@ -95,9 +95,11 @@ a {
   display: inline-block;
   vertical-align: middle;
   width: auto; }
-.results-content .table .winning-predictions td {
+.results-content .results-table .winning-predictions td {
   font-weight: bold;
   font-style: italic; }
+.results-content .results-table td.correct-prediction {
+  background: #cbfdcb; }
 
 .prediction-note {
   font-size: 14px;

@@ -78,12 +78,15 @@
 		}
 	}
 
-	.table {
+	.results-table {
 		.winning-predictions {
 			td{
 				font-weight: bold;
 				font-style: italic;
 			}
+		}
+		td.correct-prediction {
+			background: #cbfdcb;
 		}
 	}
 }
