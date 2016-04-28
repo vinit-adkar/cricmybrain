@@ -83,7 +83,7 @@
 						<td><%= teams_info[prediction.rule1Winner] %></td>
 					<% } %>
 					
-					<% if (match.rule2Winner == prediction.rule2Winner) { %> 
+					<% if ((prediction.rule2Winner >= (match.rule2Winner - rule2.range)) && (prediction.rule2Winner <= (parseInt(match.rule2Winner) + parseInt(rule2.range)))) { %>
 						<td class="correct-prediction"><%= prediction.rule2Winner %></td>
 					<% } else { %>
 						<td><%= prediction.rule2Winner %></td>
@@ -95,10 +95,18 @@
 						<td><%= prediction.rule3Winner %></td>
 					<% } %>
 
-					<% if (match.bonusWinner == prediction.bonusWinner) { %> 
-						<td class="correct-prediction"><%= prediction.bonusWinner %></td>
+					<% if (bonusRule.range) { %>
+						<% if ((prediction.bonusWinner >= (match.bonusWinner - bonusRule.range)) && (prediction.bonusWinner <= (parseInt(match.bonusWinner) + parseInt(bonusRule.range)))) { %> 
+							<td class="correct-prediction"><%= prediction.bonusWinner %></td>
+						<% } else { %>
+							<td><%= prediction.bonusWinner %></td>
+						<% } %>
 					<% } else { %>
-						<td><%= prediction.bonusWinner %></td>
+						<% if (match.bonusWinner == prediction.bonusWinner) { %> 
+							<td class="correct-prediction"><%= prediction.bonusWinner %></td>
+						<% } else { %>
+							<td><%= prediction.bonusWinner %></td>
+						<% } %>
 					<% } %>
 
 					<td><%= prediction.points %></td>
