@@ -60,7 +60,8 @@ define([
 					    rule2: RulesInfo.getRules("rule2"),
 					    rule3: RulesInfo.getRules("rule3"),
 					    bonusRule: RulesInfo.getRules(that.matchModelJSON.bonusRule),
-					    users: users					    
+					    users: users,
+					    loggedInUser: Globals["user"]
 					}))
 					that.render_el.html(that.$el);
 				},

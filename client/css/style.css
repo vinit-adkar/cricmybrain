@@ -281,6 +281,10 @@ table {
     border-right: 1px solid #f9f9f9 !important; }
     table > tbody > tr > td:last-child {
       border-right: 0px !important; }
+  table tr.logged-in-user td {
+    font-weight: bold;
+    font-size: 16px;
+    font-style: italic; }
 
 .help-faq h3 {
   font-style: italic;

@@ -73,7 +73,11 @@
 		</tr>
 		<% if (predictions.length) { %>
 			<% _.each(predictions, function(prediction, index) { %>
+				<% if (prediction.userId == loggedInUser.id) { %> 
+				<tr class="logged-in-user">
+				<% } else { %>
 				<tr>
+				<% } %>
 					<td><%= index+1 %></td>
 					<td><%= users[prediction.userId].teamname %></td>
 					<td><%= users[prediction.userId].name %></td>

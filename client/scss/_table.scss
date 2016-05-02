@@ -26,4 +26,12 @@ table {
 			border-right: 0px!important;
 		}
 	}
+
+	tr.logged-in-user {
+		td {
+			font-weight: bold;
+			font-size: 16px;
+			font-style: italic;
+		}
+	}
 }

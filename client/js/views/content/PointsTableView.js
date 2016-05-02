@@ -25,7 +25,8 @@ define([
 			this.users.fetch({
 				success: function(collection, response, options){
 					that.$el.html(that.template({
-					    collection: collection.toJSON()
+					    collection: collection.toJSON(),
+					    loggedInUser: Globals["user"]
 					}));
 					that.render_el.html(that.$el);
 				},
