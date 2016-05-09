@@ -32,7 +32,8 @@ define([
 					{"name" : "Jitesh Sharma", "type" : "batsman"},
 					{"name" : "Akshay Wakhare", "type" : "batsman"},
 					{"name" : "Parthiv Patel", "type" : "wicketkeeper"},
-					{"name" : "Jos Buttler", "type" : "wicketkeeper"}
+					{"name" : "Jos Buttler", "type" : "wicketkeeper"},
+					{"name" : "Jerome Taylor", "type" : "bowler"}
 				]
 			},
 			KKR: {
@@ -59,7 +60,8 @@ define([
 					{"name" : "Suryakumar Yadav", "type" : "batsman"},
 					{"name" : "Chris Lynn", "type" : "batsman"},
 					{"name" : "Robin Uthappa", "type" : "wicketkeeper"},
-					{"name" : "Sheldon Jackson", "type" : "wicketkeeper"}
+					{"name" : "Sheldon Jackson", "type" : "wicketkeeper"},
+					{"name" : "John Hastings", "type" : "bowler"}
 				]
 			},
 			KXIP: {
@@ -87,7 +89,8 @@ define([
 					{"name" : "Shaun Marsh", "type" : "batsman"},
 					{"name" : "Nikhil Naik", "type" : "batsman"},
 					{"name" : "Manan Vohra", "type" : "batsman"},
-					{"name" : "Wriddhiman Saha", "type" : "wicketkeeper"}
+					{"name" : "Wriddhiman Saha", "type" : "wicketkeeper"},
+					{"name" : "Hashim Amla", "type" : "batsman"}
 				]
 			},
 			SH: {
@@ -178,7 +181,9 @@ define([
 					{"name" : "Peter Handscomb", "type" : "batsman"},
 					{"name" : "Ajinkya Rahane", "type" : "batsman"},
 					{"name" : "Saurabh Tiwary", "type" : "batsman"},
-					{"name" : "MS Dhoni", "type" : "wicketkeeper"}
+					{"name" : "MS Dhoni", "type" : "wicketkeeper"},
+					{"name" : "Usman Khawaja", "type" : "batsman"},
+					{"name" : "George Bailey", "type" : "batsman"}
 				]
 			},
 			RCB: {
@@ -210,7 +215,8 @@ define([
 					{"name" : "AB de Villiers", "type" : "batsman"},
 					{"name" : "Chris Gayle", "type" : "batsman"},
 					{"name" : "Akshay Karnewar", "type" : "batsman"},
-					{"name" : "Kedar Jadhav", "type" : "wicketkeeper"}
+					{"name" : "Kedar Jadhav", "type" : "wicketkeeper"},
+					{"name" : "Chris Jordan", "type" : "bowler"}
 				]
 			},
 			DD: {
